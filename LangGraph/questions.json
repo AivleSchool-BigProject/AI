@@ -1,0 +1,373 @@
+{
+    "step_1": [
+        {
+            "id": "s1_one_line_definition",
+            "category": "Identity",
+            "question_text": "우리 서비스를 전혀 모르는 10살 조카에게 설명한다고 가정하고, 한 문장으로 서비스를 정의해주세요.",
+            "question_type": "short_answer",
+            "required": true,
+            "context_key": "service_definition"
+        },
+        {
+            "id": "s1_core_problem",
+            "category": "Problem Solving",
+            "question_text": "고객이 우리 서비스를 쓰지 않을 때 겪는 가장 고통스러운 문제점은 무엇인가요?",
+            "question_type": "long_answer",
+            "required": true,
+            "context_key": "pain_point"
+        },
+        {
+            "id": "s1_target_persona",
+            "category": "Target",
+            "question_text": "우리 서비스의 '찐팬'이 될 핵심 고객층은 누구인가요?",
+            "question_type": "multiple_choice",
+            "options": [
+                { "id": "opt_2030", "text": "2030 트렌드 세터", "value": "2030 Trend Setter" },
+                { "id": "opt_3040", "text": "3040 직장인", "value": "3040 Office Worker" },
+                { "id": "opt_startup_ceo", "text": "초기 스타트업 대표", "value": "Early Stage Startup CEO" },
+                { "id": "opt_mid_team_lead", "text": "중견기업 팀장", "value": "Mid-sized Company Team Lead" },
+                { "id": "opt_professional", "text": "전문직", "value": "Professional" }
+            ],
+            "required": true,
+            "context_key": "target_persona"
+        },
+        {
+            "id": "s1_differentiation",
+            "category": "USP",
+            "question_text": "경쟁사가 절대 따라 할 수 없는 우리만의 '무기'는 무엇인가요?",
+            "question_type": "long_answer",
+            "required": true,
+            "context_key": "usp"
+        },
+        {
+            "id": "s1_growth_stage",
+            "category": "Status",
+            "question_text": "현재 비즈니스의 완성도는 어느 정도인가요?",
+            "question_type": "multiple_choice",
+            "options": [
+                { "id": "opt_idea", "text": "아이디어 단계", "value": "Idea Stage" },
+                { "id": "opt_mvp", "text": "MVP 개발 중", "value": "MVP Development" },
+                { "id": "opt_revenue", "text": "초기 매출 발생", "value": "Early Revenue" },
+                { "id": "opt_scaleup", "text": "스케일업", "value": "Scale-up" }
+            ],
+            "required": true,
+            "context_key": "growth_stage"
+        },
+        {
+            "id": "s1_industry",
+            "category": "Market",
+            "question_text": "비즈니스가 속한 산업군은 어디인가요?",
+            "question_type": "multiple_choice",
+            "options": [
+                { "id": "opt_saas", "text": "SaaS/플랫폼", "value": "SaaS/Platform" },
+                { "id": "opt_commerce", "text": "커머스", "value": "Commerce" },
+                { "id": "opt_health", "text": "헬스케어", "value": "Healthcare" },
+                { "id": "opt_edu", "text": "교육", "value": "Education" }
+            ],
+            "required": true,
+            "context_key": "industry"
+        },
+        {
+            "id": "s1_vision",
+            "category": "Vision",
+            "question_text": "5년 뒤, 우리 회사가 뉴스 헤드라인에 나온다면 어떤 제목일까요?",
+            "question_type": "short_answer",
+            "required": true,
+            "context_key": "vision_headline"
+        }
+    ],
+    "step_2": [
+        {
+            "id": "s2_naming_style",
+            "category": "Style",
+            "question_text": "어떤 스타일의 이름을 선호하시나요?",
+            "question_type": "multiple_choice",
+            "options": [
+                { "id": "style_intuitive", "text": "직관적/설명적", "value": "Descriptive" },
+                { "id": "style_symbolic", "text": "함축적/상징적", "value": "Symbolic" },
+                { "id": "style_compound", "text": "합성어", "value": "Compound Word" },
+                { "id": "style_abstract", "text": "추상적/신조어", "value": "Abstract/Neologism" }
+            ],
+            "required": true,
+            "context_key": "naming_style"
+        },
+        {
+            "id": "s2_language",
+            "category": "Language",
+            "question_text": "어떤 언어 기반이어야 하나요?",
+            "question_type": "multiple_choice",
+            "options": [
+                { "id": "lang_kr", "text": "순수 한글", "value": "Korean" },
+                { "id": "lang_en", "text": "영어 기반", "value": "English" },
+                { "id": "lang_any", "text": "무관", "value": "Any" }
+            ],
+            "required": true,
+            "context_key": "language_pref"
+        },
+        {
+            "id": "s2_keywords",
+            "category": "Keywords",
+            "question_text": "이름에 꼭 담기거나 연상되었으면 하는 단어가 있나요?",
+            "question_type": "short_answer",
+            "required": false,
+            "context_key": "must_have_keywords"
+        },
+        {
+            "id": "s2_atmosphere",
+            "category": "Vibe",
+            "question_text": "이름에서 느껴져야 할 첫인상은 무엇인가요?",
+            "question_type": "multiple_choice",
+            "options": [
+                { "id": "vibe_trust", "text": "신뢰감 있는", "value": "Trustworthy" },
+                { "id": "vibe_innovative", "text": "혁신적인", "value": "Innovative" },
+                { "id": "vibe_friendly", "text": "친근한", "value": "Friendly" }
+            ],
+            "required": true,
+            "context_key": "brand_vibe"
+        },
+        {
+            "id": "s2_avoid",
+            "category": "Avoid",
+            "question_text": "\"이런 느낌만은 피해주세요\" 하는 것이 있나요?",
+            "question_type": "short_answer",
+            "required": false,
+            "context_key": "avoid_style"
+        },
+        {
+            "id": "s2_domain",
+            "category": "Constraint",
+            "question_text": ".com 도메인 확보가 필수적인가요?",
+            "question_type": "multiple_choice",
+            "options": [
+                { "id": "dom_must", "text": "필수", "value": "Must have .com" },
+                { "id": "dom_any", "text": "상관없음", "value": "Don't care" }
+            ],
+            "required": true,
+            "context_key": "domain_constraint"
+        },
+        {
+            "id": "s2_target_emotion",
+            "category": "Emotion",
+            "question_text": "고객이 이름을 듣자마자 느꼈으면 하는 딱 하나의 감정은 무엇인가요?",
+            "question_type": "short_answer",
+            "required": true,
+            "context_key": "target_emotion"
+        }
+    ],
+    "step_3": [
+        {
+            "id": "s3_concept_1",
+            "category": "Concept",
+            "question_text": "브랜드가 절대 포기할 수 없는 가치 2가지는 무엇인가요?",
+            "question_type": "multiple_choice",
+            "options": [
+                { "id": "val_innovation", "text": "혁신", "value": "Innovation" },
+                { "id": "val_trust", "text": "신뢰", "value": "Trust" },
+                { "id": "val_simple", "text": "단순함", "value": "Simplicity" }
+            ],
+            "required": true,
+            "context_key": "core_values"
+        },
+        {
+            "id": "s3_concept_2",
+            "category": "Concept",
+            "question_text": "고객에게 말을 건넨다면 어떤 말투일까요?",
+            "question_type": "multiple_choice",
+            "options": [
+                { "id": "tone_expert", "text": "전문적인 박사님", "value": "Professional Expert" },
+                { "id": "tone_guide", "text": "친절한 가이드", "value": "Friendly Guide" },
+                { "id": "tone_friend", "text": "위트 있는 친구", "value": "Witty Friend" }
+            ],
+            "required": true,
+            "context_key": "brand_voice"
+        },
+        {
+            "id": "s3_concept_3",
+            "category": "Concept",
+            "question_text": "우리 브랜드를 사람에 비유한다면 어떤 성격인가요?",
+            "question_type": "multiple_choice",
+            "options": [
+                { "id": "arch_sage", "text": "현자 (Sage)", "value": "Sage" },
+                { "id": "arch_hero", "text": "영웅 (Hero)", "value": "Hero" },
+                { "id": "arch_creator", "text": "창조자 (Creator)", "value": "Creator" }
+            ],
+            "required": true,
+            "context_key": "brand_archetype"
+        },
+        {
+            "id": "s3_concept_4",
+            "category": "Concept",
+            "question_text": "고객이 기억해야 할 단 한 문장은 무엇인가요?",
+            "question_type": "short_answer",
+            "required": true,
+            "context_key": "key_message"
+        },
+        {
+            "id": "s3_concept_5",
+            "category": "Concept",
+            "question_text": "고객을 안심시킬 수 있는 근거는 무엇인가요?",
+            "question_type": "short_answer",
+            "required": true,
+            "context_key": "trust_factors"
+        },
+        {
+            "id": "s3_concept_6",
+            "category": "Concept",
+            "question_text": "브랜드 전체를 관통하는 시각적/심리적 분위기는 무엇인가요?",
+            "question_type": "short_answer",
+            "required": true,
+            "context_key": "concept_vibe"
+        },
+        {
+            "id": "s3_concept_7",
+            "category": "Concept",
+            "question_text": "슬로건에 꼭 들어갔으면 하는 핵심 단어는 무엇인가요?",
+            "question_type": "short_answer",
+            "required": false,
+            "context_key": "slogan_keywords"
+        }
+    ],
+    "step_4": [
+        {
+            "id": "s4_story_1",
+            "category": "Story",
+            "question_text": "창업자가 이 사업을 시작하게 된 결정적인 '계기'나 '사건'은 무엇인가요?",
+            "question_type": "long_answer",
+            "required": true,
+            "context_key": "founding_story"
+        },
+        {
+            "id": "s4_story_2",
+            "category": "Story",
+            "question_text": "우리 서비스를 쓰기 전과 후, 고객의 삶은 어떻게 달라지나요?",
+            "question_type": "long_answer",
+            "required": true,
+            "context_key": "customer_transformation"
+        },
+        {
+            "id": "s4_story_3",
+            "category": "Story",
+            "question_text": "수익 창출 외에, 우리가 세상에 기여하고자 하는 바는 무엇인가요?",
+            "question_type": "long_answer",
+            "required": true,
+            "context_key": "brand_mission"
+        },
+        {
+            "id": "s4_story_4",
+            "category": "Story",
+            "question_text": "어떤 스타일의 스토리텔링을 원하나요?",
+            "question_type": "multiple_choice",
+            "options": [
+                { "id": "plot_problem", "text": "문제 해결형", "value": "Problem-Solution" },
+                { "id": "plot_vision", "text": "비전 제시형", "value": "Visionary" },
+                { "id": "plot_myth", "text": "탄생 신화형", "value": "Founding Myth" }
+            ],
+            "required": true,
+            "context_key": "story_plot"
+        },
+        {
+            "id": "s4_story_5",
+            "category": "Story",
+            "question_text": "고객이 현재 겪고 있는 가장 큰 결핍이나 방해물은 무엇인가요?",
+            "question_type": "long_answer",
+            "required": true,
+            "context_key": "customer_conflict"
+        },
+        {
+            "id": "s4_story_6",
+            "category": "Story",
+            "question_text": "스토리를 통해 고객의 어떤 감정을 자극하고 싶나요?",
+            "question_type": "multiple_choice",
+            "options": [
+                { "id": "emo_relief", "text": "안도감", "value": "Relief" },
+                { "id": "emo_curiosity", "text": "호기심", "value": "Curiosity" }
+            ],
+            "required": true,
+            "context_key": "story_emotion"
+        },
+        {
+            "id": "s4_story_7",
+            "category": "Story",
+            "question_text": "브랜드가 궁극적으로 만들고자 하는 세상의 모습은 무엇인가요?",
+            "question_type": "long_answer",
+            "required": true,
+            "context_key": "ultimate_goal"
+        }
+    ],
+    "step_5": [
+        {
+            "id": "s5_logo_1",
+            "category": "Visual",
+            "question_text": "어떤 형태의 로고를 원하시나요?",
+            "question_type": "multiple_choice",
+            "options": [
+                { "id": "shape_symbol", "text": "심볼형", "value": "Symbol Only" },
+                { "id": "shape_wordmark", "text": "워드마크형", "value": "Wordmark" },
+                { "id": "shape_combination", "text": "콤비네이션", "value": "Combination" }
+            ],
+            "required": true,
+            "context_key": "logo_structure"
+        },
+        {
+            "id": "s5_logo_2",
+            "category": "Visual",
+            "question_text": "로고에 형상화되었으면 하는 구체적인 사물이나 개념이 있나요?",
+            "question_type": "short_answer",
+            "required": false,
+            "context_key": "visual_motif"
+        },
+        {
+            "id": "s5_logo_3",
+            "category": "Visual",
+            "question_text": "우리를 대표하는 색상은 무엇인가요?",
+            "question_type": "multiple_choice",
+            "options": [
+                { "id": "col_blue", "text": "블루/네이비", "value": "Blue/Navy" },
+                { "id": "col_bw", "text": "블랙/화이트", "value": "Black/White" }
+            ],
+            "required": true,
+            "context_key": "brand_color"
+        },
+        {
+            "id": "s5_logo_4",
+            "category": "Visual",
+            "question_text": "선호하는 디자인 스타일은 무엇인가요?",
+            "question_type": "multiple_choice",
+            "options": [
+                { "id": "style_minimal", "text": "플랫/미니멀", "value": "Flat/Minimalist" },
+                { "id": "style_3d", "text": "3D/그라디언트", "value": "3D/Gradient" }
+            ],
+            "required": true,
+            "context_key": "design_style"
+        },
+        {
+            "id": "s5_logo_5",
+            "category": "Visual",
+            "question_text": "평소에 \"로고 참 좋다\"고 생각한 브랜드와 그 이유는 무엇인가요?",
+            "question_type": "long_answer",
+            "required": false,
+            "context_key": "design_reference"
+        },
+        {
+            "id": "s5_logo_6",
+            "category": "Visual",
+            "question_text": "로고가 가장 많이 쓰이게 될 곳은 어디인가요?",
+            "question_type": "short_answer",
+            "required": true,
+            "context_key": "primary_usage"
+        },
+        {
+            "id": "s5_logo_7",
+            "category": "Visual",
+            "question_text": "이미지와 텍스트 중 무엇이 더 중요한가요?",
+            "question_type": "multiple_choice",
+            "options": [
+                { "id": "ratio_img", "text": "이미지 중심", "value": "Image Driven" },
+                { "id": "ratio_txt", "text": "텍스트 중심", "value": "Text Driven" },
+                { "id": "ratio_bal", "text": "균형", "value": "Balanced" }
+            ],
+            "required": true,
+            "context_key": "visual_text_ratio"
+        }
+    ]
+}
