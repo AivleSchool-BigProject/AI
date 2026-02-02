@@ -1,7 +1,5 @@
 # 명령어 및 깃 룰
 
-깃허브 공부 스터디 그룹
-
 main <- dev <- feature-*
 
 ## Branch Roles
