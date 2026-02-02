@@ -71,14 +71,4 @@ class LogoRequest(BaseRequest):
     story_context: Dict[str, Any] = Field(..., description="Step 4 스토리 선택 결과")
     qa_answers: Dict[str, Any] = Field(..., description="Step 5 Q&A 답변")
 
-# =================================================================
-# [재생성] Regenerate Request
-# =================================================================
-class RegenerateRequest(BaseRequest):
-    """
-    재생성 요청
-    사용자가 생성된 후보에 만족하지 못할 때 피드백과 함께 요청
-    """
-    original_request: Dict[str, Any] = Field(..., description="원래 요청했던 Request Body (Context 포함)")
-    feedback: str = Field(..., description="재생성 요청 피드백 (한국어)")
-    step: int = Field(..., description="재생성 할 단계 번호 (2~5)")
+# [RegenerateRequest Removed]

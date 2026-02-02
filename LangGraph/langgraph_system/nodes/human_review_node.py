@@ -24,21 +24,6 @@ def human_review_node(state: BrandConsultingState) -> BrandConsultingState:
     print(f"\n[Human Review] 사용자 선택 처리: {user_choice}")
     
     # 1. 재생성 요청
-    if user_choice == "regenerate":
-        # 재생성 단계 명확히 설정
-        target_step = current_step - 1
-        
-        print(f"[Human Review] 🔄 재생성 요청: {feedback}")
-        print(f"[Human Review] Step {target_step} 단계 재생성을 준비합니다.")
-        
-        return {
-            "quality_check_passed": False,
-            "feedback_required": True,           # 피드백 활성화
-            "feedback_content": feedback,        # 노드에서 활용
-            "regenerate_step": target_step,      # 재생성 단계
-            "current_step": target_step,         # 현재 단계 되돌리기
-            "user_choice": None                  # 소비 완료
-        }
     
     # 2. 후보 선택 (0, 1, 2)
     try:
@@ -66,9 +51,7 @@ def human_review_node(state: BrandConsultingState) -> BrandConsultingState:
         print(f"[Human Review] ⚠️ Step {current_step}은 후보 선택 대상이 아닙니다.")
         return {
             "quality_check_passed": True,
-            "feedback_required": False,
-            "feedback_content": None,
-            "regenerate_step": None,
+            "quality_check_passed": True,
             "user_choice": None
         }
     
@@ -127,8 +110,5 @@ def human_review_node(state: BrandConsultingState) -> BrandConsultingState:
         context_key: core_context,      # 핵심 데이터 별도 저장
         # index_key: selected_idx,      # 인덱스는 굳이 State에 유지 안 해도 됨 (선택된 결과가 있으므로)
         "quality_check_passed": True,
-        "feedback_required": False,
-        "feedback_content": None,
-        "regenerate_step": None,
         "user_choice": None
     }

@@ -1,0 +1,30 @@
+{
+  "brand_id": "temp_brand_id",
+  "step": 5,
+  "candidates": [
+    {
+      "id": 0,
+      "output": {
+        "logo_concept": "'StartupGenius'의 로고는 미니멀리스트 스타일로, 'S'라는 글자에 추상적인 AI 브레인 아이콘을 세련되게 통합하여 표현하였습니다. 모던한 폰트를 사용하고, 색상은 파란색과 흰색을 조합하여 기술 중심 브랜드에 잘 어울리는 혁신적이고 지성적인 느낌을 줍니다.",
+        "logo_image_url": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-wQVNtTE1Oeqs5FjNepbX1ZGx/user-CepdD55JOjdjogNeVAijyOwa/img-9FpM4g5Pcbn8JqwuzLD4HL2h.png?st=2026-02-02T00%3A44%3A08Z&se=2026-02-02T02%3A44%3A08Z&sp=r&sv=2024-08-04&sr=b&rscd=inline&rsct=image/png&skoid=13da7400-b3f7-4f8c-9cba-908fecbd114c&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-02-02T00%3A16%3A53Z&ske=2026-02-03T00%3A16%3A53Z&sks=b&skv=2024-08-04&sig=rlBzS/CoaFd0UZcFOuiH5UTJdTFwtw07CAQrLuXFR6E%3D",
+        "logo_image_path": "generated_logos\\temp_brand_id_logo_0_20260202_104409.png"
+      }
+    },
+    {
+      "id": 1,
+      "output": {
+        "logo_concept": "종이 접기에서 영감을 받은 디자인은 'G'와 'S' 모양을 종이접기 형태로 세련되게 형상화하여, 미니멀리스트 스타일로 간결하면서도 우아한 느낌을 줍니다.",
+        "logo_image_url": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-wQVNtTE1Oeqs5FjNepbX1ZGx/user-CepdD55JOjdjogNeVAijyOwa/img-R11zEFdezhtJ8WfqA6MtdYvb.png?st=2026-02-02T00%3A44%3A23Z&se=2026-02-02T02%3A44%3A23Z&sp=r&sv=2024-08-04&sr=b&rscd=inline&rsct=image/png&skoid=f1dafa11-a0c2-4092-91d4-10981fbda051&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-02-01T23%3A40%3A11Z&ske=2026-02-02T23%3A40%3A11Z&sks=b&skv=2024-08-04&sig=gO0Wrlmpb91KhWf5Sf5z1N9qhjWYRd1MLKRKwjqburo%3D",
+        "logo_image_path": "generated_logos\\temp_brand_id_logo_1_20260202_104424.png"
+      }
+    },
+    {
+      "id": 2,
+      "output": {
+        "logo_concept": "'S'자를 기하학적인 디지털 네트워크 패턴과 융합한 로고는 선명한 라인과 노드를 활용하여 연결성과 지능을 상징적으로 표현합니다. 이는 높은 수준의 전문성과 기술 분야의 이미지를 강조합니다.",
+        "logo_image_url": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-wQVNtTE1Oeqs5FjNepbX1ZGx/user-CepdD55JOjdjogNeVAijyOwa/img-R4iGoFenZ92gBvZhCGdMTBO8.png?st=2026-02-02T00%3A44%3A40Z&se=2026-02-02T02%3A44%3A40Z&sp=r&sv=2024-08-04&sr=b&rscd=inline&rsct=image/png&skoid=77e5a8ec-6bd1-4477-8afc-16703a64f029&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-02-02T01%3A44%3A40Z&ske=2026-02-03T01%3A44%3A40Z&sks=b&skv=2024-08-04&sig=tYtngw87jARqIofoIdrycnKujgH147%2BP/kc8GmRSJk4%3D",
+        "logo_image_path": "generated_logos\\temp_brand_id_logo_2_20260202_104441.png"
+      }
+    }
+  ]
+}

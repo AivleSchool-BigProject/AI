@@ -20,23 +20,8 @@ def route_step(state: BrandConsultingState) -> str:
     라우터 함수: 현재 상태에 따라 다음 실행할 노드를 결정
     """
     current_step = state.get("current_step")
-    regenerate_step = state.get("regenerate_step")
     
-    # 1. 재생성 요청이 있는 경우 해당 단계로 되돌아감
-    if regenerate_step is not None:
-        step_mapping = {
-            1: "diagnosis",
-            2: "naming",
-            3: "concept",
-            4: "story",
-            5: "logo"
-        }
-        target_node = step_mapping.get(regenerate_step)
-        if target_node:
-            print(f"[Router] 🔄 재생성 모드: Step {regenerate_step} ({target_node})로 이동")
-            return target_node
-    
-    # 2. 일반 진행 (current_step 기준)
+    # 1. 일반 진행 (current_step 기준)
     # Human Review에서 승인 시 current_step이 이미 다음 단계로 업데이트 되어 있음
     step_mapping = {
         1: "diagnosis",
@@ -56,6 +41,32 @@ def route_step(state: BrandConsultingState) -> str:
         print(f"[Router] 🏁 워크플로우 종료 (Step {current_step})")
         return END
 
+def start_gateway(state: BrandConsultingState) -> BrandConsultingState:
+    """
+    시작 게이트웨어 노드
+    Passthrough 노드로, 실제 역할은 route_start에서 수행
+    """
+    print(f"[Start] 워크플로우 시작 (Current Step: {state.get('current_step', 1)})")
+    return state
+
+def route_start(state: BrandConsultingState) -> str:
+    """
+    시작 라우팅: current_step에 따라 시작할 노드 결정
+    """
+    current_step = state.get("current_step", 1)
+    
+    # Mapping
+    step_mapping = {
+        1: "diagnosis",
+        2: "naming",
+        3: "concept",
+        4: "story",
+        5: "logo"
+    }
+    
+    # 일반 단계 시작
+    return step_mapping.get(current_step, "diagnosis")
+
 def create_info_graph():
     """
     LangGraph StateGraph 생성 및 컴파일
@@ -63,6 +74,8 @@ def create_info_graph():
     workflow = StateGraph(BrandConsultingState)
     
     # 1. 노드 추가
+    workflow.add_node("start_gateway", start_gateway) # 시작점 노드 추가
+    
     workflow.add_node("diagnosis", diagnosis_node)
     workflow.add_node("naming", naming_node)
     workflow.add_node("concept", concept_node)
@@ -73,6 +86,12 @@ def create_info_graph():
     workflow.add_node("human_review", human_review_node)
     
     # 2. 엣지 연결
+    # Start -> Router -> First Node
+    workflow.add_conditional_edges(
+        "start_gateway",
+        route_start
+    )
+    
     # 각 단계 노드 완료 후 -> Quality Check
     step_nodes = ["diagnosis", "naming", "concept", "story", "logo"]
     for node in step_nodes:
@@ -88,8 +107,8 @@ def create_info_graph():
         route_step
     )
     
-    # 3. 시작점 설정
-    workflow.set_entry_point("diagnosis")
+    # 3. 시작점 설정 (Gateway로 변경)
+    workflow.set_entry_point("start_gateway")
     
     # 4. 컴파일 (Checkpointer 설정 추가)
     memory = MemorySaver()

@@ -86,9 +86,8 @@ class BrandConsultingState(TypedDict, total=False):
     final_report: Optional[Dict[str, Any]]  # Step 9 완료 후 생성 (Steps 1-9 종합)
     
     # ========== Human-in-the-Loop ==========
-    feedback_required: bool
-    feedback_content: Optional[str]
-    regenerate_step: Optional[int]  # 재생성할 단계 번호 (1~9)
+    # Simple Review Check
+    # feedback_required, regenerate_step removed
     
     # ========== 품질 검증 ==========
     quality_check_passed: bool
@@ -115,7 +114,6 @@ def create_initial_state(brand_id: str, user_id: str) -> BrandConsultingState:
         user_id=user_id,
         current_step=1,
         cumulative_qa_analysis={},  # 누적 분석 초기화
-        feedback_required=False,
         quality_check_passed=False,
         error_occurred=False
     )
