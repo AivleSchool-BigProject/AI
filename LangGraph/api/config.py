@@ -1,7 +1,4 @@
-"""
-FastAPI 설정 파일
-환경 변수 및 앱 설정 관리
-"""
+#config.py
 from pydantic_settings import BaseSettings
 from typing import List
 

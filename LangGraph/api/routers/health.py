@@ -1,7 +1,4 @@
-"""
-헬스체크 라우터
-서버 상태 확인 엔드포인트
-"""
+#health.py
 from fastapi import APIRouter
 from api.services.session_manager import session_manager
 

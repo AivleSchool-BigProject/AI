@@ -1,7 +1,4 @@
-"""
-FastAPI 메인 애플리케이션 진입점
-FE-BE-AI 워크플로우를 위한 API 서버
-"""
+#main.py
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from api.config import settings
@@ -38,8 +35,7 @@ app.add_middleware(
 )
 
 # 라우터 등록
-app.include_router(brand.router, prefix="/api/v1/brand", tags=["Brand Consulting"])
-
+app.include_router(brand.router)
 @app.get("/")
 async def root():
     return {
