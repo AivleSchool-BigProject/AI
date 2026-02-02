@@ -1,4 +1,4 @@
-<<<<<<< Updated upstream
+"""
 #brand.py
 from fastapi import APIRouter
 from typing import Dict, Any
@@ -51,12 +51,14 @@ async def logo(brand_id: int, payload: Dict[str, Any]):
         "logo2": "https://placehold.co/512x512?text=LOGO+2",
         "logo3": "https://placehold.co/512x512?text=LOGO+3"
     }
-=======
+"""
+
 """
 Brand Consulting API Router
 FE 요청을 받아 각 단계별 로직을 호출하고 응답을 반환
 현재는 구조 검증을 위해 DUMMY DATA를 반환합니다.
 """
+
 from fastapi import APIRouter, HTTPException, Path, Body
 from api.schemas.request import (
     DiagnosisRequest, NamingRequest, ConceptRequest, StoryRequest, LogoRequest
@@ -308,4 +310,3 @@ async def create_logo(request: LogoRequest):
 # [Regeneration]
 # =================================================================
 # [Regeneration Logic Removed]
->>>>>>> Stashed changes
