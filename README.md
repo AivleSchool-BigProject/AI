@@ -1,6 +1,4 @@
-# github_study_group
-
-깃허브 공부 스터디 그룹
+# 명령어 및 깃 룰
 
 main <- dev <- feature-*
 
@@ -40,6 +38,7 @@ git pull origin dev
 git checkout 브랜치명
 ```
 - 해당 브랜치로 이동
+
 - 로컬에 브랜치가 없을 시에는 원격 기준으로 생성함
 
 ```
@@ -56,12 +55,21 @@ git branch -a
 ## 커밋 메시지 규칙
 
 feat	새로운 기능에 대한 커밋
+
 fix	버그 수정에 대한 커밋
+
 build	빌드 관련 파일 수정 / 모듈 설치 또는 삭제에 대한 커밋
+
 chore	그 외 자잘한 수정에 대한 커밋
+
 ci	ci 관련 설정 수정에 대한 커밋
+
 docs	문서 수정에 대한 커밋
+
 style	코드 스타일 혹은 포맷 등에 관한 커밋
+
 refactor	코드 리팩토링에 대한 커밋
+
 test	테스트 코드 수정에 대한 커밋
+
 perf	성능 개선에 대한 커밋
