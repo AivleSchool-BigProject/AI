@@ -1,0 +1,21 @@
+{
+  "brand_id": "temp_brand_id",
+  "step": 5,
+  "candidates": [
+    {
+      "id": 0,
+      "logo_image_url": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-wQVNtTE1Oeqs5FjNepbX1ZGx/user-CepdD55JOjdjogNeVAijyOwa/img-L7DnUoi9kTEQQIMWa18wyz8E.png?st=2026-02-02T06%3A43%3A41Z&se=2026-02-02T08%3A43%3A41Z&sp=r&sv=2024-08-04&sr=b&rscd=inline&rsct=image/png&skoid=8b33a531-2df9-46a3-bc02-d4b1430a422c&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-02-02T05%3A05%3A26Z&ske=2026-02-03T05%3A05%3A26Z&sks=b&skv=2024-08-04&sig=0G03h3bMi9dTdvnv1jHrNKkYUkwkD/pQGZe2jnogSXM%3D",
+      "logo_concept": "'JourneyFox'의 첫 번째 로고는 깔끔한 선으로 구성된 미니멀한 여우 모양을 중심에 두고 있습니다. 여기에 나침반과 지도의 선을 추상적으로 결합하여 여행의 테마를 추가했습니다. 전체적으로 깔끔한 블루와 화이트 색상이 사용되어 신뢰와 혁신을 표현합니다."
+    },
+    {
+      "id": 1,
+      "logo_image_url": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-wQVNtTE1Oeqs5FjNepbX1ZGx/user-CepdD55JOjdjogNeVAijyOwa/img-Z0fTabPQ5xsEWFR3EiEt8ICW.png?st=2026-02-02T06%3A44%3A06Z&se=2026-02-02T08%3A44%3A06Z&sp=r&sv=2024-08-04&sr=b&rscd=inline&rsct=image/png&skoid=13da7400-b3f7-4f8c-9cba-908fecbd114c&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-02-02T07%3A15%3A50Z&ske=2026-02-03T07%3A15%3A50Z&sks=b&skv=2024-08-04&sig=MAcN8HfGD%2BeuwChwQ%2BZ5y%2BszHoz9mDMhYY%2B9O5yw2JE%3D",
+      "logo_concept": "두 번째 로고는 지구를 형상화한 원 안에 윤곽선으로 표현된 여우 실루엣을 배치하여 로컬 탐험을 강조합니다. 로고 전체는 푸른색과 하얀색으로 구성되어 있으며, 간결하면서도 전문적인 느낌을 제공합니다."
+    },
+    {
+      "id": 2,
+      "logo_image_url": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-wQVNtTE1Oeqs5FjNepbX1ZGx/user-CepdD55JOjdjogNeVAijyOwa/img-VjyXMssQve3rLYAou6ey5p5q.png?st=2026-02-02T06%3A44%3A31Z&se=2026-02-02T08%3A44%3A31Z&sp=r&sv=2024-08-04&sr=b&rscd=inline&rsct=image/png&skoid=7daae675-7b42-4e2e-ab4c-8d8419a28d99&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-02-02T07%3A24%3A42Z&ske=2026-02-03T07%3A24%3A42Z&sks=b&skv=2024-08-04&sig=7xGhhq3fGsOZ%2Bz48d7v1hsAIrGRGCPvZNHe7qojw%2BtI%3D",
+      "logo_concept": "세 번째 로고는 기하학적 형태의 여우 머리를 중심으로, 벡터 라인으로 글로벌 네트워크 연결을 시각적으로 표현했습니다. 이는 명확성과 지능을 상징하는 블루와 화이트 팔레트를 활용하여 디자인되었습니다."
+    }
+  ]
+}

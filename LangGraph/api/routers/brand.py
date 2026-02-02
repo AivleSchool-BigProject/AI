@@ -64,7 +64,11 @@ from api.schemas.request import (
     DiagnosisRequest, NamingRequest, ConceptRequest, StoryRequest, LogoRequest
 )
 from api.schemas.response import (
-    DiagnosisResponse, GenerationResponse, CandidateItem
+    DiagnosisResponse,
+    NamingResponse, NamingCandidate,
+    ConceptResponse, ConceptCandidate,
+    StoryResponse, StoryCandidate,
+    LogoResponse, LogoCandidate
 )
 import uuid
 
@@ -125,7 +129,7 @@ async def create_diagnosis(request: DiagnosisRequest):
 # =================================================================
 # 2. Naming (Step 2)
 # =================================================================
-@router.post("/step2/naming", response_model=GenerationResponse)
+@router.post("/step2/naming", response_model=NamingResponse)
 async def create_naming(request: NamingRequest):
     """
     Step 2: 네이밍 (Naming)
@@ -161,17 +165,19 @@ async def create_naming(request: NamingRequest):
         
     candidates_data = final_state.get("naming_candidates", [])
     
-    # Response 모델로 변환
+    # Flattening: Dict에서 필드 직접 바인딩
     candidates = []
     for cand in candidates_data:
-        candidates.append(CandidateItem(
+        output = cand.get("output", {})
+        candidates.append(NamingCandidate(
             id=cand["candidate_id"], 
-            output=cand["output"]
+            brand_name=output.get("brand_name", ""),
+            name_rationale=output.get("name_rationale", "")
         ))
         
     print(f"[API] Step 2 완료. 생성된 후보 수: {len(candidates)}")
     
-    return GenerationResponse(
+    return NamingResponse(
         brand_id=brand_id,
         step=2,
         candidates=candidates
@@ -180,10 +186,8 @@ async def create_naming(request: NamingRequest):
 # =================================================================
 # 3. Concept (Step 3)
 # =================================================================
-# =================================================================
-# 3. Concept (Step 3)
-# =================================================================
-@router.post("/step3/concept", response_model=GenerationResponse)
+
+@router.post("/step3/concept", response_model=ConceptResponse)
 async def create_concept(request: ConceptRequest):
     """
     Step 3: 컨셉 (Concept)
@@ -212,18 +216,24 @@ async def create_concept(request: ConceptRequest):
         
     candidates_data = final_state.get("concept_candidates", [])
     
+    # Flattening
     candidates = []
     for cand in candidates_data:
-        candidates.append(CandidateItem(id=cand["candidate_id"], output=cand["output"]))
+        output = cand.get("output", {})
+        candidates.append(ConceptCandidate(
+            id=cand["candidate_id"],
+            concept_statement=output.get("concept_statement", ""),
+            concept_rationale=output.get("concept_rationale", "")
+        ))
         
     print(f"[API] Step 3 완료. 생성된 후보 수: {len(candidates)}")
     
-    return GenerationResponse(brand_id=brand_id, step=3, candidates=candidates)
+    return ConceptResponse(brand_id=brand_id, step=3, candidates=candidates)
 
 # =================================================================
 # 4. Story (Step 4)
 # =================================================================
-@router.post("/step4/story", response_model=GenerationResponse)
+@router.post("/step4/story", response_model=StoryResponse)
 async def create_story(request: StoryRequest):
     """
     Step 4: 스토리 (Story)
@@ -254,18 +264,24 @@ async def create_story(request: StoryRequest):
         
     candidates_data = final_state.get("story_candidates", [])
     
+    # Flattening
     candidates = []
     for cand in candidates_data:
-        candidates.append(CandidateItem(id=cand["candidate_id"], output=cand["output"]))
+        output = cand.get("output", {})
+        candidates.append(StoryCandidate(
+            id=cand["candidate_id"],
+            brand_story=output.get("brand_story", ""),
+            story_rationale=output.get("story_rationale", "")
+        ))
         
     print(f"[API] Step 4 완료. 생성된 후보 수: {len(candidates)}")
     
-    return GenerationResponse(brand_id=brand_id, step=4, candidates=candidates)
+    return StoryResponse(brand_id=brand_id, step=4, candidates=candidates)
 
 # =================================================================
 # 5. Logo (Step 5)
 # =================================================================
-@router.post("/step5/logo", response_model=GenerationResponse)
+@router.post("/step5/logo", response_model=LogoResponse)
 async def create_logo(request: LogoRequest):
     """
     Step 5: 로고 (Logo)
@@ -298,13 +314,19 @@ async def create_logo(request: LogoRequest):
         
     candidates_data = final_state.get("logo_candidates", [])
     
+    # Flattening
     candidates = []
     for cand in candidates_data:
-        candidates.append(CandidateItem(id=cand["candidate_id"], output=cand["output"]))
+        output = cand.get("output", {})
+        candidates.append(LogoCandidate(
+            id=cand["candidate_id"],
+            logo_image_url=output.get("logo_image_url", ""),
+            logo_concept=output.get("logo_concept", "")
+        ))
         
     print(f"[API] Step 5 완료. 생성된 후보 수: {len(candidates)}")
     
-    return GenerationResponse(brand_id=brand_id, step=5, candidates=candidates)
+    return LogoResponse(brand_id=brand_id, step=5, candidates=candidates)
 
 # =================================================================
 # [Regeneration]

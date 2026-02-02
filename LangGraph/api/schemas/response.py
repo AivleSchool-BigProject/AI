@@ -13,55 +13,55 @@ class BaseResponse(BaseModel):
     brand_id: str = Field(..., description="브랜드 ID")
     step: int = Field(..., description="현재 단계 번호")
 
-class CandidateItem(BaseModel):
-    """
-    개별 후보 아이템
-    Value(결과물) + Rationale(설명) 쌍
-    """
-    id: int = Field(..., description="후보 ID (0, 1, 2)")
-    output: Dict[str, Any] = Field(..., description="AI 생성 결과물 (Value + Rationale)")
-
-class GenerationResponse(BaseResponse):
-    """
-    생성 결과 응답 (Step 2~5)
-    3개의 후보 리스트 포함
-    """
-    candidates: List[CandidateItem] = Field(..., description="3개의 생성 후보 리스트")
-
 # =================================================================
 # [Step 1] 진단 (Diagnosis) Response
 # =================================================================
 class DiagnosisResponse(BaseResponse):
     """
-    Step 1: 진단 결과 방출 (후보 선택 없음)
+    Step 1: 진단 결과 (후보 선택 없음)
     """
     analysis: Dict[str, Any] = Field(..., description="진단 분석 결과 (Summary, Keywords, Persona, Perspectives)")
 
 # =================================================================
-# [Step 2] 네이밍 (Naming) Output Field
+# [Step 2] 네이밍 (Naming) Response
 # =================================================================
-# Candidate Output 구조 예시 문서화용 (실제 응답은 Dict[str, Any]로 유연하게 처리)
-class NamingOutput(BaseModel):
-    brand_name: str
-    name_rationale: str
+class NamingCandidate(BaseModel):
+    id: int = Field(..., description="후보 ID (0, 1, 2)")
+    brand_name: str = Field(..., description="제안된 브랜드명")
+    name_rationale: str = Field(..., description="네이밍 선정 이유")
+
+class NamingResponse(BaseResponse):
+    candidates: List[NamingCandidate] = Field(..., description="네이밍 후보 리스트")
 
 # =================================================================
-# [Step 3] 컨셉 (Concept) Output Field
+# [Step 3] 컨셉 (Concept) Response
 # =================================================================
-class ConceptOutput(BaseModel):
-    concept_statement: str
-    concept_rationale: str
+class ConceptCandidate(BaseModel):
+    id: int = Field(..., description="후보 ID (0, 1, 2)")
+    concept_statement: str = Field(..., description="컨셉 슬로건/문구")
+    concept_rationale: str = Field(..., description="컨셉 기획 의도")
+
+class ConceptResponse(BaseResponse):
+    candidates: List[ConceptCandidate] = Field(..., description="컨셉 후보 리스트")
 
 # =================================================================
-# [Step 4] 스토리 (Story) Output Field
+# [Step 4] 스토리 (Story) Response
 # =================================================================
-class StoryOutput(BaseModel):
-    brand_story: str
-    story_rationale: str
+class StoryCandidate(BaseModel):
+    id: int = Field(..., description="후보 ID (0, 1, 2)")
+    brand_story: str = Field(..., description="브랜드 스토리 (Short ver.)")
+    story_rationale: str = Field(..., description="스토리 구성 의도")
+
+class StoryResponse(BaseResponse):
+    candidates: List[StoryCandidate] = Field(..., description="스토리 후보 리스트")
 
 # =================================================================
-# [Step 5] 로고 (Logo) Output Field
+# [Step 5] 로고 (Logo) Response
 # =================================================================
-class LogoOutput(BaseModel):
-    logo_image_url: str
-    logo_concept: str # Rationale 대신 Concept 설명 포함
+class LogoCandidate(BaseModel):
+    id: int = Field(..., description="후보 ID (0, 1, 2)")
+    logo_image_url: str = Field(..., description="생성된 로고 이미지 URL")
+    logo_concept: str = Field(..., description="로고 디자인 컨셉 설명")
+
+class LogoResponse(BaseResponse):
+    candidates: List[LogoCandidate] = Field(..., description="로고 후보 리스트")

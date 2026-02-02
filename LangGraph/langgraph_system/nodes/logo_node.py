@@ -6,9 +6,6 @@ from langgraph_system.state import BrandConsultingState
 from langgraph_system.utils import get_openai_client, validate_step_input
 from langgraph_system.prompts import GenerationPrompts
 import json
-import os
-import requests
-from datetime import datetime
 
 def logo_node(state: BrandConsultingState) -> BrandConsultingState:
     """
@@ -102,8 +99,6 @@ def logo_node(state: BrandConsultingState) -> BrandConsultingState:
         return state
 
     # 7. DALL-E 3 이미지 생성 (순차 처리)
-    output_dir = "generated_logos"
-    os.makedirs(output_dir, exist_ok=True)
     brand_id = state.get("brand_id", "unknown")
     
     candidates = []
@@ -114,7 +109,6 @@ def logo_node(state: BrandConsultingState) -> BrandConsultingState:
         print(f"  - [Image {idx+1}/{len(logo_options)}] 생성 중... (Prompt: {dalle_prompt[:30]}...)")
         
         image_url = None
-        image_path = None
         
         try:
             # DALL-E 3 호출
@@ -126,17 +120,7 @@ def logo_node(state: BrandConsultingState) -> BrandConsultingState:
                 n=1
             )
             image_url = img_resp.data[0].url
-            
-            # 로컬 저장
-            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-            filename = f"{brand_id}_logo_{idx}_{timestamp}.png"
-            image_path = os.path.join(output_dir, filename)
-            
-            img_data = requests.get(image_url).content
-            with open(image_path, 'wb') as f:
-                f.write(img_data)
-                
-            print(f"    ✅ 생성 완료: {filename}")
+            print(f"    ✅ 생성 완료: URL 획득")
             
         except Exception as e:
             print(f"    ❌ 이미지 생성 실패: {e}")
@@ -146,8 +130,7 @@ def logo_node(state: BrandConsultingState) -> BrandConsultingState:
             "candidate_id": idx,
             "output": {
                 "logo_concept": opt.get("logo_concept", "N/A"),
-                "logo_image_url": image_url,
-                "logo_image_path": image_path  # 파일 저장을 위해 임시 유지
+                "logo_image_url": image_url
             }
         })
     

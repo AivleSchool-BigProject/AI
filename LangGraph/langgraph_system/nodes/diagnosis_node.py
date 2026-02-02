@@ -5,8 +5,6 @@ Step 1: Diagnosis Node
 from langgraph_system.state import BrandConsultingState, get_cumulative_key
 from langgraph_system.utils import get_openai_client, validate_step_input
 from langgraph_system.prompts import GenerationPrompts
-from database.connection import db_connection
-from database.operations import save_brand_result, update_brand_step
 import json
 
 
@@ -104,20 +102,8 @@ def diagnosis_node(state: BrandConsultingState) -> BrandConsultingState:
     
     print(f"[Step 1] Context 설정 완료: {list(diagnosis_context.keys())}")
 
-    # 6. DB 저장 (옵션)
-    try:
-        session = db_connection.get_session()
-        save_brand_result(
-            session=session,
-            brand_id=state["brand_id"],
-            step_name="diagnosis",
-            result_data=diagnosis_result
-        )
-        update_brand_step(session, state["brand_id"], 2)
-        session.close()
-        print("[Step 1] ✅ DB 저장 완료")
-    except Exception as e:
-        print(f"[Step 1] ⚠️ DB 저장 실패 (Skip): {e}")
+    # 6. DB 저장 (제거됨 - Pure Logic)
+    # Backend에서 처리
     
     # 7. 상태 업데이트
     state["current_step"] = 2

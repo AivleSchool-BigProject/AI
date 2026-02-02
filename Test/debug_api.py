@@ -5,14 +5,16 @@ import time
 
 # 1. 파일 읽기
 try:
-    with open("sample_answers.json", "r", encoding="utf-8") as f:
+    # 절대 경로로 지정
+    file_path = r"C:\Users\User\Desktop\workspace\AI\LangGraph\answers.json"
+    with open(file_path, "r", encoding="utf-8") as f:
         answers_data = json.load(f)
 except FileNotFoundError:
-    print("❌ 'sample_answers.json' 파일을 찾을 수 없습니다.")
+    print(f"❌ '{file_path}' 위 경로에서 파일을 찾을 수 없습니다.")
     sys.exit()
 
 # 공통 설정
-BASE_URL = "http://localhost:8000/api/v1/brand"
+BASE_URL = "http://localhost:8000"
 HEADERS = {"Content-Type": "application/json"}
 USER_ID = "debug_user_01"
 
@@ -46,7 +48,9 @@ def user_select_candidate(candidates, step_name):
     """사용자가 후보 중 하나를 선택하게 함"""
     print(f"\n[👀 {step_name} 후보 선택]")
     for i, cand in enumerate(candidates):
-        output = cand["output"]
+        # Flatten된 구조이므로 cand 자체가 output 정보를 포함함
+        output = cand
+        
         # 출력 필드는 Step마다 다를 수 있음
         label = ""
         if "brand_name" in output: label = output["brand_name"]
@@ -62,7 +66,7 @@ def user_select_candidate(candidates, step_name):
             idx = int(choice) - 1
             if 0 <= idx < len(candidates):
                 print(f"✅ {idx+1}번 후보가 선택되었습니다.")
-                return candidates[idx]["output"]
+                return candidates[idx]
             else:
                 print("❌ 1~3 사이의 숫자를 입력해주세요.")
         except ValueError:
@@ -290,8 +294,8 @@ try:
         
         print("\n[생성된 로고 이미지 URL]")
         for i, cand in enumerate(candidates):
-            output = cand["output"]
-            print(f" 🖼️  {i+1}. {output.get('logo_image_url')}")
+            # output = cand["output"] # Delete this line
+            print(f" 🖼️  {i+1}. {cand.get('logo_image_url')}")
             
     else:
         print(f"❌ Step 5 실패: {resp.text}")
