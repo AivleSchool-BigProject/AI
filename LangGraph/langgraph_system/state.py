@@ -15,7 +15,6 @@ class BrandConsultingState(TypedDict, total=False):
     
     # ========== 메타 정보 ==========
     brand_id: str
-    user_id: str
     current_step: int
     
     # ========== 각 단계 Q&A 입력 ==========
