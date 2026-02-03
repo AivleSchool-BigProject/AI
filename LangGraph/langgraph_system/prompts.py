@@ -13,41 +13,54 @@ class GenerationPrompts:
     # Step 1: Diagnosis
     DIAGNOSIS_SYSTEM = (
         "You are a Brand Strategy Consultant. "
-        "Analyze the user's business Q&A from three strategic perspectives: "
-        "Business, User Experience, and Market. "
-        "Provide a comprehensive diagnosis and extract core insights."
+        "You will receive Q&A data in JSON format from answers.json. "
+        "Analyze it from Business, User, and Market perspectives to provide comprehensive brand diagnosis."
     )
     
     DIAGNOSIS_USER = """
-    [User Q&A Answers - Diagnosis]
-    {qa_data}
+    [Brand Q&A Data - JSON Format]
+    {qa_data_json}
+    
+    [JSON Parsing Instructions]
+    The above data follows this structure:
+    - "questions" array contains question-answer pairs
+    - Each item has: "id", "question_text" (Korean), "answer"
+    - If "answer" is a dict with "value" field, use the "value" (English key)
+    - If "answer" is plain text, use it as-is (Korean text is acceptable)
+    - If "answer" is a list, it's multiple selections
     
     [Task]
-    Analyze the business context based on the Q&A and provide:
+    Analyze the business context and provide:
     
     1. Multi-Perspective Analysis:
-       - Business Perspective: Revenue model, scalability, strengths.
-       - User Perspective: Target audience needs, pain points, benefits.
-       - Market Perspective: Market trends, competition, uniqueness.
+       - Business Perspective: Revenue model, scalability, competitive strengths
+       - User Perspective: Target audience needs, pain points, benefits
+       - Market Perspective: Market trends, competition, differentiation
        
-    2. Comprehensive Analysis:
-       - Diagnosis Summary: An overall summary of the brand's current status (2-3 sentences).
-       - Core Keywords: 3 keywords that best represent the brand.
-       - Target Persona: A descriptive name for the core target audience (e.g., "Eco-conscious Millennials").
+    2. Core Insights:
+       - Diagnosis Summary: Overall brand status (2-3 sentences)
+       - Core Keywords: 3 keywords that best represent the brand
+       - Target Persona: Descriptive name for core audience
+       - Brand Essence: One-sentence essence of the brand (for naming foundation)
+       - Emotional Core: Primary emotional trigger point (for concept development)
+       - Differentiation Point: Key competitive advantage summary (for storytelling)
     
     [Output Format - JSON]
     {{
-      "summary": "Overall diagnosis summary in Korean...",
+      "summary": "Overall diagnosis in Korean...",
       "keywords": ["Keyword1", "Keyword2", "Keyword3"],
-      "persona": "Target Persona Name",
+      "persona": "Target Persona",
       "perspectives": {{
         "business_perspective": "Analysis in Korean...",
         "user_perspective": "Analysis in Korean...",
         "market_perspective": "Analysis in Korean..."
-      }}
+      }},
+      "brand_essence": "One-sentence brand essence in Korean",
+      "emotional_core": "Primary emotional trigger in Korean",
+      "differentiation_point": "Key competitive advantage in Korean"
     }}
     
-    IMPORTANT: All values in the JSON output must be in KOREAN.
+    IMPORTANT: All output values must be in KOREAN.
     """
 
     # Step 2: Naming
@@ -62,23 +75,29 @@ class GenerationPrompts:
     - Core Keywords: {core_keywords}
     - Target Persona: {target_persona}
     
-    [User Q&A Answers - Naming]
-    {qa_data}
+    [User Q&A Data - JSON Format]
+    {qa_data_json}
     
     {feedback_section}
     
     [Task]
-    Generate 3 DISTINCT brand name candidates.
+    1. First, analyze the Q&A data to extract key insights about naming preferences.
+    2. Generate 3 DISTINCT brand name candidates based on the analysis.
+    
     For each candidate, provide:
-    1. Brand Name: The proposed name (Korean or English as appropriate).
-    2. Rationale: Why this name fits the brand strategy (in Korean).
+    - Brand Name: The proposed name (Korean or English as appropriate).
+    - Rationale: Why this name fits the brand strategy (in Korean).
+    - Q&A Analysis Summary: Brief summary of how Q&A insights influenced this name (2-3 sentences in Korean).
+    - Q&A Keywords: 3-5 key terms extracted from Q&A that support this naming choice.
     
     [Output Format - JSON]
     {{
       "options": [
         {{
           "brand_name": "Name1",
-          "name_rationale": "Reasoning in Korean..."
+          "name_rationale": "Reasoning in Korean...",
+          "qa_analysis_summary": "Q&A 분석 요약 (2-3문장)...",
+          "qa_keywords": ["키워드1", "키워드2", "키워드3"]
         }},
         ... (3 options total)
       ]
@@ -97,23 +116,31 @@ class GenerationPrompts:
     - Selected Brand Name: {brand_name}
     - Naming Rationale: {name_rationale}
     
-    [User Q&A Answers - Concept]
-    {qa_data}
+    [User Q&A Data - JSON Format]
+    {qa_data_json}
     
     {feedback_section}
     
     [Task]
-    Develop 3 unique concept directions for the brand '{brand_name}'.
+    1. First, analyze the Q&A data to understand concept direction preferences.
+    2. Develop 3 unique concept directions for the brand '{brand_name}'.
+    
     For each direction, provide:
-    1. Concept Statement: A catchy slogan or concept sentence.
-    2. Rationale: The strategic reasoning behind this concept.
+    - Concept Statement: A catchy slogan or concept sentence.
+    - Rationale: The strategic reasoning behind this concept (in Korean).
+    - Brand Values: 3-5 core brand values that this concept embodies (in Korean).
+    - Q&A Analysis Summary: How Q&A insights shaped this concept (2-3 sentences in Korean).
+    - Q&A Keywords: 3-5 key terms from Q&A that support this concept direction.
     
     [Output Format - JSON]
     {{
       "options": [
         {{
           "concept_statement": "Concept Sentence in Korean",
-          "concept_rationale": "Reasoning in Korean..."
+          "concept_rationale": "Reasoning in Korean...",
+          "brand_values": ["가치1", "가치2", "가치3"],
+          "qa_analysis_summary": "Q&A 분석 요약 (2-3문장)...",
+          "qa_keywords": ["키워드1", "키워드2", "키워드3"]
         }},
         ... (3 options total)
       ]
@@ -132,25 +159,31 @@ class GenerationPrompts:
     - Concept: {concept_statement}
     - Target Persona: {target_persona}
     
-    [User Q&A Answers - Story]
-    {qa_data}
+    [User Q&A Data - JSON Format]
+    {qa_data_json}
     
     {feedback_section}
     
     [Task]
-    Write 3 different versions of the Brand Introduction Story (About Us).
-    Each version should have a different tone or focus (e.g., emotional, functional, visionary).
+    1. First, analyze the Q&A data to identify storytelling themes and emotional tones.
+    2. Write 3 different brand story variations.
     
-    For each version, provide:
-    1. Brand Story: The actual introduction text (3-5 sentences).
-    2. Rationale: The intent and focus of this story version.
+    For each story, provide:
+    - Brand Story: The narrative (3-5 sentences in Korean). **IMPORTANT: Keep the brand name '{brand_name}' in ENGLISH, do not translate it to Korean.**
+    - Rationale: Why this storytelling approach works (in Korean).
+    - Emotional Arc: The emotional journey of the story (e.g., "고민 → 발견 → 변화" in Korean).
+    - Q&A Analysis Summary: How Q&A insights influenced the story direction (2-3 sentences in Korean).
+    - Q&A Keywords: 3-5 key terms from Q&A that support this narrative.
     
     [Output Format - JSON]
     {{
       "options": [
         {{
-          "brand_story": "Story text in Korean...",
-          "story_rationale": "Intent of this story in Korean..."
+          "brand_story": "Story in Korean...",
+          "story_rationale": "Reasoning in Korean...",
+          "emotional_arc": "감정 흐름 (예: 번아웃 → 자연과의 만남 → 회복)",
+          "qa_analysis_summary": "Q&A 분석 요약 (2-3문장)...",
+          "qa_keywords": ["키워드1", "키워드2", "키워드3"]
         }},
         ... (3 options total)
       ]
@@ -159,45 +192,90 @@ class GenerationPrompts:
 
     # Step 5: Logo
     LOGO_SYSTEM = (
-        "You are a Visual Identity Director. "
-        "Design 3 distinct visual concepts. "
-        "For each, write a detailed DALL-E 3 prompt and explaining the concept in Korean."
+        "You are a Senior Visual Identity Director with 15+ years of experience. "
+        "You specialize in creating sophisticated, timeless logos for premium brands. "
+        "Design 3 distinct, professional visual concepts with detailed DALL-E 3 prompts."
     )
     
     LOGO_USER = """
     [Brand Context]
     - Brand Name: {brand_name}
     - Concept: {concept_statement}
-    - Story Snippet: {brand_story}
-    - Keywords: {core_keywords}
+    - Story Essence: {brand_story}
+    - Core Keywords: {core_keywords}
     
-    [User Q&A Answers - Logo]
-    {qa_data}
+    [User Q&A Data - JSON Format]
+    {qa_data_json}
     
     {feedback_section}
     
     [Task]
-    Propose 3 distinct visual logo concepts. 
-    (The generated DALL-E prompts will be executed immediately to create images.)
+    Create 3 DISTINCT, PROFESSIONAL logo concepts for '{brand_name}'.
+    Each DALL-E prompt will be executed immediately to generate actual images.
+    
+    CRITICAL QUALITY REQUIREMENTS:
+    1. **Sophistication Level**: Comparable to Airbnb, Aesop, Patagonia, Apple
+    2. **Design Principles**:
+       - Ultra-minimalist, clean, timeless
+       - Scalable from 16px (favicon) to billboard size
+       - Works on both light and dark backgrounds
+       - Flat design, no gradients or shadows
+       - Vector-ready aesthetic
+    
+    3. **Structure Options**:
+       - Wordmark only (typography-focused)
+       - Symbol + Wordmark (combination mark)
+       - Abstract symbol only (iconic)
+    
+    4. **Typography** (if applicable):
+       - Modern sans-serif or elegant serif
+       - Clean letterforms, balanced spacing
+       - Avoid decorative or script fonts
+    
+    STRICT AVOIDANCES:
+    - Cliché icons: suitcase, airplane, map pin, compass, globe
+    - Overly decorative or busy elements
+    - Generic stock imagery aesthetics
+    - Childish or playful cartoon styles
+    - Trendy effects that will age poorly
+    - Multiple colors (prefer 1-2 colors max)
     
     For each concept, provide:
-    1. DALL-E Prompt: A highly detailed prompt to generate this logo (in English).
-    2. Logo Concept: A description of the visual style and elements (in Korean), written as if explaining the generated image.
-    3. Rationale: Why this visual style fits the brand (in Korean).
-    4. Color Palette: Recommended colors (Hex codes or names).
+    1. **DALL-E Prompt** (English): 
+       - Start with "A single professional minimalist logo design for {brand_name}"
+       - **CRITICAL**: The text in the logo MUST spell exactly "{brand_name}" - do not modify, translate, or misspell it.
+       - Include: brand essence, visual motif, color palette, design style
+       - Specify: "flat design, vector-ready, white background, centered, ONE logo only"
+       - Add quality benchmark: "Airbnb-level sophistication"
+       - CRITICAL: Add "Do NOT create multiple variations or mockups. Generate ONLY ONE clean logo."
+       - Length: 150-250 words for maximum detail
+    
+    2. **Logo Concept** (Korean): Visual description as if explaining the generated image
+    3. **Rationale** (Korean): Why this design fits the brand strategy
+    4. **Color Palette**: Hex codes (1-2 colors max)
+    5. **Q&A Analysis Summary**: How Q&A insights influenced the visual direction (2-3 sentences in Korean)
+    6. **Q&A Keywords**: 3-5 key visual/style terms from Q&A
     
     [Output Format - JSON]
     {{
       "options": [
         {{
-          "dalle_prompt": "High quality logo design prompt in English...",
+          "dalle_prompt": "A single professional minimalist logo design for [brand name]. [detailed description with brand essence, visual motif, typography, color palette, design principles]. Flat design, vector-ready, white background, centered. ONE logo only. Do NOT create multiple variations or mockups. Airbnb-level sophistication.",
           "logo_concept": "Visual description in Korean...",
-          "logo_rationale": "Design intent in Korean...",
-          "color_palette": ["#Hex1", "#Hex2", ...]
+          "logo_rationale": "Design reasoning in Korean...",
+          "color_palette": ["#Hex1", "#Hex2"],
+          "qa_analysis_summary": "Q&A 분석 요약 (2-3문장)...",
+          "qa_keywords": ["키워드1", "키워드2", "키워드3"]
         }},
-        ... (3 options total)
+        ... (3 options total, each DISTINCT in approach)
       ]
     }}
+    
+    IMPORTANT: 
+    - Each of the 3 concepts must take a DIFFERENT visual approach.
+    - Each DALL-E prompt MUST generate ONLY ONE logo, not multiple variations.
+    - You MUST provide ALL 6 fields for each option: dalle_prompt, logo_concept, logo_rationale, color_palette, qa_analysis_summary, qa_keywords.
+    - Do NOT leave any field empty. If uncertain, provide a reasonable default value.
     """
 
 
