@@ -40,7 +40,21 @@ def logo_node(state: BrandConsultingState) -> BrandConsultingState:
     if not all([naming_context, concept_context, story_context, diagnosis_context]):
         print("⚠️ [Step 5] 일부 이전 단계 Context가 누락되었습니다.")
 
-    # 3. OpenAI 클라이언트
+    # 3. answers.json 로드 (v2 포맷)
+    import os
+    answers_file_path = "answers.json"
+    if not os.path.exists(answers_file_path):
+        state["error_occurred"] = True
+        state["error_message"] = "answers.json 파일을 찾을 수 없습니다."
+        return state
+    
+    with open(answers_file_path, "r", encoding="utf-8") as f:
+        answers_data = json.load(f)
+    
+    # Step 5 데이터만 추출
+    step_5_data = answers_data.get("step_5", {})
+    
+    # 4. OpenAI 클라이언트
     try:
         client = get_openai_client()
     except Exception as e:
@@ -48,7 +62,7 @@ def logo_node(state: BrandConsultingState) -> BrandConsultingState:
         state["error_message"] = f"Client Error: {e}"
         return state
     
-    # 4. 재생성 피드백
+    # 5. 재생성 피드백
     feedback_section = ""
     if state.get("feedback_required") and state.get("feedback_content"):
         print(f"[Step 5] 🔄 재생성 피드백 반영: {state.get('feedback_content')}")
@@ -58,14 +72,14 @@ def logo_node(state: BrandConsultingState) -> BrandConsultingState:
         IMPORTANT: Reflect feedback in new logo concepts.
         """
 
-    # 5. 프롬프트 구성 (컨셉 생성용)
+    # 6. 프롬프트 구성 (JSON 직접 전달)
     system_prompt = GenerationPrompts.LOGO_SYSTEM
     user_prompt = GenerationPrompts.LOGO_USER.format(
         brand_name=naming_context.get("brand_name", "") if naming_context else "Brand",
         concept_statement=concept_context.get("concept_statement", "") if concept_context else "",
         brand_story=story_context.get("brand_story", "") if story_context else "",
         core_keywords=str(diagnosis_context.get("core_keywords", [])) if diagnosis_context else "",
-        qa_data=json.dumps(step_5_qa, ensure_ascii=False, indent=2),
+        qa_data_json=json.dumps(step_5_data, ensure_ascii=False, indent=2),
         feedback_section=feedback_section
     )
     
@@ -129,8 +143,12 @@ def logo_node(state: BrandConsultingState) -> BrandConsultingState:
         candidates.append({
             "candidate_id": idx,
             "output": {
-                "logo_concept": opt.get("logo_concept", "N/A"),
-                "logo_image_url": image_url
+                "logo_concept": opt.get("logo_concept", ""),
+                "logo_image_url": image_url,
+                "logo_rationale": opt.get("logo_rationale", ""),
+                "qa_analysis_summary": opt.get("qa_analysis_summary", ""),
+                "qa_keywords": opt.get("qa_keywords", []),
+                "color_palette": opt.get("color_palette", [])
             }
         })
     
