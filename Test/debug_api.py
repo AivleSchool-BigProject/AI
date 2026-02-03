@@ -2,23 +2,11 @@ import requests
 import json
 import sys
 import time
-
-# 1. 파일 읽기
-try:
-    # 절대 경로로 지정
-    file_path = r"C:\Users\User\Desktop\workspace\AI\LangGraph\answers.json"
-    with open(file_path, "r", encoding="utf-8") as f:
-        answers_data = json.load(f)
-except FileNotFoundError:
-    print(f"❌ '{file_path}' 위 경로에서 파일을 찾을 수 없습니다.")
-    sys.exit()
+import os
 
 # 공통 설정
 BASE_URL = "http://localhost:8000"
 HEADERS = {"Content-Type": "application/json"}
-USER_ID = "debug_user_01"
-
-import os
 
 # Context 저장을 위한 변수들
 diagnosis_context = {}
@@ -26,15 +14,38 @@ naming_context = {}
 concept_context = {}
 story_context = {}
 
-CURRENT_BRAND_ID = f"debug_test_{int(time.time())}"
+# 자동으로 다음 brand 번호 찾기
+def get_next_brand_folder():
+    """Test/outputs/ 폴더에서 다음 brand 번호를 찾아 반환"""
+    outputs_dir = os.path.join("Test", "outputs")
+    os.makedirs(outputs_dir, exist_ok=True)
+    
+    # 기존 brand 폴더들 찾기
+    existing_brands = []
+    for folder in os.listdir(outputs_dir):
+        if folder.startswith("brand_") and os.path.isdir(os.path.join(outputs_dir, folder)):
+            try:
+                num = int(folder.split("_")[1])
+                existing_brands.append(num)
+            except:
+                pass
+    
+    # 다음 번호 결정
+    next_num = max(existing_brands) + 1 if existing_brands else 1
+    return f"brand_{next_num:02d}"  # brand_01, brand_02, ...
+
+CURRENT_BRAND_FOLDER = get_next_brand_folder()
+print(f"\n📁 저장 폴더: Test/outputs/{CURRENT_BRAND_FOLDER}\n")
 
 def save_result(step_num, step_name, data):
     """결과를 파일로 저장"""
-    base_dir = os.path.join("Test", "outputs", CURRENT_BRAND_ID)
-    step_dir = os.path.join(base_dir, f"step_{step_num}_{step_name}")
-    os.makedirs(step_dir, exist_ok=True)
+    base_dir = os.path.join("Test", "outputs", CURRENT_BRAND_FOLDER)
+    os.makedirs(base_dir, exist_ok=True)
     
-    file_path = os.path.join(step_dir, "result.json")
+    # 각 단계별 파일명
+    file_name = f"{step_name}.json"
+    file_path = os.path.join(base_dir, file_name)
+    
     with open(file_path, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
     print(f"   💾 결과 저장됨: {file_path}")
@@ -48,27 +59,26 @@ def user_select_candidate(candidates, step_name):
     """사용자가 후보 중 하나를 선택하게 함"""
     print(f"\n[👀 {step_name} 후보 선택]")
     for i, cand in enumerate(candidates):
-        # Flatten된 구조이므로 cand 자체가 output 정보를 포함함
-        output = cand
+        if "brand_name" in cand:
+            label = cand["brand_name"]
+        elif "concept_statement" in cand:
+            label = cand["concept_statement"][:40] + "..."
+        elif "brand_story" in cand:
+            label = cand["brand_story"][:40] + "..."
+        else:
+            label = f"후보 {i}"
         
-        # 출력 필드는 Step마다 다를 수 있음
-        label = ""
-        if "brand_name" in output: label = output["brand_name"]
-        elif "concept_statement" in output: label = output["concept_statement"][:30] + "..."
-        elif "brand_story" in output: label = output["brand_story"][:30] + "..."
-        elif "logo_image_url" in output: label = output["logo_image_url"][:50] + "..."
-        
-        print(f"  {i+1}. {label}")
+        print(f"  {i}. {label}")
         
     while True:
         try:
-            choice = input(f"\n👉 마음에 드는 {step_name} 번호를 입력하세요 (1~3): ")
-            idx = int(choice) - 1
+            choice = input(f"\n👉 마음에 드는 {step_name} 번호를 입력하세요 (0~2): ")
+            idx = int(choice)
             if 0 <= idx < len(candidates):
-                print(f"✅ {idx+1}번 후보가 선택되었습니다.")
+                print(f"✅ {idx}번 후보가 선택되었습니다.")
                 return candidates[idx]
             else:
-                print("❌ 1~3 사이의 숫자를 입력해주세요.")
+                print("❌ 0~2 사이의 숫자를 입력해주세요.")
         except ValueError:
             print("❌ 숫자를 입력해주세요.")
 
@@ -77,9 +87,18 @@ def user_select_candidate(candidates, step_name):
 # =================================================================
 print_step_header("1. Diagnosis")
 
+# answers.json 로드
+try:
+    file_path = r"C:/Users/User/Desktop/workspace/AI/LangGraph/answers.json"
+    with open(file_path, "r", encoding="utf-8") as f:
+        answers_data = json.load(f)
+    step1_data = answers_data.get("step_1", {})
+except FileNotFoundError:
+    print(f"❌ '{file_path}' 파일을 찾을 수 없습니다.")
+    sys.exit()
+
 step1_payload = {
-    "user_id": USER_ID,
-    "qa_answers": answers_data
+    "user_input": step1_data
 }
 
 try:
@@ -89,24 +108,15 @@ try:
     
     if resp.status_code == 200:
         print("✅ Step 1 성공!")
-        result = resp.json()
+        response_data = resp.json()
         
-        # Brand ID 업데이트 (서버에서 받은게 있으면 사용, 없으면 시간기반 유지)
-        if result.get("brand_id"):
-            CURRENT_BRAND_ID = result.get("brand_id")
-            
-        analysis = result.get("analysis", {})
+        result = response_data.get("result", {})
+        diagnosis_context = response_data.get("state_context", {})
         
-        diagnosis_context = {
-            "diagnosis_summary": analysis.get("summary", ""),
-            "core_keywords": analysis.get("keywords", []),
-            "target_persona": analysis.get("persona", ""),
-            "perspectives": analysis.get("perspectives", {})
-        }
-        print(f" - Summary: {analysis.get('summary')[:50]}...")
+        print(f" - Summary: {result.get('summary', '')[:50]}...")
+        print(f" - Keywords: {diagnosis_context.get('keywords', [])}")
         
-        # 저장
-        save_result(1, "diagnosis", result)
+        save_result(1, "diagnosis", response_data)
         
     else:
         print(f"❌ Step 1 실패: {resp.text}")
@@ -121,18 +131,14 @@ except Exception as e:
 # =================================================================
 print_step_header("2. Naming")
 
-step2_qa = {
-    "preferred_language": "English",
-    "naming_style": "Modern & Simple"
-}
+step2_data = answers_data.get("step_2", {})
 
 step2_payload = {
-    "user_id": USER_ID,
-    "diagnosis_context": diagnosis_context,
-    "qa_answers": step2_qa
+    "user_input": step2_data,
+    "context": {
+        "interview": diagnosis_context
+    }
 }
-
-selected_naming = None
 
 try:
     url = f"{BASE_URL}/step2/naming"
@@ -141,21 +147,21 @@ try:
     
     if resp.status_code == 200:
         print("✅ Step 2 성공!")
-        result = resp.json()
+        response_data = resp.json()
         
-        save_result(2, "naming", result)
+        result = response_data.get("result", {})
+        state_context = response_data.get("state_context", {})
         
-        candidates = result.get("candidates", [])
+        print(f" - Name 1: {result.get('name1')}")
+        print(f" - Name 2: {result.get('name2')}")
+        print(f" - Name 3: {result.get('name3')}")
         
-        # [사용자 선택]
-        selected_naming = user_select_candidate(candidates, "Naming")
+        save_result(2, "naming", response_data)
         
-        # 선택된 결과로 Context 구성
-        naming_context = {
-            "brand_name": selected_naming["brand_name"],
-            "name_rationale": selected_naming["name_rationale"],
-            "selected_criteria": ["Modern", "Global"] 
-        }
+        # 사용자 선택 (선택된 후보 상세 정보 반환)
+        naming_candidates = state_context.get("candidates", [])
+        naming_context = user_select_candidate(naming_candidates, "Naming")
+        
     else:
         print(f"❌ Step 2 실패: {resp.text}")
         sys.exit()
@@ -169,19 +175,15 @@ except Exception as e:
 # =================================================================
 print_step_header("3. Concept")
 
-step3_qa = {
-    "concept_direction": "Future-oriented",
-    "tone_and_manner": "Professional"
-}
+step3_data = answers_data.get("step_3", {})
 
 step3_payload = {
-    "user_id": USER_ID,
-    "diagnosis_context": diagnosis_context,
-    "naming_context": naming_context,
-    "qa_answers": step3_qa
+    "user_input": step3_data,
+    "context": {
+        "interview": diagnosis_context,
+        "naming": naming_context  # 선택된 네이밍 상세 정보
+    }
 }
-
-selected_concept = None
 
 try:
     url = f"{BASE_URL}/step3/concept"
@@ -190,20 +192,21 @@ try:
     
     if resp.status_code == 200:
         print("✅ Step 3 성공!")
-        result = resp.json()
+        response_data = resp.json()
         
-        save_result(3, "concept", result)
+        result = response_data.get("result", {})
+        state_context = response_data.get("state_context", {})
         
-        candidates = result.get("candidates", [])
+        print(f" - Concept 1: {result.get('concept1', '')[:30]}...")
+        print(f" - Concept 2: {result.get('concept2', '')[:30]}...")
+        print(f" - Concept 3: {result.get('concept3', '')[:30]}...")
         
-        # [사용자 선택]
-        selected_concept = user_select_candidate(candidates, "Concept")
+        save_result(3, "concept", response_data)
         
-        # Context 구성
-        concept_context = {
-            "concept_statement": selected_concept.get("concept_statement"),
-            "concept_rationale": selected_concept.get("concept_rationale")
-        }
+        # 사용자 선택
+        concept_candidates = state_context.get("candidates", [])
+        concept_context = user_select_candidate(concept_candidates, "Concept")
+        
     else:
         print(f"❌ Step 3 실패: {resp.text}")
         sys.exit()
@@ -217,19 +220,16 @@ except Exception as e:
 # =================================================================
 print_step_header("4. Story")
 
-step4_qa = {
-    "story_theme": "Innovation & Growth"
-}
+step4_data = answers_data.get("step_4", {})
 
 step4_payload = {
-    "user_id": USER_ID,
-    "diagnosis_context": diagnosis_context,
-    "naming_context": naming_context,
-    "concept_context": concept_context,
-    "qa_answers": step4_qa
+    "user_input": step4_data,
+    "context": {
+        "interview": diagnosis_context,
+        "naming": naming_context,
+        "concept": concept_context  # 선택된 컨셉 상세 정보
+    }
 }
-
-selected_story = None
 
 try:
     url = f"{BASE_URL}/step4/story"
@@ -238,19 +238,21 @@ try:
     
     if resp.status_code == 200:
         print("✅ Step 4 성공!")
-        result = resp.json()
+        response_data = resp.json()
         
-        save_result(4, "story", result)
+        result = response_data.get("result", {})
+        state_context = response_data.get("state_context", {})
         
-        candidates = result.get("candidates", [])
+        print(f" - Story 1: {result.get('story1', '')[:30]}...")
+        print(f" - Story 2: {result.get('story2', '')[:30]}...")
+        print(f" - Story 3: {result.get('story3', '')[:30]}...")
         
-        # [사용자 선택]
-        selected_story = user_select_candidate(candidates, "Story")
+        save_result(4, "story", response_data)
         
-        story_context = {
-            "brand_story": selected_story.get("brand_story"),
-            "story_rationale": selected_story.get("story_rationale")
-        }
+        # 사용자 선택
+        story_candidates = state_context.get("candidates", [])
+        story_context = user_select_candidate(story_candidates, "Story")
+        
     else:
         print(f"❌ Step 4 실패: {resp.text}")
         sys.exit()
@@ -265,18 +267,16 @@ except Exception as e:
 print_step_header("5. Logo (DALL-E 3)")
 print("⚠️ 이미지 생성은 시간이 조금 더 걸릴 수 있습니다 (15초 이상)")
 
-step5_qa = {
-    "logo_style": "Minimalist",
-    "color_preference": "Blue & White"
-}
+step5_data = answers_data.get("step_5", {})
 
 step5_payload = {
-    "user_id": USER_ID,
-    "diagnosis_context": diagnosis_context,
-    "naming_context": naming_context,
-    "concept_context": concept_context,
-    "story_context": story_context,
-    "qa_answers": step5_qa
+    "user_input": step5_data,
+    "context": {
+        "interview": diagnosis_context,
+        "naming": naming_context,
+        "concept": concept_context,
+        "story": story_context  # 선택된 스토리 상세 정보
+    }
 }
 
 try:
@@ -286,19 +286,24 @@ try:
     
     if resp.status_code == 200:
         print("✅ Step 5 성공!")
-        result = resp.json()
+        response_data = resp.json()
         
-        save_result(5, "logo", result)
-        
-        candidates = result.get("candidates", [])
+        result = response_data.get("result", {})
+        state_context = response_data.get("state_context", {})
         
         print("\n[생성된 로고 이미지 URL]")
-        for i, cand in enumerate(candidates):
-            # output = cand["output"] # Delete this line
-            print(f" 🖼️  {i+1}. {cand.get('logo_image_url')}")
+        print(f" 🖼️  1. {result.get('logo1_url')}")
+        print(f" 🖼️  2. {result.get('logo2_url')}")
+        print(f" 🖼️  3. {result.get('logo3_url')}")
+        
+        save_result(5, "logo", response_data)
             
     else:
         print(f"❌ Step 5 실패: {resp.text}")
 
 except Exception as e:
     print(f"❌ Step 5 에러: {e}")
+
+print("\n" + "=" * 60)
+print("✅ 전체 테스트 완료!")
+print("=" * 60)
