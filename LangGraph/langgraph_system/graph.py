@@ -1,10 +1,9 @@
 """
-LangGraph Workflow Definition
-전체 노드 연결 및 제어 흐름 정의(Graph)
+LangGraph Workflow Definition (FE-BE 구조용)
+각 단계가 독립적으로 실행되고 바로 종료
 """
 from langgraph.graph import StateGraph, END
-from langgraph.checkpoint.memory import MemorySaver  # Checkpointer 추가
-from langgraph_system.state import BrandConsultingState, create_initial_state
+from langgraph_system.state import BrandConsultingState
 
 # Import Nodes
 from langgraph_system.nodes.diagnosis_node import diagnosis_node
@@ -12,109 +11,51 @@ from langgraph_system.nodes.naming_node import naming_node
 from langgraph_system.nodes.concept_node import concept_node
 from langgraph_system.nodes.story_node import story_node
 from langgraph_system.nodes.logo_node import logo_node
-from langgraph_system.nodes.quality_check_node import quality_check_node
-from langgraph_system.nodes.human_review_node import human_review_node
-
-def route_step(state: BrandConsultingState) -> str:
-    """
-    라우터 함수: 현재 상태에 따라 다음 실행할 노드를 결정
-    """
-    current_step = state.get("current_step")
-    
-    # 1. 일반 진행 (current_step 기준)
-    # Human Review에서 승인 시 current_step이 이미 다음 단계로 업데이트 되어 있음
-    step_mapping = {
-        1: "diagnosis",
-        2: "naming",
-        3: "concept",
-        4: "story",
-        5: "logo",
-        6: END  # Step 5 완료 후 +1 되면 6 -> 종료
-    }
-    
-    next_node = step_mapping.get(current_step)
-    
-    if next_node:
-        print(f"[Router] ➡️  다음 단계: Step {current_step} ({next_node})")
-        return next_node
-    else:
-        print(f"[Router] 🏁 워크플로우 종료 (Step {current_step})")
-        return END
-
-def start_gateway(state: BrandConsultingState) -> BrandConsultingState:
-    """
-    시작 게이트웨어 노드
-    Passthrough 노드로, 실제 역할은 route_start에서 수행
-    """
-    print(f"[Start] 워크플로우 시작 (Current Step: {state.get('current_step', 1)})")
-    return state
-
-def route_start(state: BrandConsultingState) -> str:
-    """
-    시작 라우팅: current_step에 따라 시작할 노드 결정
-    """
-    current_step = state.get("current_step", 1)
-    
-    # Mapping
-    step_mapping = {
-        1: "diagnosis",
-        2: "naming",
-        3: "concept",
-        4: "story",
-        5: "logo"
-    }
-    
-    # 일반 단계 시작
-    return step_mapping.get(current_step, "diagnosis")
 
 def create_info_graph():
     """
-    LangGraph StateGraph 생성 및 컴파일
+    FE-BE 구조용 단순화된 LangGraph
+    각 API 호출이 독립적으로 실행되므로:
+    - current_step에 따라 해당 노드만 실행
+    - 실행 후 바로 종료 (END)
+    - quality_check, human_review 불필요 (FE가 관리)
     """
     workflow = StateGraph(BrandConsultingState)
     
     # 1. 노드 추가
-    workflow.add_node("start_gateway", start_gateway) # 시작점 노드 추가
-    
     workflow.add_node("diagnosis", diagnosis_node)
     workflow.add_node("naming", naming_node)
     workflow.add_node("concept", concept_node)
     workflow.add_node("story", story_node)
     workflow.add_node("logo", logo_node)
     
-    workflow.add_node("quality_check", quality_check_node)
-    workflow.add_node("human_review", human_review_node)
+    # 2. 라우팅 함수: current_step에 따라 실행할 노드 결정
+    def route_to_step(state: BrandConsultingState) -> str:
+        current_step = state.get("current_step", 1)
+        
+        step_mapping = {
+            1: "diagnosis",
+            2: "naming",
+            3: "concept",
+            4: "story",
+            5: "logo"
+        }
+        
+        next_node = step_mapping.get(current_step, "diagnosis")
+        print(f"[Router] ➡️  Step {current_step} 실행: {next_node}")
+        return next_node
     
-    # 2. 엣지 연결
-    # Start -> Router -> First Node
-    workflow.add_conditional_edges(
-        "start_gateway",
-        route_start
-    )
+    # 3. 시작점 설정 (조건부 엣지로 라우팅)
+    workflow.set_conditional_entry_point(route_to_step)
     
-    # 각 단계 노드 완료 후 -> Quality Check
-    step_nodes = ["diagnosis", "naming", "concept", "story", "logo"]
-    for node in step_nodes:
-        workflow.add_edge(node, "quality_check")
+    # 4. 각 노드 실행 후 바로 종료
+    workflow.add_edge("diagnosis", END)
+    workflow.add_edge("naming", END)
+    workflow.add_edge("concept", END)
+    workflow.add_edge("story", END)
+    workflow.add_edge("logo", END)
     
-    # Quality Check -> Human Review
-    workflow.add_edge("quality_check", "human_review")
-    
-    # Human Review -> Router (Conditional Edge)
-    # Human Review 결과에 따라 다음 단계로 갈지, 이전 단계로 갈지 결정
-    workflow.add_conditional_edges(
-        "human_review",
-        route_step
-    )
-    
-    # 3. 시작점 설정 (Gateway로 변경)
-    workflow.set_entry_point("start_gateway")
-    
-    # 4. 컴파일 (Checkpointer 설정 추가)
-    memory = MemorySaver()
-    app = workflow.compile(
-        checkpointer=memory,
-        interrupt_before=["human_review"]
-    )
+    # 5. 컴파일
+    app = workflow.compile()
     
     return app
