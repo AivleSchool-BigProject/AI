@@ -54,7 +54,21 @@ def story_node(state: BrandConsultingState) -> BrandConsultingState:
         state["error_message"] = error_msg
         return state
 
-    # 2. OpenAI 클라이언트 초기화
+    # 2. answers.json 로드 (v2 포맷)
+    import os
+    answers_file_path = "answers.json"
+    if not os.path.exists(answers_file_path):
+        state["error_occurred"] = True
+        state["error_message"] = "answers.json 파일을 찾을 수 없습니다."
+        return state
+    
+    with open(answers_file_path, "r", encoding="utf-8") as f:
+        answers_data = json.load(f)
+    
+    # Step 4 데이터만 추출
+    step_4_data = answers_data.get("step_4", {})
+    
+    # 3. OpenAI 클라이언트 초기화
     try:
         client = get_openai_client()
     except Exception as e:
@@ -64,7 +78,7 @@ def story_node(state: BrandConsultingState) -> BrandConsultingState:
         state["error_message"] = error_msg
         return state
 
-    # 3. 재생성(Regeneration) 요청 처리
+    # 4. 재생성(Regeneration) 요청 처리
     # 사용자가 결과에 만족하지 못해 피드백을 주고 재생성을 요청한 경우
     feedback_section = ""
     if state.get("feedback_required") and state.get("feedback_content"):
@@ -76,7 +90,7 @@ def story_node(state: BrandConsultingState) -> BrandConsultingState:
         CRITICAL INSTRUCTION: You must reflect this feedback in the new stories. Do not ignore it.
         """
 
-    # 4. 프롬프트 구성
+    # 5. 프롬프트 구성 (JSON 직접 전달)
     # 시스템 프롬프트: 역할 정의
     # 유저 프롬프트: 브랜드 맥락(Context), QA 데이터, 피드백 결합
     system_prompt = GenerationPrompts.STORY_SYSTEM
@@ -90,7 +104,7 @@ def story_node(state: BrandConsultingState) -> BrandConsultingState:
         brand_name=naming_context.get("brand_name", "Brand Name"),
         concept_statement=concept_context.get("concept_statement", "Brand Concept"),
         target_persona=target_persona,
-        qa_data=json.dumps(step_4_qa, ensure_ascii=False, indent=2),
+        qa_data_json=json.dumps(step_4_data, ensure_ascii=False, indent=2),
         feedback_section=feedback_section
     )
 
