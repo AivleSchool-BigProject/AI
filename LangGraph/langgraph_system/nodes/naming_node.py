@@ -67,8 +67,22 @@ def naming_node(state: BrandConsultingState) -> BrandConsultingState:
             state["error_occurred"] = True
             state["error_message"] = error_msg
             return state
+    
+    # 2. answers.json 로드 (v2 포맷)
+    import os
+    answers_file_path = "answers.json"
+    if not os.path.exists(answers_file_path):
+        state["error_occurred"] = True
+        state["error_message"] = "answers.json 파일을 찾을 수 없습니다."
+        return state
+    
+    with open(answers_file_path, "r", encoding="utf-8") as f:
+        answers_data = json.load(f)
+    
+    # Step 2 데이터만 추출
+    step_2_data = answers_data.get("step_2", {})
 
-    # 2. OpenAI 클라이언트 초기화
+    # 3. OpenAI 클라이언트 초기화
     try:
         client = get_openai_client()
     except Exception as e:
@@ -78,7 +92,7 @@ def naming_node(state: BrandConsultingState) -> BrandConsultingState:
         state["error_message"] = error_msg
         return state
 
-    # 3. 재생성(Regeneration) 피드백 확인
+    # 4. 재생성(Regeneration) 피드백 확인
     feedback_section = ""
     if state.get("feedback_required") and state.get("feedback_content"):
         feedback_content = state.get('feedback_content')
@@ -91,13 +105,13 @@ def naming_node(state: BrandConsultingState) -> BrandConsultingState:
         IMPORTANT: Your new names MUST address this feedback. Do not repeat the same patterns.
         """
 
-    # 4. 프롬프트 구성
+    # 5. 프롬프트 구성 (JSON 직접 전달)
     system_prompt = GenerationPrompts.NAMING_SYSTEM
     user_prompt = GenerationPrompts.NAMING_USER.format(
         diagnosis_summary=diagnosis_context.get("diagnosis_summary", ""),
         core_keywords=str(diagnosis_context.get("core_keywords", [])),
         target_persona=diagnosis_context.get("target_persona", ""),
-        qa_data=json.dumps(step_2_qa, ensure_ascii=False, indent=2),
+        qa_data_json=json.dumps(step_2_data, ensure_ascii=False, indent=2),
         feedback_section=feedback_section
     )
 
