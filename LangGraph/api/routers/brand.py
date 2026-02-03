@@ -1,334 +1,314 @@
 """
-#brand.py
-from fastapi import APIRouter
-from typing import Dict, Any
-
-router = APIRouter()
-
-# Interview
-@router.post("/brands/interview")
-async def interview(payload: Dict[str, Any]):
-    print("[INTERVIEW]", payload)
-    return {
-        "summary": "AI 인터뷰 진단 요약",
-        "analysis": "브랜드 방향성이 비교적 명확합니다.",
-        "key_insights": "다음 단계는 네이밍입니다."
-    }
-
-# Naming
-@router.post("/brands/naming")
-async def naming(brand_id: int, payload: Dict[str, Any]):
-    print("[NAMING]", brand_id, payload)
-    return {
-        "name1": "Brandify",
-        "name2": "Cloudia",
-        "name3": "Truston"
-    }
-
-# Concept
-@router.post("/brands/concept")
-async def concept(brand_id: int, payload: Dict[str, Any]):
-    return {
-        "concept1": "혁신",
-        "concept2": "신뢰",
-        "concept3": "확장성"
-    }
-
-# Story
-@router.post("/brands/story")
-async def story(brand_id: int, payload: Dict[str, Any]):
-    return {
-        "story1": "우리는 작은 아이디어에서 시작했습니다.",
-        "story2": "기술로 신뢰를 만듭니다.",
-        "story3": "확장 가능한 브랜드의 시작."
-    }
-
-# Logo
-@router.post("/brands/logo")
-async def logo(brand_id: int, payload: Dict[str, Any]):
-    return {
-        "logo1": "https://placehold.co/512x512?text=LOGO+1",
-        "logo2": "https://placehold.co/512x512?text=LOGO+2",
-        "logo3": "https://placehold.co/512x512?text=LOGO+3"
-    }
-"""
-
-"""
 Brand Consulting API Router
-FE 요청을 받아 각 단계별 로직을 호출하고 응답을 반환
-현재는 구조 검증을 위해 DUMMY DATA를 반환합니다.
+FE 요청을 받아 LangGraph를 실행하고 result + state_context 형식으로 응답
+Response: 3개 후보 + 각 후보 상세 정보
+Request: FE가 선택한 후보 상세 정보를 context에 포함하여 전달
 """
-
-from fastapi import APIRouter, HTTPException, Path, Body
+from fastapi import APIRouter, HTTPException
 from api.schemas.request import (
     DiagnosisRequest, NamingRequest, ConceptRequest, StoryRequest, LogoRequest
 )
 from api.schemas.response import (
-    DiagnosisResponse,
-    NamingResponse, NamingCandidate,
-    ConceptResponse, ConceptCandidate,
-    StoryResponse, StoryCandidate,
-    LogoResponse, LogoCandidate
+    DiagnosisResponse, NamingResponse, ConceptResponse, StoryResponse, LogoResponse
 )
+from langgraph_system.state import BrandConsultingState
+from langgraph_system.graph import create_info_graph
 import uuid
 
 router = APIRouter()
 
-# LangGraph 앱 초기화 (서버 시작 시 1회 로드)
-# 주의: 실제 운영 환경에서는 lifespan 이벤트 핸들러 등에서 관리하는 것이 좋음
-from langgraph_system.graph import create_info_graph
-from langgraph_system.state import create_initial_state, BrandConsultingState
-import json
-
+# LangGraph 초기화
 print("\n[System] LangGraph Workflow Loading...")
 workflow_app = create_info_graph()
 print("[System] LangGraph Workflow Loaded Successfully.\n")
 
 # =================================================================
-# 1. Diagnosis (Step 1)
+# [Step 1] 진단 (Diagnosis)
 # =================================================================
 @router.post("/step1/diagnosis", response_model=DiagnosisResponse)
 async def create_diagnosis(request: DiagnosisRequest):
     """
-    Step 1: 진단 (Diagnosis)
-    Q&A 입력을 받아 브랜드 상세 진단을 수행합니다.
+    Step 1: 진단
+    Input: Q&A 답변
+    Output: 진단 요약 (result) + 진단 상세 정보 (state_context)
     """
-    # 1. 초기 State 생성
-    # brand_id는 실제로는 DB에서 생성하거나 FE에서 전달받아야 함 (여기선 임시 생성)
     brand_id = f"brand_{uuid.uuid4().hex[:8]}"
-    initial_state = create_initial_state(brand_id=brand_id, user_id=request.user_id)
     
-    # 2. 입력 데이터 주입
-    initial_state["step_1_qa"] = request.qa_answers
-    initial_state["current_step"] = 1
-    
-    # 3. LangGraph 실행 (Diagnosis Node)
-    # config: thread_id 등을 설정하여 메모리 체크포인트 활용 가능
-    config = {"configurable": {"thread_id": brand_id}}
-    
-    print(f"\n[API] Step 1 Diagnosis 요청 시작 (Brand ID: {brand_id})")
-    
-    # invoke 실행
-    final_state = workflow_app.invoke(initial_state, config=config)
-    
-    # 4. 결과 추출
-    if final_state.get("error_occurred"):
-        raise HTTPException(status_code=500, detail=final_state.get("error_message"))
-        
-    diagnosis_output = final_state.get("diagnosis_result", {})
-    analysis = diagnosis_output.get("analysis", {})
-    
-    print(f"[API] Step 1 완료. Analysis Summary: {analysis.get('summary')[:30]}...")
-    
-    return DiagnosisResponse(
+    state = BrandConsultingState(
         brand_id=brand_id,
-        step=1,
-        analysis=analysis
+        current_step=1,
+        step_1_qa=request.user_input
     )
+    
+    try:
+        result_state = workflow_app.invoke(state)
+        
+        if result_state.get("error_occurred"):
+            raise HTTPException(status_code=500, detail=result_state.get("error_message"))
+        
+        diagnosis_result = result_state.get("diagnosis_result", {})
+        analysis = diagnosis_result.get("analysis", {})
+        diagnosis_context = result_state.get("diagnosis_context", {})
+        
+        # result: 사용자 표시용 (DB 저장)
+        result = {
+            "summary": analysis.get("summary", ""),
+            "analysis": "브랜드 방향성 분석 완료",
+            "key_insights": f"핵심 키워드: {', '.join(analysis.get('keywords', [])[:3])}"
+        }
+        
+        # state_context: Step 2 전달용 (진단 상세 정보)
+        state_context = {
+            "brand_direction": analysis.get("summary", "")[:100],
+            "tone": diagnosis_context.get("emotional_core", ""),
+            "keywords": analysis.get("keywords", []),
+            "perspectives": analysis.get("perspectives", {}),
+            "brand_essence": diagnosis_context.get("brand_essence", ""),
+            "emotional_core": diagnosis_context.get("emotional_core", ""),
+            "differentiation_point": diagnosis_context.get("differentiation_point", ""),
+            "target_persona": analysis.get("persona", ""),
+            "diagnosis_summary": analysis.get("summary", "")
+        }
+        
+        return DiagnosisResponse(result=result, state_context=state_context)
+    
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"진단 실패: {str(e)}")
 
 # =================================================================
-# 2. Naming (Step 2)
+# [Step 2] 네이밍 (Naming)
 # =================================================================
 @router.post("/step2/naming", response_model=NamingResponse)
 async def create_naming(request: NamingRequest):
     """
-    Step 2: 네이밍 (Naming)
-    Diagnosis 결과와 함께 호출하여 3개의 브랜드명 후보를 생성합니다.
+    Step 2: 네이밍
+    Input: Q&A 답변 + Step 1 진단 정보
+    Output: 3개 네이밍 후보 (result) + 각 후보 상세 정보 (state_context)
     """
-    # 1. State 복원/재구성
-    # Stateless API 특성상 이전 단계 Context를 Request로 받아 State를 재구성함
-    # (실제 운영 시에는 thread_id 기반으로 Checkpoint에서 로드하는 것이 이상적임)
+    interview_context = request.context.get("interview", {})
+    brand_id = f"brand_{uuid.uuid4().hex[:8]}"
     
-    brand_id = "temp_brand_id" # Request에 brand_id가 없으므로 임시 값 사용하거나 DB 연동 필요
-    
-    # State 재구성
-    state_update = create_initial_state(brand_id=brand_id, user_id=request.user_id)
-    state_update["current_step"] = 2
-    state_update["diagnosis_context"] = request.diagnosis_context # 핵심 Context 주입
-    state_update["step_2_qa"] = request.qa_answers 
-    
-    # [Fix] Naming Node 등에서 Step 1 데이터를 참조할 수 있으므로 빈 값이라도 주입
-    state_update["step_1_qa"] = {} 
-    
-    # 2. LangGraph 실행 (Naming Node)
-    # config에 thread_id를 주더라도, Request로 받은 Context를 우선시하여 State에 주입
-    config = {"configurable": {"thread_id": brand_id}} 
-    
-    print(f"\n[API] Step 2 Naming 요청 시작")
-    
-    # invoke 실행
-    final_state = workflow_app.invoke(state_update, config=config)
-    
-    # 3. 결과 추출
-    if final_state.get("error_occurred"):
-        raise HTTPException(status_code=500, detail=final_state.get("error_message"))
-        
-    candidates_data = final_state.get("naming_candidates", [])
-    
-    # Flattening: Dict에서 필드 직접 바인딩
-    candidates = []
-    for cand in candidates_data:
-        output = cand.get("output", {})
-        candidates.append(NamingCandidate(
-            id=cand["candidate_id"], 
-            brand_name=output.get("brand_name", ""),
-            name_rationale=output.get("name_rationale", "")
-        ))
-        
-    print(f"[API] Step 2 완료. 생성된 후보 수: {len(candidates)}")
-    
-    return NamingResponse(
+    state = BrandConsultingState(
         brand_id=brand_id,
-        step=2,
-        candidates=candidates
+        current_step=2,
+        diagnosis_context=interview_context,
+        step_2_qa=request.user_input
     )
+    
+    try:
+        result_state = workflow_app.invoke(state)
+        
+        if result_state.get("error_occurred"):
+            raise HTTPException(status_code=500, detail=result_state.get("error_message"))
+        
+        candidates_data = result_state.get("naming_candidates", [])
+        
+        # result: 사용자 표시용 (name1, name2, name3)
+        result = {}
+        for i, cand in enumerate(candidates_data[:3]):
+            result[f"name{i+1}"] = cand["output"]["brand_name"]
+        
+        # state_context: 각 후보의 상세 정보
+        candidates_full = []
+        for i, cand in enumerate(candidates_data[:3]):
+            output = cand["output"]
+            candidates_full.append({
+                "id": i,
+                "brand_name": output.get("brand_name", ""),
+                "name_rationale": output.get("name_rationale", ""),
+                "qa_analysis_summary": output.get("qa_analysis_summary", ""),
+                "qa_keywords": output.get("qa_keywords", [])
+            })
+        
+        state_context = {
+            "candidates": candidates_full
+        }
+        
+        return NamingResponse(result=result, state_context=state_context)
+    
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"네이밍 생성 실패: {str(e)}")
 
 # =================================================================
-# 3. Concept (Step 3)
+# [Step 3] 컨셉 (Concept)
 # =================================================================
-
 @router.post("/step3/concept", response_model=ConceptResponse)
 async def create_concept(request: ConceptRequest):
     """
-    Step 3: 컨셉 (Concept)
-    Naming 확정 Context와 함께 호출하여 3개의 컨셉 후보를 생성합니다.
+    Step 3: 컨셉
+    Input: Q&A 답변 + Step 1 진단 정보 + 선택된 네이밍 상세 정보
+    Output: 3개 컨셉 후보 (result) + 각 후보 상세 정보 (state_context)
     """
-    brand_id = "temp_brand_id"
+    interview_context = request.context.get("interview", {})
+    naming_context = request.context.get("naming", {})  # FE가 선택한 네이밍 상세 정보
     
-    # State 재구성
-    state_update = create_initial_state(brand_id=brand_id, user_id=request.user_id)
-    state_update["current_step"] = 3
-    state_update["diagnosis_context"] = request.diagnosis_context
-    state_update["naming_context"] = request.naming_context
-    state_update["step_3_qa"] = request.qa_answers
+    brand_id = f"brand_{uuid.uuid4().hex[:8]}"
     
-    # Validation 우회용 Dummy Data
-    state_update["step_1_qa"] = {}
-    state_update["step_2_qa"] = {}
+    state = BrandConsultingState(
+        brand_id=brand_id,
+        current_step=3,
+        diagnosis_context=interview_context,
+        naming_context=naming_context,
+        step_3_qa=request.user_input
+    )
     
-    print(f"\n[API] Step 3 Concept 요청 시작")
-    
-    config = {"configurable": {"thread_id": brand_id}}
-    final_state = workflow_app.invoke(state_update, config=config)
-    
-    if final_state.get("error_occurred"):
-        raise HTTPException(status_code=500, detail=final_state.get("error_message"))
+    try:
+        config = {"configurable": {"thread_id": brand_id}}
+        result_state = workflow_app.invoke(state, config)
         
-    candidates_data = final_state.get("concept_candidates", [])
-    
-    # Flattening
-    candidates = []
-    for cand in candidates_data:
-        output = cand.get("output", {})
-        candidates.append(ConceptCandidate(
-            id=cand["candidate_id"],
-            concept_statement=output.get("concept_statement", ""),
-            concept_rationale=output.get("concept_rationale", "")
-        ))
+        if result_state.get("error_occurred"):
+            raise HTTPException(status_code=500, detail=result_state.get("error_message"))
         
-    print(f"[API] Step 3 완료. 생성된 후보 수: {len(candidates)}")
+        candidates_data = result_state.get("concept_candidates", [])
+        
+        # result: 사용자 표시용
+        result = {}
+        for i, cand in enumerate(candidates_data[:3]):
+            result[f"concept{i+1}"] = cand["output"]["concept_statement"]
+        
+        # state_context: 각 후보의 상세 정보
+        candidates_full = []
+        for i, cand in enumerate(candidates_data[:3]):
+            output = cand["output"]
+            candidates_full.append({
+                "id": i,
+                "concept_statement": output.get("concept_statement", ""),
+                "concept_rationale": output.get("concept_rationale", ""),
+                "qa_analysis_summary": output.get("qa_analysis_summary", ""),
+                "qa_keywords": output.get("qa_keywords", []),
+                "brand_values": output.get("brand_values", [])
+            })
+        
+        state_context = {
+            "candidates": candidates_full
+        }
+        
+        return ConceptResponse(result=result, state_context=state_context)
     
-    return ConceptResponse(brand_id=brand_id, step=3, candidates=candidates)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"컨셉 생성 실패: {str(e)}")
 
 # =================================================================
-# 4. Story (Step 4)
+# [Step 4] 스토리 (Story)
 # =================================================================
 @router.post("/step4/story", response_model=StoryResponse)
 async def create_story(request: StoryRequest):
     """
-    Step 4: 스토리 (Story)
-    Step 1~3 Context와 함께 호출하여 3개의 스토리 후보를 생성합니다.
+    Step 4: 스토리
+    Input: Q&A 답변 + Step 1-3 누적 정보 (선택된 후보들만)
+    Output: 3개 스토리 후보 (result) + 각 후보 상세 정보 (state_context)
     """
-    brand_id = "temp_brand_id"
+    interview_context = request.context.get("interview", {})
+    naming_context = request.context.get("naming", {})
+    concept_context = request.context.get("concept", {})
     
-    # State 재구성
-    state_update = create_initial_state(brand_id=brand_id, user_id=request.user_id)
-    state_update["current_step"] = 4
-    state_update["diagnosis_context"] = request.diagnosis_context
-    state_update["naming_context"] = request.naming_context
-    state_update["concept_context"] = request.concept_context
-    state_update["step_4_qa"] = request.qa_answers
+    brand_id = f"brand_{uuid.uuid4().hex[:8]}"
     
-    # Validation 우회용 Dummy Data
-    state_update["step_1_qa"] = {}
-    state_update["step_2_qa"] = {}
-    state_update["step_3_qa"] = {}
+    state = BrandConsultingState(
+        brand_id=brand_id,
+        current_step=4,
+        diagnosis_context=interview_context,
+        naming_context=naming_context,
+        concept_context=concept_context,
+        step_4_qa=request.user_input
+    )
     
-    print(f"\n[API] Step 4 Story 요청 시작")
-    
-    config = {"configurable": {"thread_id": brand_id}}
-    final_state = workflow_app.invoke(state_update, config=config)
-    
-    if final_state.get("error_occurred"):
-        raise HTTPException(status_code=500, detail=final_state.get("error_message"))
+    try:
+        config = {"configurable": {"thread_id": brand_id}}
+        result_state = workflow_app.invoke(state, config)
         
-    candidates_data = final_state.get("story_candidates", [])
-    
-    # Flattening
-    candidates = []
-    for cand in candidates_data:
-        output = cand.get("output", {})
-        candidates.append(StoryCandidate(
-            id=cand["candidate_id"],
-            brand_story=output.get("brand_story", ""),
-            story_rationale=output.get("story_rationale", "")
-        ))
+        if result_state.get("error_occurred"):
+            raise HTTPException(status_code=500, detail=result_state.get("error_message"))
         
-    print(f"[API] Step 4 완료. 생성된 후보 수: {len(candidates)}")
+        candidates_data = result_state.get("story_candidates", [])
+        
+        # result: 사용자 표시용
+        result = {}
+        for i, cand in enumerate(candidates_data[:3]):
+            result[f"story{i+1}"] = cand["output"]["brand_story"]
+        
+        # state_context: 각 후보의 상세 정보
+        candidates_full = []
+        for i, cand in enumerate(candidates_data[:3]):
+            output = cand["output"]
+            candidates_full.append({
+                "id": i,
+                "brand_story": output.get("brand_story", ""),
+                "story_rationale": output.get("story_rationale", ""),
+                "qa_analysis_summary": output.get("qa_analysis_summary", ""),
+                "qa_keywords": output.get("qa_keywords", []),
+                "emotional_arc": output.get("emotional_arc", "")
+            })
+        
+        state_context = {
+            "candidates": candidates_full
+        }
+        
+        return StoryResponse(result=result, state_context=state_context)
     
-    return StoryResponse(brand_id=brand_id, step=4, candidates=candidates)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"스토리 생성 실패: {str(e)}")
 
 # =================================================================
-# 5. Logo (Step 5)
+# [Step 5] 로고 (Logo)
 # =================================================================
 @router.post("/step5/logo", response_model=LogoResponse)
 async def create_logo(request: LogoRequest):
     """
-    Step 5: 로고 (Logo)
-    모든 데이터 Context와 함께 호출하여 3개의 로고 이미지 후보를 생성합니다.
+    Step 5: 로고 (최종 단계)
+    Input: Q&A 답변 + Step 1-4 누적 정보 (선택된 후보들만)
+    Output: 3개 로고 URL (result) + 각 후보 상세 정보 (state_context)
     """
-    brand_id = "temp_brand_id"
+    interview_context = request.context.get("interview", {})
+    naming_context = request.context.get("naming", {})
+    concept_context = request.context.get("concept", {})
+    story_context = request.context.get("story", {})
     
-    # State 재구성
-    state_update = create_initial_state(brand_id=brand_id, user_id=request.user_id)
-    state_update["current_step"] = 5
-    state_update["diagnosis_context"] = request.diagnosis_context
-    state_update["naming_context"] = request.naming_context
-    state_update["concept_context"] = request.concept_context
-    state_update["story_context"] = request.story_context
-    state_update["step_5_qa"] = request.qa_answers
+    brand_id = f"brand_{uuid.uuid4().hex[:8]}"
     
-    # Validation 우회용 Dummy Data
-    state_update["step_1_qa"] = {}
-    state_update["step_2_qa"] = {}
-    state_update["step_3_qa"] = {}
-    state_update["step_4_qa"] = {}
+    state = BrandConsultingState(
+        brand_id=brand_id,
+        current_step=5,
+        diagnosis_context=interview_context,
+        naming_context=naming_context,
+        concept_context=concept_context,
+        story_context=story_context,
+        step_5_qa=request.user_input
+    )
     
-    print(f"\n[API] Step 5 Logo 요청 시작")
-    
-    config = {"configurable": {"thread_id": brand_id}}
-    final_state = workflow_app.invoke(state_update, config=config)
-    
-    if final_state.get("error_occurred"):
-        raise HTTPException(status_code=500, detail=final_state.get("error_message"))
+    try:
+        config = {"configurable": {"thread_id": brand_id}}
+        result_state = workflow_app.invoke(state, config)
         
-    candidates_data = final_state.get("logo_candidates", [])
-    
-    # Flattening
-    candidates = []
-    for cand in candidates_data:
-        output = cand.get("output", {})
-        candidates.append(LogoCandidate(
-            id=cand["candidate_id"],
-            logo_image_url=output.get("logo_image_url", ""),
-            logo_concept=output.get("logo_concept", "")
-        ))
+        if result_state.get("error_occurred"):
+            raise HTTPException(status_code=500, detail=result_state.get("error_message"))
         
-    print(f"[API] Step 5 완료. 생성된 후보 수: {len(candidates)}")
+        candidates_data = result_state.get("logo_candidates", [])
+        
+        # result: 사용자 표시용 (logo URL만)
+        result = {}
+        for i, cand in enumerate(candidates_data[:3]):
+            result[f"logo{i+1}_url"] = cand["output"]["logo_image_url"]
+        
+        # state_context: 각 후보의 상세 정보
+        candidates_full = []
+        for i, cand in enumerate(candidates_data[:3]):
+            output = cand["output"]
+            candidates_full.append({
+                "id": i,
+                "logo_image_url": output.get("logo_image_url", ""),
+                "logo_concept": output.get("logo_concept", ""),
+                "logo_rationale": output.get("logo_rationale", ""),
+                "qa_analysis_summary": output.get("qa_analysis_summary", ""),
+                "qa_keywords": output.get("qa_keywords", []),
+                "color_palette": output.get("color_palette", [])
+            })
+        
+        state_context = {
+            "candidates": candidates_full
+        }
+        
+        return LogoResponse(result=result, state_context=state_context)
     
-    return LogoResponse(brand_id=brand_id, step=5, candidates=candidates)
-
-# =================================================================
-# [Regeneration]
-# =================================================================
-# [Regeneration Logic Removed]
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"로고 생성 실패: {str(e)}")
