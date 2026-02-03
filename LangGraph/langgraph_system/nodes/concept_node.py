@@ -41,7 +41,21 @@ def concept_node(state: BrandConsultingState) -> BrandConsultingState:
         state["error_message"] = "필수 Context (Diagnosis or Naming) 누락"
         return state
 
-    # 2. OpenAI 클라이언트
+    # 2. answers.json 로드 (v2 포맷)
+    import os
+    answers_file_path = "answers.json"
+    if not os.path.exists(answers_file_path):
+        state["error_occurred"] = True
+        state["error_message"] = "answers.json 파일을 찾을 수 없습니다."
+        return state
+    
+    with open(answers_file_path, "r", encoding="utf-8") as f:
+        answers_data = json.load(f)
+    
+    # Step 3 데이터만 추출
+    step_3_data = answers_data.get("step_3", {})
+    
+    # 3. OpenAI 클라이언트
     try:
         client = get_openai_client()
     except Exception as e:
@@ -49,7 +63,7 @@ def concept_node(state: BrandConsultingState) -> BrandConsultingState:
         state["error_message"] = f"Client Error: {e}"
         return state
 
-    # 3. 재생성 피드백
+    # 4. 재생성 피드백
     feedback_section = ""
     if state.get("feedback_required") and state.get("feedback_content"):
         print(f"[Step 3] 🔄 재생성 피드백 반영: {state.get('feedback_content')}")
@@ -59,13 +73,13 @@ def concept_node(state: BrandConsultingState) -> BrandConsultingState:
         IMPORTANT: Use this feedback via regeneration.
         """
 
-    # 4. 프롬프트 구성
+    # 5. 프롬프트 구성 (JSON 직접 전달)
     system_prompt = GenerationPrompts.CONCEPT_SYSTEM
     user_prompt = GenerationPrompts.CONCEPT_USER.format(
         diagnosis_summary=diagnosis_context.get("diagnosis_summary", ""),
         brand_name=naming_context.get("brand_name", ""),
         name_rationale=naming_context.get("name_rationale", ""),
-        qa_data=json.dumps(step_3_qa, ensure_ascii=False, indent=2),
+        qa_data_json=json.dumps(step_3_data, ensure_ascii=False, indent=2),
         feedback_section=feedback_section
     )
 
