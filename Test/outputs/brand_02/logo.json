@@ -1,0 +1,65 @@
+{
+  "result": {
+    "logo1_url": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-wQVNtTE1Oeqs5FjNepbX1ZGx/user-CepdD55JOjdjogNeVAijyOwa/img-e1uzUKPYsvjBAZzQK7VUpOYF.png?st=2026-02-03T15%3A21%3A39Z&se=2026-02-03T17%3A21%3A39Z&sp=r&sv=2024-08-04&sr=b&rscd=inline&rsct=image/png&skoid=9346e9b9-5d29-4d37-a0a9-c6f95f09f79d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-02-03T16%3A21%3A39Z&ske=2026-02-04T16%3A21%3A39Z&sks=b&skv=2024-08-04&sig=r6rKezOGQClc0R/Yju8ek2Kwcm/S1Dd5hIwxZcbNDas%3D",
+    "logo2_url": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-wQVNtTE1Oeqs5FjNepbX1ZGx/user-CepdD55JOjdjogNeVAijyOwa/img-zypQIOuQSi18rkPBop3xVvLB.png?st=2026-02-03T15%3A22%3A03Z&se=2026-02-03T17%3A22%3A03Z&sp=r&sv=2024-08-04&sr=b&rscd=inline&rsct=image/png&skoid=ed3ea2f9-5e38-44be-9a1b-7c1e65e4d54f&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-02-03T16%3A22%3A03Z&ske=2026-02-04T16%3A22%3A03Z&sks=b&skv=2024-08-04&sig=KTL2nnnQMj6fszBiew9vl6WMp7J81IOxoqxCn6gVofc%3D",
+    "logo3_url": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-wQVNtTE1Oeqs5FjNepbX1ZGx/user-CepdD55JOjdjogNeVAijyOwa/img-C5gg4I7iUbAHJnPVp2TBPFwN.png?st=2026-02-03T15%3A22%3A18Z&se=2026-02-03T17%3A22%3A18Z&sp=r&sv=2024-08-04&sr=b&rscd=inline&rsct=image/png&skoid=9346e9b9-5d29-4d37-a0a9-c6f95f09f79d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-02-03T16%3A20%3A33Z&ske=2026-02-04T16%3A20%3A33Z&sks=b&skv=2024-08-04&sig=zuxNBe6BaIuG72hn4Ai%2Bg66f3dLg4/Pu7G/NWZ7Ry4k%3D"
+  },
+  "state_context": {
+    "candidates": [
+      {
+        "id": 0,
+        "logo_image_url": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-wQVNtTE1Oeqs5FjNepbX1ZGx/user-CepdD55JOjdjogNeVAijyOwa/img-e1uzUKPYsvjBAZzQK7VUpOYF.png?st=2026-02-03T15%3A21%3A39Z&se=2026-02-03T17%3A21%3A39Z&sp=r&sv=2024-08-04&sr=b&rscd=inline&rsct=image/png&skoid=9346e9b9-5d29-4d37-a0a9-c6f95f09f79d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-02-03T16%3A21%3A39Z&ske=2026-02-04T16%3A21%3A39Z&sks=b&skv=2024-08-04&sig=r6rKezOGQClc0R/Yju8ek2Kwcm/S1Dd5hIwxZcbNDas%3D",
+        "logo_concept": "로고는 'Repose'라는 텍스트와 함께 열려 있는 문을 추상적으로 도형화한 이미지를 포함합니다. 전체적인 색상은 그린과 골드로 고급스러우면서도 차분한 인상을 줍니다. 텍스트는 현대적인 산세리프 폰트를 사용했습니다.",
+        "logo_rationale": "열린 문이라는 이미지를 통해 고객에게 새로운 경험을 제공하고, 안락함과 디지털 디톡스를 제공하는 브랜드의 가치를 드러내려고 했습니다. 단순하면서도 고급스러운 색상과 폰트 선택으로 브랜드의 프리미엄 이미지를 강조했습니다.",
+        "qa_analysis_summary": "콤비네이션 로고와 추상적 요소를 활용해, 심플하면서도 브랜드 아이덴티티를 놓치지 않는 방향으로 디자인을 구상했습니다. 디지털 디톡스와 안락함을 시각적으로 전달하기 위해 자연을 상징하는 색상을 선택했습니다.",
+        "qa_keywords": [
+          "Combination",
+          "Abstract",
+          "Minimalist",
+          "Green",
+          "Gold"
+        ],
+        "color_palette": [
+          "#009688",
+          "#DAA520"
+        ]
+      },
+      {
+        "id": 1,
+        "logo_image_url": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-wQVNtTE1Oeqs5FjNepbX1ZGx/user-CepdD55JOjdjogNeVAijyOwa/img-zypQIOuQSi18rkPBop3xVvLB.png?st=2026-02-03T15%3A22%3A03Z&se=2026-02-03T17%3A22%3A03Z&sp=r&sv=2024-08-04&sr=b&rscd=inline&rsct=image/png&skoid=ed3ea2f9-5e38-44be-9a1b-7c1e65e4d54f&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-02-03T16%3A22%3A03Z&ske=2026-02-04T16%3A22%3A03Z&sks=b&skv=2024-08-04&sig=KTL2nnnQMj6fszBiew9vl6WMp7J81IOxoqxCn6gVofc%3D",
+        "logo_concept": "나무의 나이테를 단순화한 이미지와 'Repose'라는 텍스트가 결합된 로고입니다. 색상은 자연의 성장과 평화를 상징하는 초록색과 안정감을 주는 고동색입니다. 깔끔한 산세리프 폰트를 사용하여 모던한 느낌을 살렸습니다.",
+        "logo_rationale": "나이테 모티프를 활용해 브랜드의 지속가능한 성장과 내면의 평화를 강조하였습니다. 자연과 연결되는 색상으로 휴양과 디지털 디톡스의 핵심 가치를 표현하며, 산세리프 폰트로 현대적 이미지를 강화했습니다.",
+        "qa_analysis_summary": "자연을 연상시키는 나이테 모티프를 중심으로 브랜드의 철학을 전달하려 했습니다. 그린과 브라운 색상 조합은 지속 가능한 휴식과 내면 평화를 상징합니다.",
+        "qa_keywords": [
+          "Nature",
+          "Abstract",
+          "Green",
+          "Brown",
+          "Modern"
+        ],
+        "color_palette": [
+          "#468847",
+          "#8B4513"
+        ]
+      },
+      {
+        "id": 2,
+        "logo_image_url": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-wQVNtTE1Oeqs5FjNepbX1ZGx/user-CepdD55JOjdjogNeVAijyOwa/img-C5gg4I7iUbAHJnPVp2TBPFwN.png?st=2026-02-03T15%3A22%3A18Z&se=2026-02-03T17%3A22%3A18Z&sp=r&sv=2024-08-04&sr=b&rscd=inline&rsct=image/png&skoid=9346e9b9-5d29-4d37-a0a9-c6f95f09f79d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-02-03T16%3A20%3A33Z&ske=2026-02-04T16%3A20%3A33Z&sks=b&skv=2024-08-04&sig=zuxNBe6BaIuG72hn4Ai%2Bg66f3dLg4/Pu7G/NWZ7Ry4k%3D",
+        "logo_concept": "쉼표 모양을 추상적으로 표현한 심볼과 'Repose' 텍스트가 결합된 로고입니다. 이 디자인은 휴식을 위해 잠시 멈춘다는 느낌을 전달합니다. 색상은 녹색과 메탈릭 골드로 조화를 이루며 고급스러움을 더했습니다.",
+        "logo_rationale": "쉼표 상징을 통해 일상의 중단을 시각화하여 고객이 느끼게 되는 해방과 여유를 표현했습니다. 선택된 색상과 폰트는 브랜드의 고급스러운 이미지와 차분한 분위기를 잘 나타냅니다.",
+        "qa_analysis_summary": "손쉬운 편집과 다양한 배경에 적합한 디자인을 염두에 두었으며, 휴식과 내면의 평화를 상징하는 쉼표 모티프로 브랜드의 핵심 가치를 강조했습니다.",
+        "qa_keywords": [
+          "Comma",
+          "Abstract",
+          "Green",
+          "Gold",
+          "Modern"
+        ],
+        "color_palette": [
+          "#006400",
+          "#D4AF37"
+        ]
+      }
+    ]
+  }
+}
