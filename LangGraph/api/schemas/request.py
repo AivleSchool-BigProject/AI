@@ -1,74 +1,146 @@
 """
 FastAPI Request DTOs
 FE -> BE -> AI 흐름에서 사용되는 요청 데이터 구조 정의
+구조: user_input (해당 단계 Q&A) + context (이전 단계 누적 정보) + selected_candidate (FE가 선택한 후보 상세 정보)
 """
 from pydantic import BaseModel, Field
-from typing import Dict, Any, Optional, List
-
-# =================================================================
-# [Base Request] - 공통 요청 헤더/메타데이터
-# =================================================================
-class BaseRequest(BaseModel):
-    user_id: str = Field(..., description="사용자 ID")
+from typing import Dict, Any, Optional
 
 # =================================================================
 # [Step 1] 진단 (Diagnosis) Request
 # =================================================================
-class DiagnosisRequest(BaseRequest):
+class DiagnosisRequest(BaseModel):
     """
     Step 1: 진단 요청
-    FE 입력: Q&A 답변
+    user_input: answers.json의 step_1 Q&A 답변
     """
-    qa_answers: Dict[str, Any] = Field(..., description="Step 1 Q&A 답변 (JSON)")
+    user_input: Dict[str, Any] = Field(
+        ..., 
+        description="Step 1 Q&A 답변 (answers.json의 step_1 내용)"
+    )
 
 # =================================================================
 # [Step 2] 네이밍 (Naming) Request
 # =================================================================
-class NamingRequest(BaseRequest):
+class NamingRequest(BaseModel):
     """
-    Step 2: 네이밍 생성 요청
-    FE 입력: Step 1 결과(Context) + Step 2 Q&A
+    Step 2: 네이밍 요청
+    user_input: Step 2 Q&A 답변
+    context: Step 1 진단 상세 정보
     """
-    diagnosis_context: Dict[str, Any] = Field(..., description="Step 1 진단 결과 (핵심 키워드, 페르소나 등)")
-    qa_answers: Dict[str, Any] = Field(..., description="Step 2 Q&A 답변")
+    user_input: Dict[str, Any] = Field(
+        ..., 
+        description="Step 2 Q&A 답변 (answers.json의 step_2 내용)"
+    )
+    context: Dict[str, Any] = Field(
+        ..., 
+        description="""Step 1 진단 상세 정보
+        {
+          "interview": {
+            "brand_direction": "...",
+            "tone": "...",
+            "keywords": [...],
+            "perspectives": {...},
+            "brand_essence": "...",
+            "emotional_core": "...",
+            "differentiation_point": "...",
+            "target_persona": "...",
+            "diagnosis_summary": "..."
+          }
+        }"""
+    )
 
 # =================================================================
 # [Step 3] 컨셉 (Concept) Request
 # =================================================================
-class ConceptRequest(BaseRequest):
+class ConceptRequest(BaseModel):
     """
-    Step 3: 컨셉 생성 요청
-    FE 입력: Step 1, 2 Context + Step 3 Q&A
+    Step 3: 컨셉 요청
+    user_input: Step 3 Q&A 답변
+    context: Step 1 진단 정보 + 선택된 네이밍 상세 정보
     """
-    diagnosis_context: Dict[str, Any] = Field(..., description="Step 1 진단 결과")
-    naming_context: Dict[str, Any] = Field(..., description="Step 2 네이밍 선택 결과 (브랜드명, 선정 이유)")
-    qa_answers: Dict[str, Any] = Field(..., description="Step 3 Q&A 답변")
+    user_input: Dict[str, Any] = Field(
+        ..., 
+        description="Step 3 Q&A 답변 (answers.json의 step_3 내용)"
+    )
+    context: Dict[str, Any] = Field(
+        ..., 
+        description="""Step 1 진단 + 선택된 네이밍 상세 정보
+        {
+          "interview": {...},  // Step 1 진단 정보
+          "naming": {          // FE가 선택한 네이밍 후보 상세 정보
+            "id": 0,
+            "brand_name": "...",
+            "name_rationale": "...",
+            "qa_analysis_summary": "...",
+            "qa_keywords": [...]
+          }
+        }"""
+    )
 
 # =================================================================
 # [Step 4] 스토리 (Story) Request
 # =================================================================
-class StoryRequest(BaseRequest):
+class StoryRequest(BaseModel):
     """
-    Step 4: 스토리 생성 요청
-    FE 입력: Step 1~3 Context + Step 4 Q&A
+    Step 4: 스토리 요청
+    user_input: Step 4 Q&A 답변
+    context: Step 1 진단 + 선택된 네이밍 + 선택된 컨셉 상세 정보
     """
-    diagnosis_context: Dict[str, Any] = Field(..., description="Step 1 진단 결과")
-    naming_context: Dict[str, Any] = Field(..., description="Step 2 네이밍 선택 결과")
-    concept_context: Dict[str, Any] = Field(..., description="Step 3 컨셉 선택 결과")
-    qa_answers: Dict[str, Any] = Field(..., description="Step 4 Q&A 답변")
+    user_input: Dict[str, Any] = Field(
+        ..., 
+        description="Step 4 Q&A 답변 (answers.json의 step_4 내용)"
+    )
+    context: Dict[str, Any] = Field(
+        ..., 
+        description="""Step 1-3 누적 정보 (선택된 후보들만)
+        {
+          "interview": {...},  // Step 1 진단 정보
+          "naming": {          // 선택된 네이밍 상세 정보
+            "id": 0,
+            "brand_name": "...",
+            "name_rationale": "...",
+            "qa_analysis_summary": "...",
+            "qa_keywords": [...]
+          },
+          "concept": {         // 선택된 컨셉 상세 정보
+            "id": 1,
+            "concept_statement": "...",
+            "concept_rationale": "...",
+            "qa_analysis_summary": "...",
+            "qa_keywords": [...],
+            "brand_values": [...]
+          }
+        }"""
+    )
 
 # =================================================================
 # [Step 5] 로고 (Logo) Request
 # =================================================================
-class LogoRequest(BaseRequest):
+class LogoRequest(BaseModel):
     """
-    Step 5: 로고 생성 요청
-    FE 입력: Step 1~4 Context + Step 5 Q&A
+    Step 5: 로고 요청
+    user_input: Step 5 Q&A 답변
+    context: Step 1-4 누적 정보 (선택된 후보들만)
     """
-    diagnosis_context: Dict[str, Any] = Field(..., description="Step 1 진단 결과")
-    naming_context: Dict[str, Any] = Field(..., description="Step 2 네이밍 선택 결과")
-    concept_context: Dict[str, Any] = Field(..., description="Step 3 컨셉 선택 결과")
-    story_context: Dict[str, Any] = Field(..., description="Step 4 스토리 선택 결과")
-    qa_answers: Dict[str, Any] = Field(..., description="Step 5 Q&A 답변")
-
-# [RegenerateRequest Removed]
+    user_input: Dict[str, Any] = Field(
+        ..., 
+        description="Step 5 Q&A 답변 (answers.json의 step_5 내용)"
+    )
+    context: Dict[str, Any] = Field(
+        ..., 
+        description="""Step 1-4 누적 정보 (선택된 후보들만)
+        {
+          "interview": {...},  // Step 1 진단 정보
+          "naming": {...},     // 선택된 네이밍 상세 정보
+          "concept": {...},    // 선택된 컨셉 상세 정보
+          "story": {           // 선택된 스토리 상세 정보
+            "id": 2,
+            "brand_story": "...",
+            "story_rationale": "...",
+            "qa_analysis_summary": "...",
+            "qa_keywords": [...],
+            "emotional_arc": "..."
+          }
+        }"""
+    )

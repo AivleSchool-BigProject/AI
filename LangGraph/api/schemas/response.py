@@ -1,67 +1,157 @@
 """
 FastAPI Response DTOs
 AI -> BE -> FE 흐름에서 반환되는 응답 데이터 구조 정의
-항상 3개의 후보군(Candidates)을 포함 (Step 1 제외)
+구조: result (사용자 표시용 3개 후보, DB 저장용) + state_context (다음 단계 전달용, 각 후보 상세 정보 포함)
 """
 from pydantic import BaseModel, Field
-from typing import Dict, Any, Optional, List
-
-# =================================================================
-# [Common] 공통 응답 구조
-# =================================================================
-class BaseResponse(BaseModel):
-    brand_id: str = Field(..., description="브랜드 ID")
-    step: int = Field(..., description="현재 단계 번호")
+from typing import Dict, Any, List
 
 # =================================================================
 # [Step 1] 진단 (Diagnosis) Response
 # =================================================================
-class DiagnosisResponse(BaseResponse):
+class DiagnosisResponse(BaseModel):
     """
-    Step 1: 진단 결과 (후보 선택 없음)
+    Step 1: 진단 결과
+    result: 사용자 표시용 진단 요약 (DB 저장)
+    state_context: Step 2 전달용 진단 상세 정보
     """
-    analysis: Dict[str, Any] = Field(..., description="진단 분석 결과 (Summary, Keywords, Persona, Perspectives)")
+    result: Dict[str, Any] = Field(
+        ..., 
+        description="사용자 표시용 진단 결과 (summary, analysis, key_insights) - DB 저장"
+    )
+    state_context: Dict[str, Any] = Field(
+        ..., 
+        description="Step 2 전달용 진단 상세 정보 (brand_direction, tone, keywords, perspectives, brand_essence, emotional_core, differentiation_point, target_persona, diagnosis_summary)"
+    )
 
 # =================================================================
 # [Step 2] 네이밍 (Naming) Response
 # =================================================================
-class NamingCandidate(BaseModel):
-    id: int = Field(..., description="후보 ID (0, 1, 2)")
-    brand_name: str = Field(..., description="제안된 브랜드명")
-    name_rationale: str = Field(..., description="네이밍 선정 이유")
-
-class NamingResponse(BaseResponse):
-    candidates: List[NamingCandidate] = Field(..., description="네이밍 후보 리스트")
+class NamingResponse(BaseModel):
+    """
+    Step 2: 네이밍 결과
+    result: 사용자 표시용 3개 후보 (DB 저장)
+    state_context: 각 후보의 상세 정보 (FE가 선택 후 해당 후보 정보를 Step 3 Request에 포함)
+    """
+    result: Dict[str, Any] = Field(
+        ..., 
+        description="""사용자 표시용 3개 네이밍 후보 - DB 저장
+        예시: {"name1": "Wanderly", "name2": "Voyara", "name3": "Tripwise"}"""
+    )
+    state_context: Dict[str, Any] = Field(
+        ..., 
+        description="""각 후보의 상세 정보 (FE가 선택 후 해당 후보를 다음 단계로 전달)
+        {
+          "candidates": [
+            {
+              "id": 0,
+              "brand_name": "...",
+              "name_rationale": "...",
+              "qa_analysis_summary": "...",
+              "qa_keywords": [...]
+            },
+            {"id": 1, ...},
+            {"id": 2, ...}
+          ]
+        }"""
+    )
 
 # =================================================================
 # [Step 3] 컨셉 (Concept) Response
 # =================================================================
-class ConceptCandidate(BaseModel):
-    id: int = Field(..., description="후보 ID (0, 1, 2)")
-    concept_statement: str = Field(..., description="컨셉 슬로건/문구")
-    concept_rationale: str = Field(..., description="컨셉 기획 의도")
-
-class ConceptResponse(BaseResponse):
-    candidates: List[ConceptCandidate] = Field(..., description="컨셉 후보 리스트")
+class ConceptResponse(BaseModel):
+    """
+    Step 3: 컨셉 결과
+    result: 사용자 표시용 3개 후보 (DB 저장)
+    state_context: 각 후보의 상세 정보
+    """
+    result: Dict[str, Any] = Field(
+        ..., 
+        description="""사용자 표시용 3개 컨셉 후보 - DB 저장
+        예시: {"concept1": "당신만의 여행", "concept2": "자유로운 탐험", "concept3": "완벽한 순간"}"""
+    )
+    state_context: Dict[str, Any] = Field(
+        ..., 
+        description="""각 후보의 상세 정보
+        {
+          "candidates": [
+            {
+              "id": 0,
+              "concept_statement": "...",
+              "concept_rationale": "...",
+              "qa_analysis_summary": "...",
+              "qa_keywords": [...],
+              "brand_values": [...]
+            },
+            {"id": 1, ...},
+            {"id": 2, ...}
+          ]
+        }"""
+    )
 
 # =================================================================
 # [Step 4] 스토리 (Story) Response
 # =================================================================
-class StoryCandidate(BaseModel):
-    id: int = Field(..., description="후보 ID (0, 1, 2)")
-    brand_story: str = Field(..., description="브랜드 스토리 (Short ver.)")
-    story_rationale: str = Field(..., description="스토리 구성 의도")
-
-class StoryResponse(BaseResponse):
-    candidates: List[StoryCandidate] = Field(..., description="스토리 후보 리스트")
+class StoryResponse(BaseModel):
+    """
+    Step 4: 스토리 결과
+    result: 사용자 표시용 3개 후보 (DB 저장)
+    state_context: 각 후보의 상세 정보
+    """
+    result: Dict[str, Any] = Field(
+        ..., 
+        description="""사용자 표시용 3개 스토리 후보 - DB 저장
+        예시: {"story1": "우리는...", "story2": "여행은...", "story3": "당신의..."}"""
+    )
+    state_context: Dict[str, Any] = Field(
+        ..., 
+        description="""각 후보의 상세 정보
+        {
+          "candidates": [
+            {
+              "id": 0,
+              "brand_story": "...",
+              "story_rationale": "...",
+              "qa_analysis_summary": "...",
+              "qa_keywords": [...],
+              "emotional_arc": "..."
+            },
+            {"id": 1, ...},
+            {"id": 2, ...}
+          ]
+        }"""
+    )
 
 # =================================================================
 # [Step 5] 로고 (Logo) Response
 # =================================================================
-class LogoCandidate(BaseModel):
-    id: int = Field(..., description="후보 ID (0, 1, 2)")
-    logo_image_url: str = Field(..., description="생성된 로고 이미지 URL")
-    logo_concept: str = Field(..., description="로고 디자인 컨셉 설명")
-
-class LogoResponse(BaseResponse):
-    candidates: List[LogoCandidate] = Field(..., description="로고 후보 리스트")
+class LogoResponse(BaseModel):
+    """
+    Step 5: 로고 결과 (최종 단계)
+    result: 사용자 표시용 3개 후보 (DB 저장)
+    state_context: 각 후보의 상세 정보
+    """
+    result: Dict[str, Any] = Field(
+        ..., 
+        description="""사용자 표시용 3개 로고 URL - DB 저장
+        예시: {"logo1_url": "https://...", "logo2_url": "https://...", "logo3_url": "https://..."}"""
+    )
+    state_context: Dict[str, Any] = Field(
+        ..., 
+        description="""각 후보의 상세 정보
+        {
+          "candidates": [
+            {
+              "id": 0,
+              "logo_image_url": "...",
+              "logo_concept": "...",
+              "logo_rationale": "...",
+              "qa_analysis_summary": "...",
+              "qa_keywords": [...],
+              "color_palette": [...]
+            },
+            {"id": 1, ...},
+            {"id": 2, ...}
+          ]
+        }"""
+    )
