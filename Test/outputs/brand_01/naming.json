@@ -1,48 +1,48 @@
 {
   "result": {
-    "name1": "Exhayle",
-    "name2": "Calibra",
-    "name3": "Serenex"
+    "name1": "Serene",
+    "name2": "Calm",
+    "name3": "Haven"
   },
   "state_context": {
     "candidates": [
       {
         "id": 0,
-        "brand_name": "Exhayle",
-        "name_rationale": "Exhayle은 'Exhale'과 'Hale(건강한)'의 합성어로 깊은 안도감을 주는 것을 목표로 합니다. 현대인의 번아웃을 해소하고 원하는 휴식을 제공한다는 브랜드의 비전을 담고 있습니다.",
-        "qa_analysis_summary": "Q&A 데이터에 따르면, 사용자는 심플하고 신뢰감을 주며 상징적인 이름을 원합니다. '깊은 안도감'을 즉시 연상시키는 이 이름은 고객이 마침내 쉴 곳을 찾았다는 느낌을 제공해야 합니다.",
+        "brand_name": "Serene",
+        "name_rationale": "이 이름은 '평화'와 '고요함'을 상징하여, 고객에게 깊은 안도감을 전달합니다. 이름이 짧고 간결하며 고객이 직관적으로 이해할 수 있습니다.",
+        "qa_analysis_summary": "짧고 상징적인 이름을 원하며, 고객에게 심플하고 신뢰감 있는 인상을 주는 것이 중요합니다. 'Serene'은 이러한 기준을 충족하며, 고객에게 '이제 편안하게 쉴 수 있는 곳'이라는 메시지를 전달합니다.",
         "qa_keywords": [
           "Symbolic",
           "Short",
-          "English",
           "Simple",
-          "Trustworthy"
+          "Trustworthy",
+          "Exhale"
         ]
       },
       {
         "id": 1,
-        "brand_name": "Calibra",
-        "name_rationale": "Calibra는 'Balance(균형)'와 'Calm(평온)'의 의미를 함축하여, 균형 잡힌 휴식을 찾도록 돕는다는 메시지를 전달합니다. 직장인들의 번아웃 해소를 돕는 브랜드의 핵심 가치와 잘 맞습니다.",
-        "qa_analysis_summary": "Q&A 데이터에서는 심플하면서도 깊은 감성을 불러일으키는 이름이 필요하다고 명시되어 있습니다. Calibra는 이러한 특성을 잘 갖추고 있어, 신뢰감을 주는 이름입니다.",
+        "brand_name": "Calm",
+        "name_rationale": "‘Calm’은 마음의 고요함과 진정성을 강조하며, 디지털 디톡스를 통한 진정한 쉼의 가치를 전달합니다. 이는 더 나은 휴식과 몰입을 제공하는 브랜드의 핵심가치를 잘 담고 있습니다.",
+        "qa_analysis_summary": "고객이 깊은 안도감을 느끼게 하는 단어가 선호로 밝혀졌으며, 심플하면서도 신뢰성을 주는 이름을 지향했습니다. 'Calm'은 이러한 요구를 완벽히 충족합니다.",
         "qa_keywords": [
-          "Symbolic",
           "Simple",
           "Trustworthy",
-          "Deep Calm",
-          "Exhale"
+          "Exhale",
+          "Symbolic",
+          "Short"
         ]
       },
       {
         "id": 2,
-        "brand_name": "Serenex",
-        "name_rationale": "Serenex는 'Serenity(평온)'와 'Next(다음)'를 합친 이름으로, 다음 여정에서 평온함을 찾게 해주는 브랜드의 이미지와 부합합니다. 이는 사용자에게 휴식과 안도의 감정을 줄 수 있습니다.",
-        "qa_analysis_summary": "Q&A 데이터에서 확인된 바, 브랜드명은 고객에게 단순함과 신뢰감을 제공해야 하며, 깊은 안도감을 유발해야 합니다. Serenex는 이러한 요소를 충족시키면서도 시끄러운 느낌을 피합니다.",
+        "brand_name": "Haven",
+        "name_rationale": "'Haven'은 내적 안식처를 의미하며 여행을 통해 고객들에게 제공할 휴식과 안전을 표현합니다. 이 이름은 고객이 브랜드를 통해 마음의 피난처를 찾았다는 느낌을 줍니다.",
+        "qa_analysis_summary": "고객이 이름을 듣자마자 깊은 안도감을 느끼길 바라며, 복잡한 감정보다 심플하고 신뢰감을 주는 이름이 필요합니다. 'Haven'은 고객의 감성적 필요를 충족시킵니다.",
         "qa_keywords": [
-          "Symbolic",
-          "English",
+          "Exhale",
           "Simple",
           "Trustworthy",
-          "Exhale"
+          "Symbolic",
+          "Short"
         ]
       }
     ]
