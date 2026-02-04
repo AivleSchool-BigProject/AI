@@ -115,6 +115,13 @@ def logo_node(state: BrandConsultingState) -> BrandConsultingState:
     # 7. DALL-E 3 이미지 생성 (순차 처리)
     brand_id = state.get("brand_id", "unknown")
     
+    # 로컬 저장 디렉토리 설정
+    import requests
+    from pathlib import Path
+    
+    logo_images_dir = Path("Test/outputs/images")
+    logo_images_dir.mkdir(parents=True, exist_ok=True)
+    
     candidates = []
     print(f"\n[Step 5] 2단계: DALL-E 3 이미지 생성 시작 (총 {len(logo_options)}장)")
     
@@ -123,6 +130,7 @@ def logo_node(state: BrandConsultingState) -> BrandConsultingState:
         print(f"  - [Image {idx+1}/{len(logo_options)}] 생성 중... (Prompt: {dalle_prompt[:30]}...)")
         
         image_url = None
+        local_image_path = None
         
         try:
             # DALL-E 3 호출
@@ -135,6 +143,24 @@ def logo_node(state: BrandConsultingState) -> BrandConsultingState:
             )
             image_url = img_resp.data[0].url
             print(f"    ✅ 생성 완료: URL 획득")
+            
+            # 로컬에 이미지 다운로드
+            try:
+                img_response = requests.get(image_url, timeout=30)
+                if img_response.status_code == 200:
+                    # 파일명: brand_id_logo_idx.png
+                    filename = f"{brand_id}_logo_{idx}.png"
+                    local_path = logo_images_dir / filename
+                    
+                    with open(local_path, "wb") as f:
+                        f.write(img_response.content)
+                    
+                    local_image_path = str(local_path)
+                    print(f"    💾 로컬 저장 완료: {local_image_path}")
+                else:
+                    print(f"    ⚠️ 이미지 다운로드 실패: HTTP {img_response.status_code}")
+            except Exception as download_error:
+                print(f"    ⚠️ 로컬 저장 실패: {download_error}")
             
         except Exception as e:
             print(f"    ❌ 이미지 생성 실패: {e}")

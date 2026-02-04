@@ -242,13 +242,22 @@ class GenerationPrompts:
     
     For each concept, provide:
     1. **DALL-E Prompt** (English): 
-       - Start with "A single professional minimalist logo design for {brand_name}"
-       - **CRITICAL**: The text in the logo MUST spell exactly "{brand_name}" - do not modify, translate, or misspell it.
-       - Include: brand essence, visual motif, color palette, design style
-       - Specify: "flat design, vector-ready, white background, centered, ONE logo only"
-       - Add quality benchmark: "Airbnb-level sophistication"
-       - CRITICAL: Add "Do NOT create multiple variations or mockups. Generate ONLY ONE clean logo."
-       - Length: 150-250 words for maximum detail
+       - Start with "A single clean logo design combining symbol and text for {brand_name}"
+       - **CRITICAL RULES**:
+         * Generate ONE complete logo: symbol/icon + brand name text
+         * The logo should show the symbol and "{brand_name}" text together in a unified design
+         * NO multiple variations in one image
+         * NO mockups (no business cards, packaging, etc.)
+         * NO size variations or color alternatives shown together
+         * Just ONE clean, complete logo on white background
+       - Include: 
+         * Symbol/icon concept (abstract shape, geometric form)
+         * Typography style for brand name
+         * Color palette (1-2 colors max)
+         * Layout (symbol above/beside text, integrated design, etc.)
+       - Specify: "minimalist logo design, flat style, vector-ready, clean white background, centered composition"
+       - Add: "Single professional logo presentation, similar to how Apple or Nike would present their logo"
+       - Length: 120-180 words
     
     2. **Logo Concept** (Korean): Visual description as if explaining the generated image
     3. **Rationale** (Korean): Why this design fits the brand strategy
@@ -260,7 +269,7 @@ class GenerationPrompts:
     {{
       "options": [
         {{
-          "dalle_prompt": "A single professional minimalist logo design for [brand name]. [detailed description with brand essence, visual motif, typography, color palette, design principles]. Flat design, vector-ready, white background, centered. ONE logo only. Do NOT create multiple variations or mockups. Airbnb-level sophistication.",
+          "dalle_prompt": "A single clean logo design for {brand_name}. [Describe the symbol/icon and how it combines with the text]. The logo features [symbol description] with the text '{brand_name}' in [typography style]. Color palette: [color 1] and [color 2]. Minimalist design, flat style, clean white background, centered. ONE complete logo only. NO variations, NO mockups, NO multiple versions. Just one professional logo presentation.",
           "logo_concept": "Visual description in Korean...",
           "logo_rationale": "Design reasoning in Korean...",
           "color_palette": ["#Hex1", "#Hex2"],
@@ -272,8 +281,9 @@ class GenerationPrompts:
     }}
     
     IMPORTANT: 
-    - Each of the 3 concepts must take a DIFFERENT visual approach.
-    - Each DALL-E prompt MUST generate ONLY ONE logo, not multiple variations.
+    - Each of the 3 concepts must take a DIFFERENT visual approach (different symbols, layouts, typography).
+    - Each DALL-E prompt MUST generate ONLY ONE complete logo (symbol + text), absolutely NO variations or mockups in the same image.
+    - The logo should be a unified design with both symbol and brand name text.
     - You MUST provide ALL 6 fields for each option: dalle_prompt, logo_concept, logo_rationale, color_palette, qa_analysis_summary, qa_keywords.
     - Do NOT leave any field empty. If uncertain, provide a reasonable default value.
     """
