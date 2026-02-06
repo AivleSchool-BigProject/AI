@@ -63,17 +63,10 @@ def concept_node(state: BrandConsultingState) -> BrandConsultingState:
         state["error_message"] = f"Client Error: {e}"
         return state
 
-    # 4. 재생성 피드백
-    feedback_section = ""
-    if state.get("feedback_required") and state.get("feedback_content"):
-        print(f"[Step 3] 🔄 재생성 피드백 반영: {state.get('feedback_content')}")
-        feedback_section = f"""
-        [User Feedback for Regeneration]
-        Feedback: "{state.get('feedback_content')}"
-        IMPORTANT: Use this feedback via regeneration.
-        """
+    # 4. 프롬프트 구성 (JSON 직접 전달)
+    feedback_section = ""  # 재생성 기능 제거됨
 
-    # 5. 프롬프트 구성 (JSON 직접 전달)
+    # 5. 프롬프트 생성
     system_prompt = GenerationPrompts.CONCEPT_SYSTEM
     user_prompt = GenerationPrompts.CONCEPT_USER.format(
         diagnosis_summary=diagnosis_context.get("diagnosis_summary", ""),

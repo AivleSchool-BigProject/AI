@@ -47,6 +47,19 @@ def get_openai_client() -> OpenAI:
     return OpenAI(api_key=api_key)
 
 
+def get_gemini_client():
+    """Gemini 클라이언트 생성 (google.genai 패키지 사용)"""
+    from google import genai
+    
+    api_key = os.getenv("GEMINI_API_KEY")
+    if not api_key:
+        raise ValueError("GEMINI_API_KEY 환경 변수가 설정되지 않았습니다.")
+    
+    # API 키로 클라이언트 생성
+    client = genai.Client(api_key=api_key)
+    return client
+
+
 def extract_answer_value(answers: Dict[str, Any], key: str, default: Any = None) -> Any:
     """
     questions.json 구조에서 value만 추출

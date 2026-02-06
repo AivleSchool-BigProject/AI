@@ -18,10 +18,9 @@ def logo_node(state: BrandConsultingState) -> BrandConsultingState:
     
     [Output]
     - logo_candidates: logo_concept, logo_image_url
-    - brand_consulting_report
     """
     print(f"\n{'='*60}")
-    print(f"[Step 5: Logo] 실행 시작 (Brand ID: {state.get('brand_id')})")
+    print(f"[Step 5: Logo] 실행 시작 (Output ID: {state.get('output_id')})")
     print(f"{'='*60}")
     
     # 1. 입력 검증
@@ -40,7 +39,7 @@ def logo_node(state: BrandConsultingState) -> BrandConsultingState:
     if not all([naming_context, concept_context, story_context, diagnosis_context]):
         print("⚠️ [Step 5] 일부 이전 단계 Context가 누락되었습니다.")
 
-    # 3. answers.json 로드 (v2 포맷)
+    # 3. answers.json 로드
     import os
     answers_file_path = "answers.json"
     if not os.path.exists(answers_file_path):
@@ -62,17 +61,10 @@ def logo_node(state: BrandConsultingState) -> BrandConsultingState:
         state["error_message"] = f"Client Error: {e}"
         return state
     
-    # 5. 재생성 피드백
-    feedback_section = ""
-    if state.get("feedback_required") and state.get("feedback_content"):
-        print(f"[Step 5] 🔄 재생성 피드백 반영: {state.get('feedback_content')}")
-        feedback_section = f"""
-        [User Feedback for Regeneration]
-        Feedback: "{state.get('feedback_content')}"
-        IMPORTANT: Reflect feedback in new logo concepts.
-        """
+    # 5. 프롬프트 구성 (JSON 직접 전달)
+    feedback_section = ""  # 재생성 기능 제거됨
 
-    # 6. 프롬프트 구성 (JSON 직접 전달)
+    # 6. 프롬프트 생성
     system_prompt = GenerationPrompts.LOGO_SYSTEM
     user_prompt = GenerationPrompts.LOGO_USER.format(
         brand_name=naming_context.get("brand_name", "") if naming_context else "Brand",
@@ -113,58 +105,213 @@ def logo_node(state: BrandConsultingState) -> BrandConsultingState:
         return state
 
     # 7. DALL-E 3 이미지 생성 (순차 처리)
-    brand_id = state.get("brand_id", "unknown")
+    output_id = state.get("output_id", "unknown")
+    brand_name = naming_context.get("brand_name", "Brand")
     
-    # 로컬 저장 디렉토리 설정
+    # 로컬 저장 디렉토리 설정 (각 브랜드 폴더 내부)
     import requests
     from pathlib import Path
     
-    logo_images_dir = Path("Test/outputs/images")
+    # output_id를 폴더명으로 사용 (예: output_01)
+    logo_images_dir = Path(f"Test/outputs/{output_id}")
     logo_images_dir.mkdir(parents=True, exist_ok=True)
+    
+    # Wordmark 중심 프롬프트 생성 함수
+    def create_dalle_prompt(brand_name, style_keywords, color_palette,
+                            benchmark_brand, visual_instruction, layout_type):
+        """
+        글로벌 기업 느낌의 로고 프롬프트 생성
+        """
+        colors_str = ", ".join(color_palette) if color_palette else "Black"
+
+        if layout_type == "Horizontal":
+            layout_directive = "LAYOUT: Small geometric symbol on LEFT, brand name text on RIGHT."
+        elif layout_type == "Integrated":
+            layout_directive = "LAYOUT: Text itself becomes symbol by modifying one letter."
+        elif layout_type == "Stacked":
+            layout_directive = "LAYOUT: Small symbol ABOVE, brand name BELOW."
+        else:
+            layout_directive = "LAYOUT: Clean horizontal."
+
+        prompt = f"""
+{layout_directive}
+
+{visual_instruction}
+
+Create a GLOBAL CORPORATE LOGOTYPE logo.
+
+STYLE:
+- Minimal
+- Flat vector
+- Corporate
+- Custom sans-serif typography
+- Inspired by {benchmark_brand}
+
+TYPOGRAPHY:
+- Custom modified sans-serif
+- Slight geometric cuts or extensions
+- NOT default system font
+
+TEXT:
+- "{brand_name}" only
+
+SYMBOL:
+- Simple geometric shape allowed
+- Dot, square, line, triangle, or circle
+- Must feel intentional
+
+COLOR:
+- Solid {colors_str}
+
+BACKGROUND:
+- White
+
+FORBIDDEN:
+- Mockups
+- Shadows
+- 3D
+- Gradients
+- Extra text
+
+The logo must look like a Fortune 100 brand identity.
+"""
+        return prompt.strip()
+
     
     candidates = []
     print(f"\n[Step 5] 2단계: DALL-E 3 이미지 생성 시작 (총 {len(logo_options)}장)")
     
     for idx, opt in enumerate(logo_options):
-        dalle_prompt = opt.get("dalle_prompt", "Logo design")
-        print(f"  - [Image {idx+1}/{len(logo_options)}] 생성 중... (Prompt: {dalle_prompt[:30]}...)")
+        # GPT에서 받은 변수 추출
+        style_keywords = opt.get("style_keywords", ["Corporate"])
+        color_palette = opt.get("color_palette", ["#000000"])
+        benchmark_brand = opt.get("benchmark_brand", "Apple")
+        layout_type = opt.get("layout_type", "Horizontal") # 기획 단계에서 결정된 레이아웃
+        
+        # [수정] visual_instruction을 가져오되, 없으면 기본값 설정
+        visual_instruction = opt.get("visual_instruction", f"The brand name '{brand_name}' written in bold sans-serif font. A small dot accent in the brand color.")
+        
+        # [수정] create_dalle_prompt 호출 (layout_type 추가)
+        dalle_prompt = create_dalle_prompt(
+            brand_name, 
+            style_keywords, 
+            color_palette, 
+            benchmark_brand, 
+            visual_instruction,
+            layout_type
+        )
+        
+        print(f"  - [Image {idx+1}/{len(logo_options)}] 생성 중...")
+        print(f"    Style: {', '.join(style_keywords)}")
+        print(f"    Colors: {', '.join(color_palette)}")
+        print(f"    Benchmark: {benchmark_brand}")
         
         image_url = None
         local_image_path = None
         
         try:
-            # DALL-E 3 호출
-            img_resp = client.images.generate(
-                model="dall-e-3",
-                prompt=dalle_prompt,
-                size="1024x1024",
-                quality="standard",
-                n=1
+            # Gemini 3 Pro Image Preview API 호출
+            import base64
+            from io import BytesIO
+            from PIL import Image
+            from dotenv import load_dotenv
+            from langgraph_system.utils import get_gemini_client
+            
+            # .env 로드
+            load_dotenv()
+            
+            # Gemini 클라이언트 생성
+            gemini_client = get_gemini_client()
+            
+            print(f"    🚀 Gemini 3 Pro Image Preview 요청 중...")
+            
+            # Gemini API 호출 (문서 기준)
+            from google.genai import types
+            
+            response = gemini_client.models.generate_content(
+                model="gemini-3-pro-image-preview",
+                contents=[dalle_prompt],
+                config=types.GenerateContentConfig(
+                    response_modalities=['Image'],  # 이미지만 반환
+                    image_config=types.ImageConfig(
+                        aspect_ratio="1:1",  # 정사각형 로고
+                        image_size="2K"      # 고해상도
+                    )
+                )
             )
-            image_url = img_resp.data[0].url
-            print(f"    ✅ 생성 완료: URL 획득")
             
-            # 로컬에 이미지 다운로드
-            try:
-                img_response = requests.get(image_url, timeout=30)
-                if img_response.status_code == 200:
-                    # 파일명: brand_id_logo_idx.png
-                    filename = f"{brand_id}_logo_{idx}.png"
-                    local_path = logo_images_dir / filename
-                    
-                    with open(local_path, "wb") as f:
-                        f.write(img_response.content)
-                    
-                    local_image_path = str(local_path)
-                    print(f"    💾 로컬 저장 완료: {local_image_path}")
-                else:
-                    print(f"    ⚠️ 이미지 다운로드 실패: HTTP {img_response.status_code}")
-            except Exception as download_error:
-                print(f"    ⚠️ 로컬 저장 실패: {download_error}")
+            # 이미지 추출 및 저장
+            image_saved = False
             
+            # Gemini 응답에서 이미지 추출
+            if response.parts:
+                for part in response.parts:
+                    # inline_data 또는 file_data 확인
+                    if hasattr(part, 'inline_data') and part.inline_data:
+                        image_data = part.inline_data.data
+                    elif hasattr(part, 'text'):
+                        # 텍스트 응답인 경우 건너뛰기
+                        continue
+                    else:
+                        continue
+                    
+                    # 이미지 데이터가 base64 문자열인 경우 디코딩
+                    if isinstance(image_data, str):
+                        import base64
+                        image_bytes = base64.b64decode(image_data)
+                    else:
+                        image_bytes = image_data
+                    
+                    # 1. 로컬에 이미지 저장 (base64 확인용)
+                    filename = f"logo_{idx+1}.png"
+                    filepath = logo_images_dir / filename
+                    
+                    with open(filepath, "wb") as f:
+                        f.write(image_bytes)
+                    
+                    local_image_path = str(filepath)
+                    print(f"    💾 로컬 저장 완료: {filepath}")
+                    
+                    # 2. Cloudinary 업로드 (Public URL 생성)
+                    try:
+                        import cloudinary
+                        import cloudinary.uploader
+                        
+                        # Cloudinary 설정 (.env에서 로드)
+                        cloudinary.config(
+                            cloud_name=os.getenv("CLOUDINARY_CLOUD_NAME"),
+                            api_key=os.getenv("CLOUDINARY_API_KEY"),
+                            api_secret=os.getenv("CLOUDINARY_API_SECRET")
+                        )
+                        
+                        # 이미지 업로드
+                        upload_result = cloudinary.uploader.upload(
+                            str(filepath),
+                            folder=f"logos/{output_id}",
+                            public_id=f"logo_{idx+1}",
+                            overwrite=True,
+                            resource_type="image"
+                        )
+                        
+                        # Public URL 추출
+                        image_url = upload_result.get("secure_url")
+                        print(f"    ☁️ Cloudinary 업로드 완료: {image_url}")
+                        
+                    except Exception as cloudinary_error:
+                        # Cloudinary 업로드 실패 시 로컬 경로로 대체
+                        print(f"    ⚠️ Cloudinary 업로드 실패: {cloudinary_error}")
+                        print(f"    📍 로컬 경로로 대체됩니다.")
+                        image_url = str(filepath).replace("\\", "/")
+                    
+                    image_saved = True
+                    break
+            
+            if not image_saved:
+                raise Exception("Gemini 응답에서 이미지를 찾을 수 없습니다.")
+
         except Exception as e:
             print(f"    ❌ 이미지 생성 실패: {e}")
-            # 실패 시에도 진행은 하되 URL은 None
+            image_url = None
         
         candidates.append({
             "candidate_id": idx,
@@ -182,54 +329,6 @@ def logo_node(state: BrandConsultingState) -> BrandConsultingState:
     state["current_step"] = 6 # Human Review로 이동
     
     print(f"\n[Step 5] ✅ 로고 후보(이미지 포함) 생성 완료")
-
-    # 8. Brand Consulting Report 생성
-    print("\n[Step 5] Brand Consulting Report 생성 중...")
-    try:
-        report_context = {
-            "diagnosis": diagnosis_context,
-            "naming": naming_context,
-            "concept": concept_context,
-            "story": story_context,
-            "logo_concepts": [c['output']['logo_concept'] for c in candidates]
-        }
-        
-        report_prompt = f"""
-        [Brand Consulting Results]
-        {json.dumps(report_context, ensure_ascii=False, indent=2)}
-        
-        [Task]
-        Create a comprehensive Brand Consulting Report in Korean.
-        Include:
-        1. overall_analysis (종합 분석)
-        2. strengths (강점 5가지)
-        3. weaknesses (약점 5가지)
-        4. future_direction (향후 제언)
-        5. recommendations (추천 사항 5가지)
-        
-        Output JSON: {{
-            "overall_analysis": "...",
-            "strengths": [...],
-            "weaknesses": [...],
-            "future_direction": "...",
-            "recommendations": [...]
-        }}
-        """
-        
-        resp_report = client.chat.completions.create(
-            model="gpt-4o",
-            messages=[
-                {"role": "system", "content": "You are a Senior Brand Consultant."},
-                {"role": "user", "content": report_prompt}
-            ],
-            response_format={"type": "json_object"}
-        )
-        report_data = json.loads(resp_report.choices[0].message.content)
-        state["brand_consulting_report"] = report_data
-        print("[Step 5] ✅ Report 생성 완료")
-    except Exception as e:
-        print(f"[Step 5] Report 생성 실패: {e}")
-        state["brand_consulting_report"] = {}
-
     print(f"{'='*60}\n")
+    
     return state

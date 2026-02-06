@@ -21,7 +21,6 @@ def story_node(state: BrandConsultingState) -> BrandConsultingState:
     [처리 - Process]
     - GPT-4를 활용하여 3가지 버전의 브랜드 스토리 후보를 생성합니다.
     - 각 후보는 서로 다른 톤앤매너(감성적, 기능적, 비전 중심 등)를 가집니다.
-    - 사용자의 재생성 요청(피드백)이 있는 경우 이를 프롬프트에 반영합니다.
     
     [출력 - Output]
     - story_candidates: 3가지 스토리 후보 리스트
@@ -78,17 +77,8 @@ def story_node(state: BrandConsultingState) -> BrandConsultingState:
         state["error_message"] = error_msg
         return state
 
-    # 4. 재생성(Regeneration) 요청 처리
-    # 사용자가 결과에 만족하지 못해 피드백을 주고 재생성을 요청한 경우
-    feedback_section = ""
-    if state.get("feedback_required") and state.get("feedback_content"):
-        feedback_content = state.get("feedback_content")
-        print(f"[Step 4] 🔄 사용자 재생성 요청 반영: \"{feedback_content}\"")
-        feedback_section = f"""
-        [User Feedback for Regeneration]
-        Customer Feedback: "{feedback_content}"
-        CRITICAL INSTRUCTION: You must reflect this feedback in the new stories. Do not ignore it.
-        """
+    # 4. 프롬프트 구성 (JSON 직접 전달)
+    feedback_section = ""  # 재생성 기능 제거됨
 
     # 5. 프롬프트 구성 (JSON 직접 전달)
     # 시스템 프롬프트: 역할 정의

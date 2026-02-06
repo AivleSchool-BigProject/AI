@@ -24,7 +24,7 @@ def diagnosis_node(state: BrandConsultingState) -> BrandConsultingState:
     - diagnosis_context: 다음 단계 전달용 핵심 데이터 Subset
     """
     print(f"\n{'='*60}")
-    print(f"[Step 1: Diagnosis] 실행 시작 (Brand ID: {state.get('brand_id')})")
+    print(f"[Step 1: Diagnosis] 실행 시작 (Output ID: {state.get('output_id')})")
     print(f"{'='*60}")
     
     # 1. 입력 검증

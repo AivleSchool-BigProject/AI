@@ -14,7 +14,7 @@ class BrandConsultingState(TypedDict, total=False):
     """
     
     # ========== 메타 정보 ==========
-    brand_id: str
+    output_id: str
     current_step: int
     
     # ========== 각 단계 Q&A 입력 ==========
@@ -76,10 +76,7 @@ class BrandConsultingState(TypedDict, total=False):
     logo_selected_index: Optional[int]     # Step 5 선택
     
     # ========== Human Review 제어 ==========
-    user_choice: Optional[str]  # "0", "1", "2", "regenerate"
-    
-    # ========== 중간 리포트 (State로만 관리) ==========
-    brand_consulting_report: Optional[Dict[str, Any]]  # Step 5 완료 후 생성 (Steps 1-5 종합)
+    user_choice: Optional[str]  # "0", "1", "2"
     
     # ========== 최종 리포트 (DB 저장) ==========
     final_report: Optional[Dict[str, Any]]  # Step 9 완료 후 생성 (Steps 1-9 종합)
@@ -97,19 +94,19 @@ class BrandConsultingState(TypedDict, total=False):
     error_message: Optional[str]
 
 
-def create_initial_state(brand_id: str, user_id: str) -> BrandConsultingState:
+def create_initial_state(output_id: str, user_id: str) -> BrandConsultingState:
     """
     초기 State 생성
     
     Args:
-        brand_id: 브랜드 ID
+        output_id: 출력 ID
         user_id: 사용자 ID
     
     Returns:
         초기화된 BrandConsultingState
     """
     return BrandConsultingState(
-        brand_id=brand_id,
+        output_id=output_id,
         user_id=user_id,
         current_step=1,
         cumulative_qa_analysis={},  # 누적 분석 초기화

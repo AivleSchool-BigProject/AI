@@ -13,7 +13,7 @@ from api.schemas.response import (
 )
 from langgraph_system.state import BrandConsultingState
 from langgraph_system.graph import create_info_graph
-import uuid
+import os
 
 router = APIRouter()
 
@@ -21,6 +21,26 @@ router = APIRouter()
 print("\n[System] LangGraph Workflow Loading...")
 workflow_app = create_info_graph()
 print("[System] LangGraph Workflow Loaded Successfully.\n")
+
+# output_id 생성 함수
+def get_next_output_id():
+    """Test/outputs/ 폴더에서 다음 output 번호를 찾아 반환"""
+    outputs_dir = os.path.join("Test", "outputs")
+    os.makedirs(outputs_dir, exist_ok=True)
+    
+    # 기존 output 폴더들 찾기
+    existing_outputs = []
+    for folder in os.listdir(outputs_dir):
+        if folder.startswith("output_") and os.path.isdir(os.path.join(outputs_dir, folder)):
+            try:
+                num = int(folder.split("_")[1])
+                existing_outputs.append(num)
+            except:
+                pass
+    
+    # 다음 번호 결정
+    next_num = max(existing_outputs) + 1 if existing_outputs else 1
+    return f"output_{next_num:02d}"  # output_01, output_02, ...
 
 # =================================================================
 # [Step 1] 진단 (Diagnosis)
@@ -32,10 +52,10 @@ async def create_diagnosis(request: DiagnosisRequest):
     Input: Q&A 답변
     Output: 진단 요약 (result) + 진단 상세 정보 (state_context)
     """
-    brand_id = f"brand_{uuid.uuid4().hex[:8]}"
+    output_id = get_next_output_id()
     
     state = BrandConsultingState(
-        brand_id=brand_id,
+        output_id=output_id,
         current_step=1,
         step_1_qa=request.user_input
     )
@@ -58,7 +78,9 @@ async def create_diagnosis(request: DiagnosisRequest):
         }
         
         # state_context: Step 2 전달용 (진단 상세 정보)
+        # FE는 이 output_id를 저장했다가 Step 2 요청 시 보내주어야 함
         state_context = {
+            "output_id": output_id,
             "brand_direction": analysis.get("summary", "")[:100],
             "tone": diagnosis_context.get("emotional_core", ""),
             "keywords": analysis.get("keywords", []),
@@ -86,10 +108,12 @@ async def create_naming(request: NamingRequest):
     Output: 3개 네이밍 후보 (result) + 각 후보 상세 정보 (state_context)
     """
     interview_context = request.context.get("interview", {})
-    brand_id = f"brand_{uuid.uuid4().hex[:8]}"
+    
+    # [변경] Context에서 output_id 확인 (없으면 새로 생성)
+    output_id = interview_context.get("output_id") or get_next_output_id()
     
     state = BrandConsultingState(
-        brand_id=brand_id,
+        output_id=output_id,
         current_step=2,
         diagnosis_context=interview_context,
         step_2_qa=request.user_input
@@ -142,10 +166,11 @@ async def create_concept(request: ConceptRequest):
     interview_context = request.context.get("interview", {})
     naming_context = request.context.get("naming", {})  # FE가 선택한 네이밍 상세 정보
     
-    brand_id = f"brand_{uuid.uuid4().hex[:8]}"
+    # [변경] Context에서 output_id 추출
+    output_id = interview_context.get("output_id") or get_next_output_id()
     
     state = BrandConsultingState(
-        brand_id=brand_id,
+        output_id=output_id,
         current_step=3,
         diagnosis_context=interview_context,
         naming_context=naming_context,
@@ -153,7 +178,7 @@ async def create_concept(request: ConceptRequest):
     )
     
     try:
-        config = {"configurable": {"thread_id": brand_id}}
+        config = {"configurable": {"thread_id": output_id}}
         result_state = workflow_app.invoke(state, config)
         
         if result_state.get("error_occurred"):
@@ -202,10 +227,11 @@ async def create_story(request: StoryRequest):
     naming_context = request.context.get("naming", {})
     concept_context = request.context.get("concept", {})
     
-    brand_id = f"brand_{uuid.uuid4().hex[:8]}"
+    # [변경] Context에서 output_id 추출
+    output_id = interview_context.get("output_id") or get_next_output_id()
     
     state = BrandConsultingState(
-        brand_id=brand_id,
+        output_id=output_id,
         current_step=4,
         diagnosis_context=interview_context,
         naming_context=naming_context,
@@ -214,7 +240,7 @@ async def create_story(request: StoryRequest):
     )
     
     try:
-        config = {"configurable": {"thread_id": brand_id}}
+        config = {"configurable": {"thread_id": output_id}}
         result_state = workflow_app.invoke(state, config)
         
         if result_state.get("error_occurred"):
@@ -264,10 +290,11 @@ async def create_logo(request: LogoRequest):
     concept_context = request.context.get("concept", {})
     story_context = request.context.get("story", {})
     
-    brand_id = f"brand_{uuid.uuid4().hex[:8]}"
+    # [변경] Context에서 output_id 추출
+    output_id = interview_context.get("output_id") or get_next_output_id()
     
     state = BrandConsultingState(
-        brand_id=brand_id,
+        output_id=output_id,
         current_step=5,
         diagnosis_context=interview_context,
         naming_context=naming_context,
@@ -277,7 +304,7 @@ async def create_logo(request: LogoRequest):
     )
     
     try:
-        config = {"configurable": {"thread_id": brand_id}}
+        config = {"configurable": {"thread_id": output_id}}
         result_state = workflow_app.invoke(state, config)
         
         if result_state.get("error_occurred"):

@@ -2,7 +2,6 @@
 Human Review Node
 사용자의 검토 및 승인을 처리하는 노드입니다.
 - 선택(0, 1, 2): 3개 후보 중 1개 선택
-- 재생성(regenerate): 피드백 기반으로 해당 단계 재실행
 """
 from langgraph_system.state import BrandConsultingState
 
@@ -13,29 +12,24 @@ def human_review_node(state: BrandConsultingState) -> BrandConsultingState:
     1. 사용자 선택 처리 (0, 1, 2)
     2. 선택된 결과(Full) 저장 (result_key)
     3. **다음 단계를 위한 핵심 데이터(Core Context) 추출 및 저장**
-    4. 재생성 요청 시 되돌리기
     """
     
     # 사용자 입력 (main.py에서 update_state로 주입됨)
     user_choice = state.get("user_choice")
-    feedback = state.get("feedback_content")
     current_step = state.get("current_step")
     
     print(f"\n[Human Review] 사용자 선택 처리: {user_choice}")
     
-    # 1. 재생성 요청
-    
-    # 2. 후보 선택 (0, 1, 2)
+    # 후보 선택 (0, 1, 2)
     try:
         selected_idx = int(user_choice)
         if selected_idx not in [0, 1, 2]:
             raise ValueError("Invalid index")
     except (ValueError, TypeError):
         print(f"[Human Review] ❌ 잘못된 선택: {user_choice}")
-        return {
-            "user_choice": None,
-            "feedback_required": True
-        }
+        state["error_occurred"] = True
+        state["error_message"] = f"잘못된 선택값: {user_choice}"
+        return state
     
     # 3. 단계별 매핑 정보 (Candidates Key, Result Key, Context Key)
     # Context Key: 다음 단계로 핵심만 전달하기 위한 키
@@ -61,10 +55,9 @@ def human_review_node(state: BrandConsultingState) -> BrandConsultingState:
     # 4. 후보 유효성 검증
     if not candidates or selected_idx >= len(candidates):
         print(f"[Human Review] ❌ 후보가 없거나 인덱스 초과 (max: {len(candidates)-1})")
-        return {
-            "user_choice": None,
-            "feedback_required": True
-        }
+        state["error_occurred"] = True
+        state["error_message"] = "후보 데이터가 없거나 인덱스가 범위를 초과했습니다."
+        return state
     
     
     # 5. 선택된 결과 저장 (Full Data)

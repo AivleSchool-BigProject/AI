@@ -192,9 +192,10 @@ class GenerationPrompts:
 
     # Step 5: Logo
     LOGO_SYSTEM = (
-        "You are a Senior Visual Identity Director with 15+ years of experience. "
-        "You specialize in creating sophisticated, timeless logos for premium brands. "
-        "Design 3 distinct, professional visual concepts with detailed DALL-E 3 prompts."
+        "You are a Modern Brand Identity Specialist. "
+        "Your philosophy is 'Less is More'. "
+        "You prioritize LOGOTYPE (Wordmark) over symbols, following the trend of Fortune 100 companies (e.g., Samsung, Sony, Braun, FedEx). "
+        "The Brand Name is the artwork. Providing a clean, timeless look is your ultimate goal."
     )
     
     LOGO_USER = """
@@ -210,119 +211,66 @@ class GenerationPrompts:
     {feedback_section}
     
     [Task]
-    Create 3 DISTINCT, PROFESSIONAL logo concepts for '{brand_name}'.
-    Each DALL-E prompt will be executed immediately to generate actual images.
+    Create 3 DISTINCT **Wordmark-Centric** logo concepts for '{brand_name}'.
     
-    CRITICAL QUALITY REQUIREMENTS:
-    1. **Sophistication Level**: Comparable to Airbnb, Aesop, Patagonia, Apple
-    2. **Design Principles**:
-       - Ultra-minimalist, clean, timeless
-       - Scalable from 16px (favicon) to billboard size
-       - Works on both light and dark backgrounds
-       - Flat design, no gradients or shadows
-       - Vector-ready aesthetic
+    IMPORTANT: You MUST generate 3 different LAYOUT styles as follows:
+    1. **Option 1: Horizontal Layout** (Symbol on Left + Text on Right). Standard Corporate Style.
+    2. **Option 2: Integrated Layout** (Text IS the Symbol). Modifying a letter slightly (e.g. A as a triangle). Keep it readable.
+    3. **Option 3: Stacked Layout** (Small Symbol on Top + Text Below). Minimal vertical alignment.
     
-    3. **Structure Options**:
-       - Wordmark only (typography-focused)
-       - Symbol + Wordmark (combination mark)
-       - Abstract symbol only (iconic)
-    
-    4. **Typography** (if applicable):
-       - Modern sans-serif or elegant serif
-       - Clean letterforms, balanced spacing
-       - Avoid decorative or script fonts
-    
-    STRICT AVOIDANCES:
-    - Cliché icons: suitcase, airplane, map pin, compass, globe
-    - Overly decorative or busy elements
-    - Generic stock imagery aesthetics
-    - Childish or playful cartoon styles
-    - Trendy effects that will age poorly
-    - Multiple colors (prefer 1-2 colors max)
-    
-    For each concept, provide:
-    1. **DALL-E Prompt** (English): 
-       - Start with "A single clean logo design combining symbol and text for {brand_name}"
-       - **CRITICAL RULES**:
-         * Generate ONE complete logo: symbol/icon + brand name text
-         * The logo should show the symbol and "{brand_name}" text together in a unified design
-         * NO multiple variations in one image
-         * NO mockups (no business cards, packaging, etc.)
-         * NO size variations or color alternatives shown together
-         * Just ONE clean, complete logo on white background
-       - Include: 
-         * Symbol/icon concept (abstract shape, geometric form)
-         * Typography style for brand name
-         * Color palette (1-2 colors max)
-         * Layout (symbol above/beside text, integrated design, etc.)
-       - Specify: "minimalist logo design, flat style, vector-ready, clean white background, centered composition"
-       - Add: "Single professional logo presentation, similar to how Apple or Nike would present their logo"
-       - Length: 120-180 words
-    
-    2. **Logo Concept** (Korean): Visual description as if explaining the generated image
-    3. **Rationale** (Korean): Why this design fits the brand strategy
-    4. **Color Palette**: Hex codes (1-2 colors max)
-    5. **Q&A Analysis Summary**: How Q&A insights influenced the visual direction (2-3 sentences in Korean)
-    6. **Q&A Keywords**: 3-5 key visual/style terms from Q&A
+    Output Format - JSON:
+    1. **layout_type**: One of ["Horizontal", "Integrated", "Stacked"].
+    2. **style_keywords**: ["Minimalist", "Flat", "Clean", "Sans-Serif", "Modern"]
+    3. **color_palette**: List of hex codes.
+    4. **benchmark_brand**: (e.g., "Braun", "Tesla", "Uber", "Sony")
+    5. **logo_concept**: (Korean) The concept summary describing what this logo represents.
+    6. **logo_rationale**: (Korean) Detailed reasoning why this layout and style fit the brand strategy.
+    7. **qa_analysis_summary**: (Korean) 2-3 sentences summarizing how Q&A insights influenced this logo direction.
+    8. **qa_keywords**: (Korean) 3-5 key terms from Q&A that support this logo design.
+    9. **visual_instruction**: (English) Strict instruction for the graphic generation based on the LAYOUT.
+       - **Horizontal**: "A tiny solid icon on the LEFT. Large text '{brand_name}' on the RIGHT."
+       - **Integrated**: "The text '{brand_name}' in bold sans-serif. The letter 'i' has a square dot. No extra icons."
+       - **Stacked**: "A tiny geometric shape centered ABOVE. The text '{brand_name}' centered BELOW."
     
     [Output Format - JSON]
     {{
       "options": [
         {{
-          "dalle_prompt": "A single clean logo design for {brand_name}. [Describe the symbol/icon and how it combines with the text]. The logo features [symbol description] with the text '{brand_name}' in [typography style]. Color palette: [color 1] and [color 2]. Minimalist design, flat style, clean white background, centered. ONE complete logo only. NO variations, NO mockups, NO multiple versions. Just one professional logo presentation.",
-          "logo_concept": "Visual description in Korean...",
-          "logo_rationale": "Design reasoning in Korean...",
-          "color_palette": ["#Hex1", "#Hex2"],
-          "qa_analysis_summary": "Q&A 분석 요약 (2-3문장)...",
-          "qa_keywords": ["키워드1", "키워드2", "키워드3"]
+          "layout_type": "Horizontal",
+          "style_keywords": ["Minimalist", "Clean"],
+          "color_palette": ["#0F2027"],
+          "benchmark_brand": "Samsung",
+          "logo_concept": "왼쪽에 견고한 심볼을 배치하여 신뢰감을 주는 구성...",
+          "logo_rationale": "이 레이아웃은 심볼과 텍스트의 균형을 통해 전문성과 신뢰감을 전달합니다...",
+          "qa_analysis_summary": "사용자는 Q&A에서 '전문적', '신뢰'를 강조했으며, 이를 Horizontal 레이아웃으로 표현했습니다.",
+          "qa_keywords": ["전문성", "신뢰", "균형"],
+          "visual_instruction": "A horizontal logo layout. On the far LEFT, a small solid blue square symbol. On the RIGHT, the brand name '{brand_name}' in bold sans-serif font. Vertically centered alignment. White background."
         }},
-        ... (3 options total, each DISTINCT in approach)
+        {{
+          "layout_type": "Integrated",
+          "style_keywords": ["Modern", "Typographic"],
+          "logo_concept": "글자 속에 심볼을 숨겨 일체감을 주는 구성...",
+          "logo_rationale": "글자와 심볼을 통합하여 간결하고 현대적인 이미지를 구축합니다...",
+          "qa_analysis_summary": "사용자는 '혁신적', '간결함'을 중시하며, Integrated 타입으로 이를 구현했습니다.",
+          "qa_keywords": ["혁신", "간결", "타이포그래피"],
+          "visual_instruction": "A typographic logo where the text is the main element. The brand name '{brand_name}' in black bold font. The letter 'A' is replaced by a simple triangle. No other icons. White background."
+        }},
+        {{
+          "layout_type": "Stacked",
+          "logo_concept": "심볼을 상단에 작게 배치한 모던한 구성...",
+          "logo_rationale": "상하 구조로 정돈된 인상을 주며, 모바일 환경에서도 가독성이 우수합니다...",
+          "qa_analysis_summary": "사용자는 '깔끔함', '정돈'을 선호하며, Stacked 레이아웃으로 표현했습니다.",
+          "qa_keywords": ["정돈", "깔끔", "수직구조"],
+          "visual_instruction": "A vertical stacked logo. A tiny minimalist line icon centered at the TOP. The brand name '{brand_name}' centered BELOW the icon in bold sans-serif. Balanced spacing. White background."
+        }}
       ]
     }}
     
-    IMPORTANT: 
-    - Each of the 3 concepts must take a DIFFERENT visual approach (different symbols, layouts, typography).
-    - Each DALL-E prompt MUST generate ONLY ONE complete logo (symbol + text), absolutely NO variations or mockups in the same image.
-    - The logo should be a unified design with both symbol and brand name text.
-    - You MUST provide ALL 6 fields for each option: dalle_prompt, logo_concept, logo_rationale, color_palette, qa_analysis_summary, qa_keywords.
-    - Do NOT leave any field empty. If uncertain, provide a reasonable default value.
+    IMPORTANT:
+    - **TEXT IS KING**: The symbol size must be < 20% of the text.
+    - **CLEAN**: No complex illustrations, no 3D effects, no shadows.
+    - **READABLE**: The brand name must be clearly legible.
+    - **DRY LANGUAGE**: In 'visual_instruction', do NOT use adjectives like "Beautiful", "Stunning", "Luxury", "Creative". Use only physical descriptions (e.g., "Solid", "Geometric", "Black", "Bold").
+    - Each option must feel structurally different, not just color variations.
     """
 
-
-class VerificationPrompts:
-    """
-    [Verification Prompts - Korean]
-    결과물이 한국 정서와 사용자 의도에 부합하는지 검증합니다.
-    """
-    
-    QUALITY_CHECK_SYSTEM = (
-        "당신은 꼼꼼한 브랜드 컨설팅 품질 검수자입니다. "
-        "생성된 결과물이 한국의 비즈니스 환경과 문화적 맥락에 자연스러운지, "
-        "그리고 사용자의 요구사항을 충실히 반영했는지 평가합니다."
-    )
-    
-    QUALITY_CHECK_USER = """
-    [검증 대상 데이터]
-    단계: {step_name}
-    생성 결과: 
-    {generated_result}
-    
-    [검증 기준]
-    1. 한국어 표현이 자연스럽고 비즈니스 격식에 맞는가? (오역, 부자연스러운 문투 확인)
-    2. 사용자의 핵심 요구사항이 누락되지 않았는가?
-    3. 내용은 구체적이고 논리적인가? (모호한 표현 지양)
-    
-    [Task]
-    위 기준에 따라 Pass(통과) 또는 Fail(반려)을 판정하고, 
-    Fail인 경우 구체적인 이유와 개선 제안을 작성해주세요.
-    
-    Pass인 경우에도 개선할 점이 있다면 '조언'으로 남겨주세요.
-    
-    [출력 포맷 - JSON]
-    {{
-      "passed": true / false,
-      "reason": "판정 이유 (Fail일 경우 필수)",
-      "improvement_suggestion": "개선 제안 또는 조언",
-      "score": 85 (0~100점 평가)
-    }}
-    """

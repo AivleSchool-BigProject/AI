@@ -15,12 +15,10 @@ def naming_node(state: BrandConsultingState) -> BrandConsultingState:
     [입력 - Input]
     - diagnosis_context: Step 1 브랜드 진단 결과 (핵심 키워드, 타겟 페르소나, 진단 요약 등)
     - step_2_qa: 사용자 Naming 관련 질문에 대한 답변 (JSON)
-    - feedback_content (선택): 사용자가 재생성 요청 시 제공한 피드백
     
     [처리 - Process]
     - GPT-4를 활용하여 3가지 브랜드 네이밍 후보를 생성합니다.
     - 각 후보는 이름, 선정 이유(Rationale), 유사 대안(Alternatives)을 포함합니다.
-    - 재생성(Regeneration) 모드일 경우, 사용자의 피드백을 프롬프트에 반영합니다.
     
     [출력 - Output]
     - naming_candidates: 3가지 브랜드 네이밍 후보 리스트
@@ -92,20 +90,10 @@ def naming_node(state: BrandConsultingState) -> BrandConsultingState:
         state["error_message"] = error_msg
         return state
 
-    # 4. 재생성(Regeneration) 피드백 확인
-    feedback_section = ""
-    if state.get("feedback_required") and state.get("feedback_content"):
-        feedback_content = state.get('feedback_content')
-        print(f"[Step 2] 🔄 사용자 재생성 피드백 반영: \"{feedback_content}\"")
-        feedback_section = f"""
-        [User Feedback for Regeneration]
-        The user rejected previous candidates with this feedback:
-        "{feedback_content}"
-        
-        IMPORTANT: Your new names MUST address this feedback. Do not repeat the same patterns.
-        """
+    # 4. 프롬프트 구성 (JSON 직접 전달)
+    feedback_section = ""  # 재생성 기능 제거됨
 
-    # 5. 프롬프트 구성 (JSON 직접 전달)
+    # 5. 프롬프트 생성
     system_prompt = GenerationPrompts.NAMING_SYSTEM
     user_prompt = GenerationPrompts.NAMING_USER.format(
         diagnosis_summary=diagnosis_context.get("diagnosis_summary", ""),
