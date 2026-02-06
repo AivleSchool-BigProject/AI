@@ -213,61 +213,80 @@ class GenerationPrompts:
     [Task]
     Create 3 DISTINCT **Wordmark-Centric** logo concepts for '{brand_name}'.
     
+    **CRITICAL: Use user-selected values from Q&A**
+    - Extract **s5_brand_color** answer (e.g., "Black/White/Gray", "Blue/Navy")
+    - Extract **s5_design_style** answer for style_keywords
+    - Extract **s5_typography_style** answer if available
+    - Background is ALWAYS white
+    
+    **Color Strategy for 3 Options**:
+    - **Option 1 (Horizontal)**: Text in BLACK FIXED. Symbol uses user's preferred color family.
+    - **Option 2 (Integrated)**: AI recommends harmonious colors based on user's color preferences.
+    - **Option 3 (Stacked)**: AI recommends different color tones for variety.
+    
+    **IMPORTANT: Do NOT specify exact hex codes. Let the image AI choose specific shades.**
+    Instead of "#0066CC", say "electric blue" or "bright blue tone".
+    Instead of "#000000", say "black" or "dark tone".
+    
     IMPORTANT: You MUST generate 3 different LAYOUT styles as follows:
-    1. **Option 1: Horizontal Layout** (Symbol on Left + Text on Right). Standard Corporate Style.
-    2. **Option 2: Integrated Layout** (Text IS the Symbol). Modifying a letter slightly (e.g. A as a triangle). Keep it readable.
-    3. **Option 3: Stacked Layout** (Small Symbol on Top + Text Below). Minimal vertical alignment.
+    1. **Option 1: Horizontal Layout** (Symbol on Left + Text on Right). Standard Corporate Style. TEXT ALWAYS BLACK.
+    2. **Option 2: Integrated Layout** (Text IS the Symbol). Modifying a letter slightly. GPT suggests color family.
+    3. **Option 3: Stacked Layout** (Small Symbol on Top + Text Below). GPT suggests different color tones.
     
     Output Format - JSON:
     1. **layout_type**: One of ["Horizontal", "Integrated", "Stacked"].
-    2. **style_keywords**: ["Minimalist", "Flat", "Clean", "Sans-Serif", "Modern"]
-    3. **color_palette**: List of hex codes.
+    2. **style_keywords**: Extract from s5_design_style (e.g., ["Geometric", "Tech"])
+    3. **color_description**: DESCRIPTIVE color guidance (NOT hex codes), e.g., "black text with electric blue symbol", "dark gray with bright blue accent"
     4. **benchmark_brand**: (e.g., "Braun", "Tesla", "Uber", "Sony")
-    5. **logo_concept**: (Korean) The concept summary describing what this logo represents.
-    6. **logo_rationale**: (Korean) Detailed reasoning why this layout and style fit the brand strategy.
-    7. **qa_analysis_summary**: (Korean) 2-3 sentences summarizing how Q&A insights influenced this logo direction.
-    8. **qa_keywords**: (Korean) 3-5 key terms from Q&A that support this logo design.
-    9. **visual_instruction**: (English) Strict instruction for the graphic generation based on the LAYOUT.
-       - **Horizontal**: "A tiny solid icon on the LEFT. Large text '{brand_name}' on the RIGHT."
-       - **Integrated**: "The text '{brand_name}' in bold sans-serif. The letter 'i' has a square dot. No extra icons."
-       - **Stacked**: "A tiny geometric shape centered ABOVE. The text '{brand_name}' centered BELOW."
+    5. **logo_concept**: (Korean) The concept summary.
+    6. **logo_rationale**: (Korean) Detailed reasoning.
+    7. **qa_analysis_summary**: (Korean) 2-3 sentences.
+    8. **qa_keywords**: (Korean) 3-5 key terms.
+    9. **visual_instruction**: (English) Strict instruction using COLOR NAMES, not hex codes.
+       - **Horizontal**: "A tiny solid icon on the LEFT in [COLOR NAME]. Large text '{brand_name}' on the RIGHT in BLACK."
+       - **Integrated**: "The text '{brand_name}' in [COLOR NAME]. The letter has a geometric modification in [ACCENT COLOR]."
+       - **Stacked**: "A tiny geometric shape ABOVE in [COLOR NAME]. The text '{brand_name}' BELOW in [COLOR NAME]."
     
     [Output Format - JSON]
     {{
       "options": [
         {{
           "layout_type": "Horizontal",
-          "style_keywords": ["Minimalist", "Clean"],
-          "color_palette": ["#0F2027"],
-          "benchmark_brand": "Samsung",
-          "logo_concept": "왼쪽에 견고한 심볼을 배치하여 신뢰감을 주는 구성...",
-          "logo_rationale": "이 레이아웃은 심볼과 텍스트의 균형을 통해 전문성과 신뢰감을 전달합니다...",
-          "qa_analysis_summary": "사용자는 Q&A에서 '전문적', '신뢰'를 강조했으며, 이를 Horizontal 레이아웃으로 표현했습니다.",
-          "qa_keywords": ["전문성", "신뢰", "균형"],
-          "visual_instruction": "A horizontal logo layout. On the far LEFT, a small solid blue square symbol. On the RIGHT, the brand name '{brand_name}' in bold sans-serif font. Vertically centered alignment. White background."
+          "style_keywords": ["Geometric", "Tech"],
+          "color_description": "Black text with electric blue geometric symbol",
+          "benchmark_brand": "Tesla",
+          "logo_concept": "블랙 텍스트와 블루 심볼로 안정성과 혁신을 동시에 표현...",
+          "logo_rationale": "텍스트를 블랙으로 고정하여 가독성 최대화, 심볼은 사용자가 선호하는 블루 계열로...",
+          "qa_analysis_summary": "사용자는 블랙/블루를 선호하며, 첫 번째 옵션은 안정적인 블랙 텍스트로 구성...",
+          "qa_keywords": ["안정성", "가독성", "기하학"],
+          "visual_instruction": "A horizontal logo layout. On the far LEFT, a small geometric icon in electric blue. On the RIGHT, the brand name '{brand_name}' in bold sans-serif font in BLACK. Vertically centered alignment. White background."
         }},
         {{
           "layout_type": "Integrated",
-          "style_keywords": ["Modern", "Typographic"],
-          "logo_concept": "글자 속에 심볼을 숨겨 일체감을 주는 구성...",
-          "logo_rationale": "글자와 심볼을 통합하여 간결하고 현대적인 이미지를 구축합니다...",
-          "qa_analysis_summary": "사용자는 '혁신적', '간결함'을 중시하며, Integrated 타입으로 이를 구현했습니다.",
-          "qa_keywords": ["혁신", "간결", "타이포그래피"],
-          "visual_instruction": "A typographic logo where the text is the main element. The brand name '{brand_name}' in black bold font. The letter 'A' is replaced by a simple triangle. No other icons. White background."
+          "style_keywords": ["Geometric", "Tech"],
+          "color_description": "Dark gray base with bright blue geometric accent",
+          "logo_concept": "다크 그레이 베이스에 밝은 블루 강조로 현대적 느낌 강화...",
+          "logo_rationale": "블랙 대신 다크 그레이를 사용하여 부드러운 인상을 주되, 밝은 블루로 포인트...",
+          "qa_analysis_summary": "사용자의 블루 선호를 반영하되, 텍스트는 그레이 톤으로 변화를 줌...",
+          "qa_keywords": ["현대적", "부드러움", "강조"],
+          "visual_instruction": "A typographic logo where the text is the main element. The brand name '{brand_name}' in dark gray bold geometric font. One letter has a geometric modification in bright blue. White background."
         }},
         {{
           "layout_type": "Stacked",
-          "logo_concept": "심볼을 상단에 작게 배치한 모던한 구성...",
-          "logo_rationale": "상하 구조로 정돈된 인상을 주며, 모바일 환경에서도 가독성이 우수합니다...",
-          "qa_analysis_summary": "사용자는 '깔끔함', '정돈'을 선호하며, Stacked 레이아웃으로 표현했습니다.",
-          "qa_keywords": ["정돈", "깔끔", "수직구조"],
-          "visual_instruction": "A vertical stacked logo. A tiny minimalist line icon centered at the TOP. The brand name '{brand_name}' centered BELOW the icon in bold sans-serif. Balanced spacing. White background."
+          "style_keywords": ["Geometric", "Tech"],
+          "color_description": "Navy text with sky blue geometric symbol",
+          "logo_concept": "네이비 텍스트와 하늘색 심볼로 신뢰감과 개방성 동시 표현...",
+          "logo_rationale": "블루 계열 내에서 톤 변화를 주어 3가지 옵션에 다양성 부여...",
+          "qa_analysis_summary": "사용자의 블루 선호를 유지하되, 네이비와 스카이 블루로 변화를 줌...",
+          "qa_keywords": ["신뢰", "개방성", "다양성"],
+          "visual_instruction": "A vertical stacked logo. A tiny geometric icon in sky blue centered at the TOP. The brand name '{brand_name}' in navy centered BELOW the icon in bold geometric sans-serif. Balanced spacing. White background."
         }}
       ]
     }}
     
     IMPORTANT:
     - **TEXT IS KING**: The symbol size must be < 20% of the text.
+    - **Use COLOR NAMES, not hex codes**: Let the image generation AI choose the exact shades.
     - **CLEAN**: No complex illustrations, no 3D effects, no shadows.
     - **READABLE**: The brand name must be clearly legible.
     - **DRY LANGUAGE**: In 'visual_instruction', do NOT use adjectives like "Beautiful", "Stunning", "Luxury", "Creative". Use only physical descriptions (e.g., "Solid", "Geometric", "Black", "Bold").
