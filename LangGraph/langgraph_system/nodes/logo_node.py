@@ -117,7 +117,7 @@ def logo_node(state: BrandConsultingState) -> BrandConsultingState:
     logo_images_dir.mkdir(parents=True, exist_ok=True)
     
     # Wordmark 중심 프롬프트 생성 함수
-    def create_dalle_prompt(brand_name, style_keywords, color_palette,
+    def create_prompt(brand_name, style_keywords, color_palette,
                             benchmark_brand, visual_instruction, layout_type):
         """
         글로벌 기업 느낌의 로고 프롬프트 생성
@@ -192,7 +192,7 @@ The logo must look like a Fortune 100 brand identity.
         visual_instruction = opt.get("visual_instruction", f"The brand name '{brand_name}' written in bold sans-serif font. A small dot accent in the brand color.")
         
         # [수정] create_dalle_prompt 호출 (layout_type 추가)
-        dalle_prompt = create_dalle_prompt(
+        prompt = create_prompt(
             brand_name, 
             style_keywords, 
             color_palette, 
@@ -205,6 +205,9 @@ The logo must look like a Fortune 100 brand identity.
         print(f"    Style: {', '.join(style_keywords)}")
         print(f"    Colors: {', '.join(color_palette)}")
         print(f"    Benchmark: {benchmark_brand}")
+        print(f"    📝 Gemini Prompt Preview:")
+        print(f"       {prompt[:200]}...")  # 프롬프트 앞부분만 출력
+        
         
         image_url = None
         local_image_path = None
@@ -230,7 +233,7 @@ The logo must look like a Fortune 100 brand identity.
             
             response = gemini_client.models.generate_content(
                 model="gemini-3-pro-image-preview",
-                contents=[dalle_prompt],
+                contents=[prompt],
                 config=types.GenerateContentConfig(
                     response_modalities=['Image'],  # 이미지만 반환
                     image_config=types.ImageConfig(
