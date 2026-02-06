@@ -6,53 +6,54 @@
             {
                 "id": "s1_one_line_definition",
                 "question_text": "우리 서비스를 전혀 모르는 10살 조카에게 설명한다고 가정하고, 한 문장으로 서비스를 정의해주세요.",
-                "answer": "단순히 이동하는 자동차가 아니라, 네가 타고 다니면서 게임도 하고 잠도 잘 수 있는 '움직이는 나만의 로봇 방'이야."
+                "answer": "스마트폰은 잠시 상자에 넣어두고, 지도에도 안 나오는 시골 마을에서 현지인 친구처럼 푹 쉬다 올 수 있게 해주는 여행 친구야."
             },
             {
                 "id": "s1_core_problem",
                 "question_text": "고객이 우리 서비스를 쓰지 않을 때 겪는 가장 고통스러운 문제점은 무엇인가요?",
-                "answer": "꽉 막힌 도로 위에서 운전대를 잡고 버리는 시간, 배기가스로 인한 환경적 죄책감, 그리고 자동차를 단순히 '유지비가 드는 이동 수단'으로만 느끼는 경험적 빈곤함입니다."
+                "answer": "휴가를 가서도 습관적으로 맛집을 검색하고 인스타그램 인증샷을 찍느라 쉬는 것 같지 않은 피로감을 느낍니다. '남들이 다 가는 곳'을 찍고 와야 한다는 숙제 같은 여행 때문에, 다녀와서도 오히려 더 지쳐있는 '번아웃의 악순환'을 겪고 있습니다."
             },
             {
                 "id": "s1_target_persona",
                 "question_text": "우리 서비스의 '찐팬'이 될 핵심 고객층은 누구인가요?",
                 "answer": {
-                    "id": "opt_2030_trendsetter",
-                    "text": "새로운 것을 먼저 시도하는 2030 얼리어답터",
-                    "value": "2030 Early Adopter"
+                    "id": "opt_3040_worker",
+                    "text": "효율을 중시하는 3040 직장인",
+                    "value": "3040 Efficiency Seeker"
                 }
             },
             {
                 "id": "s1_current_alternatives",
                 "question_text": "고객들이 현재 우리 서비스를 사용하지 않을 때 대신 사용하고 있는 대안(경쟁사, 다른 방법)은 무엇인가요?",
-                "answer": "테슬라와 같은 기존 전기차 브랜드, 혹은 쏘카/우버 같은 차량 공유 서비스. 하지만 이들은 여전히 '운전'이나 '단순 이동'에 초점이 맞춰져 있습니다."
+                "answer": "스테이폴리오 같은 감성 숙소 플랫폼을 이용하지만 '숙박' 경험에만 머무르거나, 유명 유튜버의 핫플레이스 코스를 그대로 따라가며 인파에 시달리는 여행을 하고 있습니다."
             },
             {
                 "id": "s1_differentiation",
                 "question_text": "경쟁사가 절대 따라 할 수 없는 우리 서비스만의 '무기'는 무엇인가요?",
-                "answer": "하드웨어와 소프트웨어가 완벽히 통합된 '모듈형 인테리어' 시스템입니다. 목적에 따라 차 내부를 사무실, 캠핑카, 영화관으로 즉시 변형할 수 있는 공간 UX 기술이 우리의 핵심 무기입니다."
+                "answer": "단순한 장소 중개가 아닌, 현지 코디네이터가 직접 발굴한 '숨겨진 마을'과의 독점 제휴입니다. 여기에 강제적인 '디지털 디톡스 키트(폰 반납)'와 현지 주민과의 소셜 다이닝이 결합된, 누구도 흉내 낼 수 없는 '완벽한 멈춤'의 경험을 제공합니다."
             },
             {
                 "id": "s1_industry",
                 "question_text": "비즈니스가 속한 산업군은 어디인가요?",
                 "answer": {
-                    "id": "opt_mobility",
-                    "text": "모빌리티/물류",
-                    "value": "Mobility/Logistics"
+                    "id": "opt_other",
+                    "text": "기타",
+                    "value": "Other",
+                    "text_input_value": "Travel Tech & Lifestyle Wellness"
                 }
             },
             {
                 "id": "s1_vision",
                 "question_text": "5년 뒤, 우리 회사가 뉴스 헤드라인에 나온다면 어떤 제목일까요?",
-                "answer": "\"OO모터스, 글로벌 전기차 시장 점유율 TOP 5 진입... '자동차가 아닌 공간을 판다' 전략 통했다\""
+                "answer": "\"여행의 정의를 바꾸다... OO, 한국인이 가장 사랑하는 '마음 챙김(Mindfulness)' 여행 플랫폼 1위 등극\""
             },
             {
                 "id": "s1_revenue_model",
                 "question_text": "주요 수익 모델은 무엇인가요?",
                 "answer": {
-                    "id": "opt_sales",
-                    "text": "판매",
-                    "value": "Sales"
+                    "id": "opt_commission",
+                    "text": "수수료",
+                    "value": "Commission"
                 }
             },
             {
@@ -60,14 +61,14 @@
                 "question_text": "향후 6~12개월 동안 브랜드가 가장 집중해야 할 목표는 무엇인가요? (최대 2개 선택)",
                 "answer": [
                     {
-                        "id": "opt_investment_attraction",
-                        "text": "투자 유치",
-                        "value": "Investment Attraction"
-                    },
-                    {
                         "id": "opt_brand_awareness",
                         "text": "브랜드 인지도",
                         "value": "Brand Awareness"
+                    },
+                    {
+                        "id": "opt_customer_retention",
+                        "text": "유료 전환율 상승",
+                        "value": "Conversion Rate Improvement"
                     }
                 ]
             }
@@ -81,9 +82,9 @@
                 "id": "s2_naming_style",
                 "question_text": "어떤 스타일의 이름을 선호하시나요?",
                 "answer": {
-                    "id": "style_abstract",
-                    "text": "추상적/신조어",
-                    "value": "Abstract/Neologism"
+                    "id": "style_symbolic",
+                    "text": "함축적/상징적",
+                    "value": "Symbolic"
                 }
             },
             {
@@ -109,35 +110,35 @@
                 "question_text": "이름에서 느껴져야 할 첫인상은 무엇인가요? (최대 2개 선택)",
                 "answer": [
                     {
-                        "id": "vibe_innovative",
-                        "text": "혁신적인",
-                        "value": "Innovative"
+                        "id": "vibe_simple",
+                        "text": "심플한",
+                        "value": "Simple"
                     },
                     {
-                        "id": "vibe_powerful",
-                        "text": "강렬한",
-                        "value": "Powerful"
+                        "id": "vibe_trust",
+                        "text": "신뢰감 있는",
+                        "value": "Trustworthy"
                     }
                 ]
             },
             {
                 "id": "s2_avoid",
                 "question_text": "\"이런 느낌만은 피해주세요\" 하는 것이 있나요?",
-                "answer": "전통적인 자동차 회사 느낌(모터스, 오토 등), 너무 기계적이거나 차가운 공학 용어, 혹은 너무 귀여운 어감은 피하고 싶습니다."
+                "answer": "'투어', '트립', '고고', '티켓' 처럼 너무 가벼운 저가 패키지 여행사 느낌이나, '여기어때' 같은 B급 감성의 유머 코드는 피하고 싶습니다. 너무 시끄러운 느낌은 싫습니다."
             },
             {
                 "id": "s2_domain",
                 "question_text": ".com 도메인 확보가 얼마나 중요한가요?",
                 "answer": {
-                    "id": "dom_must",
-                    "text": ".com 필수",
-                    "value": "Must have .com"
+                    "id": "dom_prefer",
+                    "text": ".com 선호하지만 필수 아님",
+                    "value": "Prefer .com"
                 }
             },
             {
                 "id": "s2_target_emotion",
                 "question_text": "고객이 이름을 듣자마자 느꼈으면 하는 딱 하나의 감정은 무엇인가요?",
-                "answer": "가능성 (이 차를 타면 내 삶이 확장될 것 같다는 기대감)"
+                "answer": "깊은 안도감 (드디어 쉴 곳을 찾았다는 느낌, The Exhale)"
             },
             {
                 "id": "s2_current_name",
@@ -155,19 +156,19 @@
                 "question_text": "브랜드가 절대 포기할 수 없는 핵심 가치는 무엇인가요? (2-3개 선택)",
                 "answer": [
                     {
-                        "id": "val_innovation",
-                        "text": "혁신",
-                        "value": "Innovation"
-                    },
-                    {
                         "id": "val_sustainability",
                         "text": "지속가능성",
                         "value": "Sustainability"
                     },
                     {
-                        "id": "val_quality",
-                        "text": "품질",
-                        "value": "Quality"
+                        "id": "val_simplicity",
+                        "text": "단순함",
+                        "value": "Simplicity"
+                    },
+                    {
+                        "id": "val_trust",
+                        "text": "신뢰",
+                        "value": "Trust"
                     }
                 ]
             },
@@ -175,39 +176,39 @@
                 "id": "s3_brand_voice",
                 "question_text": "고객에게 말을 건넨다면 어떤 말투일까요?",
                 "answer": {
-                    "id": "tone_expert",
-                    "text": "전문적인 박사님",
-                    "value": "Professional Expert"
+                    "id": "tone_guide",
+                    "text": "친절한 가이드",
+                    "value": "Friendly Guide"
                 }
             },
             {
                 "id": "s3_brand_promise",
                 "question_text": "우리 브랜드가 고객에게 약속하는 단 하나는 무엇인가요?",
-                "answer": "이동하는 모든 순간이 당신에게 영감이 되도록 하겠다."
+                "answer": "당신이 아무것도 계획하지 않아도 되는, 완벽한 멈춤의 시간."
             },
             {
                 "id": "s3_key_message",
                 "question_text": "고객이 기억해야 할 단 한 문장은 무엇인가요?",
-                "answer": "Beyond Mobility, Infinite Possibility (이동 그 이상의 무한한 가능성)"
+                "answer": "Disconnect to Reconnect (연결을 끊고, 진정한 나를 만나세요)"
             },
             {
                 "id": "s3_concept_vibe",
                 "question_text": "브랜드 전체를 관통하는 시각적/심리적 분위기는 무엇인가요?",
-                "answer": "사이버펑크적이지만 난해하지 않은, 세련된 하이테크 미니멀리즘. 우주선 내부에 들어와 있는 듯한 고요한 압도감."
+                "answer": "킨포크 잡지처럼 정갈하고 여백이 많으며, 흙내음과 나무 향이 날 것 같은 자연스럽고 차분한 분위기."
             },
             {
                 "id": "s3_positioning_axes",
                 "question_text": "우리 브랜드가 경쟁사와 가장 달라지고 싶은 방향은 어디에 가깝나요? (최대 2개 선택)",
                 "answer": [
                     {
-                        "id": "pos_more_innovative",
-                        "text": "더 혁신적이고 실험적인",
-                        "value": "More Innovative/Experimental"
-                    },
-                    {
                         "id": "pos_premium_luxury",
                         "text": "더 프리미엄/고급스러운",
                         "value": "More Premium/Luxury"
+                    },
+                    {
+                        "id": "pos_simpler_intuitive",
+                        "text": "더 심플하고 직관적인",
+                        "value": "Simpler/More Intuitive"
                     }
                 ]
             }
@@ -220,67 +221,67 @@
             {
                 "id": "s4_founding_story",
                 "question_text": "창업자가 이 사업을 시작하게 된 결정적인 '계기'나 '사건'은 무엇인가요?",
-                "answer": "실리콘밸리에서 엔지니어로 일할 때, 매일 왕복 3시간을 운전하며 '인류 최고의 기술들이 고작 도로 위에 갇혀있다'는 사실에 분노했습니다. 자동차가 단순한 운송 수단이 아니라, 에너지를 생산하고 사람을 연결하는 '움직이는 스마트 디바이스'가 되어야 한다고 확신했습니다."
+                "answer": "IT 대기업 PM으로 일하며 번아웃이 심하게 왔을 때, 무작정 전라남도의 이름 모를 시골 마을로 떠났습니다. 그곳엔 와이파이도 잘 안 터졌지만, 할머니가 차려주신 밥을 먹고 멍하니 숲을 보던 3일이 지난 3년의 휴가보다 더 큰 회복을 주었습니다. '진짜 휴식은 정보의 차단에서 온다'는 것을 깨닫고 이 경험을 도시인들에게 선물하고 싶어졌습니다."
             },
             {
                 "id": "s4_customer_transformation",
                 "question_text": "우리 서비스를 이용하기 전과 후, 고객의 삶은 어떻게 달라지나요?",
-                "answer": "Before: 운전은 노동이고, 이동 시간은 버리는 시간.\nAfter: 이동 시간은 휴식이나 창조적인 생산 활동을 하는 '제3의 공간'이 됨."
+                "answer": "Before: 휴가를 가서도 업무 메일 알림에 불안해하고, 맛집 줄 서기에 지쳐 돌아옴.\nAfter: 디지털 기기와 거리를 둠으로써 잃어버렸던 오감이 깨어나고, 일상으로 돌아와서도 마음의 여유를 유지하는 단단한 상태가 됨."
             },
             {
                 "id": "s4_aha_moment",
                 "question_text": "고객이 우리만의 서비스를 이용하면서 감탄하는 순간은 언제인가요?",
-                "answer": "자율주행 모드를 켜고 시트가 뒤로 젖혀지며, 전면 유리가 대형 스크린으로 변해 영화관처럼 변하는 순간."
+                "answer": "숙소 도착 후 스마트폰을 '디지털 디톡스 박스'에 반납하고, 창밖의 풍경을 바라보며 따뜻한 웰컴 티를 마시는 첫 30분. 불안할 줄 알았는데 오히려 해방감을 느끼는 그 순간."
             },
             {
                 "id": "s4_brand_mission",
                 "question_text": "수익 창출 외에, 우리가 세상에 기여하고자 하는 것은 무엇인가요?",
-                "answer": "탄소 배출 제로를 넘어, 도시의 소음을 없애고 교통 체증을 과거의 유물로 만드는 것."
+                "answer": "대규모 관광 개발로 망가지는 여행지가 아니라, 소멸 위기의 지역 마을들과 상생하며 그들의 고유한 문화를 지키고 경제적 자립을 돕는 것."
             },
             {
                 "id": "s4_story_plot",
                 "question_text": "어떤 스타일의 스토리텔링을 원하나요?",
                 "answer": {
-                    "id": "plot_vision",
-                    "text": "비전 제시형",
-                    "value": "Visionary"
+                    "id": "plot_problem",
+                    "text": "문제 해결형",
+                    "value": "Problem-Solution"
                 }
             },
             {
                 "id": "s4_customer_conflict",
                 "question_text": "고객이 현재 겪고 있는 가장 큰 결핍이나 방해물은 무엇인가요?",
-                "answer": "기술은 발전했지만 여전히 구시대적인 내연기관차의 패러다임(운전 중심, 좁은 공간)에 갇혀 있는 답답함."
+                "answer": "정보 과부하로 인한 결정 피로(Decision Fatigue)와, 잠시도 연결(Connection)을 끊지 못하는 데서 오는 만성적인 불안감."
             },
             {
                 "id": "s4_story_emotion",
                 "question_text": "스토리를 통해 고객의 어떤 감정을 자극하고 싶나요? (최대 2개 선택)",
                 "answer": [
                     {
-                        "id": "emo_excitement",
-                        "text": "설렘",
-                        "value": "Excitement"
+                        "id": "emo_relief",
+                        "text": "안도감",
+                        "value": "Relief"
                     },
                     {
-                        "id": "emo_empowerment",
-                        "text": "자신감",
-                        "value": "Empowerment"
+                        "id": "emo_nostalgia",
+                        "text": "향수",
+                        "value": "Nostalgia"
                     }
                 ]
             },
             {
                 "id": "s4_ultimate_goal",
                 "question_text": "브랜드가 궁극적으로 만들고자 하는 세상의 모습은 무엇인가요?",
-                "answer": "도로 위에서 스트레스라는 단어가 사라진 세상. 자동차가 소유물이 아닌 삶의 확장이 되는 시대."
+                "answer": "여행이 단순한 소비 행위가 아니라, 나 자신과 지역 사회를 치유하는 시간이 되는 세상. '잘 쉬는 것'이 능력으로 인정받는 문화."
             },
             {
                 "id": "s4_founder_personality",
                 "question_text": "창업자(또는 팀)의 성격이나 스타일을 한 문장으로 표현한다면 어떤 사람들인가요?",
-                "answer": "타협하지 않는 완벽주의자이자, 불가능을 가능으로 바꾸는 미친 공학자들."
+                "answer": "화려한 말보다는 묵묵히 본질을 탐구하는, 조용하지만 단단한 관찰자들."
             },
             {
                 "id": "s4_flagship_case",
                 "question_text": "기억에 남는 고객 사례가 있다면 하나만 구체적으로 소개해주세요.",
-                "answer": "(가상 사례) 프리랜서 작가가 우리 차를 타고 전국을 돌며 차 안에서 집필 활동을 하여 베스트셀러를 완성한 이야기."
+                "answer": "7년 차 개발자가 퇴사를 결심하고 마지막 여행으로 우리 서비스를 이용했습니다. 3일간 폰 없이 산책만 하다가, 마지막 날 밤하늘의 별을 보고 펑펑 운 뒤 다시 일할 용기를 얻었다며 '사직서를 찢었다'는 후기를 남겼습니다."
             }
         ]
     },
@@ -292,19 +293,19 @@
                 "id": "s5_logo_structure",
                 "question_text": "어떤 형태의 로고를 원하시나요?",
                 "answer": {
-                    "id": "shape_symbol",
-                    "text": "심볼형 (Symbol Only)",
-                    "value": "Symbol Only"
+                    "id": "shape_combination",
+                    "text": "콤비네이션 (Combination)",
+                    "value": "Combination"
                 }
             },
             {
                 "id": "s5_visual_motif",
                 "question_text": "로고에 담고 싶은 이미지는 무엇인가요?",
                 "answer": {
-                    "id": "motif_geometric",
-                    "text": "기하학적 도형",
-                    "value": "Geometric Shape",
-                    "text_input_value": "번개, 회로, 혹은 무한대를 상징하는 날렵한 기하학적 형상"
+                    "id": "motif_abstract",
+                    "text": "추상적 개념",
+                    "value": "Abstract Concept",
+                    "text_input_value": "쉼표, 열린 문, 혹은 자연의 나이테를 단순화한 형상"
                 }
             },
             {
@@ -312,14 +313,14 @@
                 "question_text": "우리를 대표하는 색상은 무엇인가요? (최대 2개 선택)",
                 "answer": [
                     {
-                        "id": "col_bw",
-                        "text": "블랙/화이트/그레이",
-                        "value": "Black/White/Gray"
+                        "id": "col_green",
+                        "text": "그린",
+                        "value": "Green"
                     },
                     {
-                        "id": "col_blue",
-                        "text": "블루/네이비",
-                        "value": "Blue/Navy"
+                        "id": "col_gold",
+                        "text": "골드/브라운",
+                        "value": "Gold/Brown"
                     }
                 ]
             },
@@ -327,29 +328,29 @@
                 "id": "s5_design_style",
                 "question_text": "선호하는 디자인 스타일은 무엇인가요?",
                 "answer": {
-                    "id": "style_geometric",
-                    "text": "기하학적/테크",
-                    "value": "Geometric/Tech"
+                    "id": "style_minimal",
+                    "text": "플랫/미니멀",
+                    "value": "Flat/Minimalist"
                 }
             },
             {
                 "id": "s5_design_reference",
                 "question_text": "평소에 \"로고가 참 좋다\"고 생각한 브랜드와 그 이유는 무엇인가요? (2-3개)",
-                "answer": "1. 테슬라: 단순하지만 'T' 모양이 모터의 단면을 형상화했다는 점이 공학적이면서도 세련됨.\n2. 아우디: 기하학적 원의 반복이 주는 안정감과 기술적 완성도."
+                "answer": "1. 에어비앤비: 단순한 도형 하나로 '소속감'이라는 추상적 가치를 명확히 전달해서.\n2. 이솝(Aesop): 화려하지 않지만 특유의 폰트와 컬러만으로도 신뢰감과 유기농의 느낌을 줘서."
             },
             {
                 "id": "s5_logo_flexibility",
                 "question_text": "로고가 사용될 다양한 상황을 고려할 때, 어떤 특성이 가장 중요한가요? (최대 2개 선택)",
                 "answer": [
                     {
-                        "id": "flex_monochrome",
-                        "text": "흑백 전환",
-                        "value": "Monochrome Adaptability"
-                    },
-                    {
                         "id": "flex_scalable",
                         "text": "축소 가능성",
                         "value": "Scalability"
+                    },
+                    {
+                        "id": "flex_versatile",
+                        "text": "배경 적응성",
+                        "value": "Versatility"
                     }
                 ]
             },
@@ -357,9 +358,9 @@
                 "id": "s5_visual_text_ratio",
                 "question_text": "이미지와 텍스트 중 무엇이 더 중요한가요?",
                 "answer": {
-                    "id": "ratio_img",
-                    "text": "이미지 중심 (70:30)",
-                    "value": "Image Driven"
+                    "id": "ratio_bal",
+                    "text": "균형 (50:50)",
+                    "value": "Balanced"
                 }
             },
             {
@@ -367,29 +368,29 @@
                 "question_text": "로고와 브랜드가 가장 많이 사용될 곳은 어디인가요? (최대 2개 선택)",
                 "answer": [
                     {
-                        "id": "channel_product_packaging",
-                        "text": "제품 패키지(포장)",
-                        "value": "Product Packaging"
-                    },
-                    {
                         "id": "channel_app_icon",
                         "text": "모바일 앱 아이콘",
                         "value": "Mobile App Icon"
+                    },
+                    {
+                        "id": "channel_social_media",
+                        "text": "SNS·콘텐츠(피드, 썸네일)",
+                        "value": "Social Media/Content"
                     }
                 ]
             },
             {
                 "id": "s5_rejected_design_directions",
                 "question_text": "이미 시도해봤지만 마음에 들지 않았던 로고/디자인 방향이 있다면 무엇인가요?",
-                "answer": "너무 복잡한 엠블럼 형태나, 고전적인 방패 문양, 또는 잎사귀 등을 넣어 억지로 친환경을 강조하는 촌스러운 디자인."
+                "answer": "여행 가방(캐리어)이나 비행기 아이콘을 사용한 시안들은 너무 출장이나 비즈니스 트립 같아서 피하고 싶습니다. 지도 핀 모양도 너무 식상합니다."
             },
             {
                 "id": "s5_typography_style",
                 "question_text": "브랜드 로고에 어울리는 폰트 스타일은?",
                 "answer": {
-                    "id": "opt_geometric_tech",
-                    "text": "기하학적/테크 (정확, 미래지향)",
-                    "value": "Geometric/Tech"
+                    "id": "opt_modern_sans",
+                    "text": "모던한 산세리프 (깔끔, 현대적)",
+                    "value": "Modern Sans Serif"
                 }
             }
         ]
