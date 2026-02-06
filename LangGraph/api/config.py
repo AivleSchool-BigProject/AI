@@ -24,6 +24,14 @@ class Settings(BaseSettings):
     # OpenAI (기존 .env에서 로드)
     OPENAI_API_KEY: str = ""
     
+    # Gemini API
+    GEMINI_API_KEY: str = ""
+    
+    # Cloudinary (이미지 호스팅)
+    CLOUDINARY_CLOUD_NAME: str = ""
+    CLOUDINARY_API_KEY: str = ""
+    CLOUDINARY_API_SECRET: str = ""
+    
     # 데이터베이스 (기존 설정)
     ENABLE_DB: bool = False
     
