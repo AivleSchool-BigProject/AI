@@ -1,4 +1,4 @@
 LangGraph/generated_logos/*.png
 LangGraph/Test/Test/outputs/*.json
-Test/Test/outputs/
-LangGraph/Test/outputs/ 
+Test/Test/outputs/*
+LangGraph/Test/outputs/*
