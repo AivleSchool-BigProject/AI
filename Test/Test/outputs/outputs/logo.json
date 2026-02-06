@@ -1,0 +1,59 @@
+{
+  "result": {
+    "logo1_url": "https://res.cloudinary.com/dulpdtvvn/image/upload/v1770345132/logos/output_09/logo_1.jpg",
+    "logo2_url": "https://res.cloudinary.com/dulpdtvvn/image/upload/v1770345164/logos/output_09/logo_2.jpg",
+    "logo3_url": "https://res.cloudinary.com/dulpdtvvn/image/upload/v1770345196/logos/output_09/logo_3.jpg"
+  },
+  "state_context": {
+    "candidates": [
+      {
+        "id": 0,
+        "logo_image_url": "https://res.cloudinary.com/dulpdtvvn/image/upload/v1770345132/logos/output_09/logo_1.jpg",
+        "logo_concept": "왼쪽에 날렵한 기하학적 심볼을 두어 탄소 제로와 경량화된 이동성을 상징하는 디자인입니다.",
+        "logo_rationale": "이 레이아웃은 텍스트와 기하학적 심볼의 조화로운 배치를 통해 Fleura의 기술적 진보성과 신뢰성 있는 이미지를 효과적으로 전달합니다.",
+        "qa_analysis_summary": "Q&A에서 Fleura는 이동성과 연결성을 강조하며, 이를 날렵한 심볼과 합리적으로 배치된 텍스트로 표현했습니다.",
+        "qa_keywords": [
+          "이동성",
+          "연결성",
+          "기술적"
+        ],
+        "color_palette": [
+          "#0F2027",
+          "#00A0DC"
+        ]
+      },
+      {
+        "id": 1,
+        "logo_image_url": "https://res.cloudinary.com/dulpdtvvn/image/upload/v1770345164/logos/output_09/logo_2.jpg",
+        "logo_concept": "텍스트 자체에 심볼을 포함시켜, 도시와의 연결과 창의성의 무한함을 담은 다양한 의미를 전달합니다.",
+        "logo_rationale": "단어 내에 심볼을 융합함으로써 직관적인 탐구 정신을 담아 Fleura의 브랜드 혁신성을 강조합니다.",
+        "qa_analysis_summary": "Q&A에서 '창의성', '연결'을 중요시하며, Integrated 스타일로 브랜드의 전문성을 더했습니다.",
+        "qa_keywords": [
+          "창의성",
+          "연결",
+          "혁신"
+        ],
+        "color_palette": [
+          "#0F2027",
+          "#232526"
+        ]
+      },
+      {
+        "id": 2,
+        "logo_image_url": "https://res.cloudinary.com/dulpdtvvn/image/upload/v1770345196/logos/output_09/logo_3.jpg",
+        "logo_concept": "상단에 작은 기하학 문양을 두고 'Fleura'가 중심인 상하 구성을 통해 현대적 느낌을 줍니다.",
+        "logo_rationale": "상단의 작은 심볼과 텍스트의 수직 배열은 조화와 명확함을 주며, Fleura의 비전을 직관적으로 표현합니다.",
+        "qa_analysis_summary": "이 레이아웃은 Fleura의 '명료함'과 '질서'의 가치관을 전달하며, 상하 구성으로 브랜드의 지속 가능성을 담았습니다.",
+        "qa_keywords": [
+          "명료함",
+          "질서",
+          "지속 가능성"
+        ],
+        "color_palette": [
+          "#0F2027",
+          "#08AEEA"
+        ]
+      }
+    ]
+  }
+}
