@@ -30,3 +30,9 @@ output/
 Thumbs.db
 .DS_Store
 *.zip
+
+LangGraph/generated_logos/*.png
+LangGraph/Test/Test/outputs/*.json
+Test/Test/outputs/
+LangGraph/Test/outputs/ 
+api\__pycache__
