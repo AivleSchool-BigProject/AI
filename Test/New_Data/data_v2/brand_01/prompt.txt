@@ -1,0 +1,31 @@
+
+def create_dalle_prompt(brand_name, style_keywords, color_palette, benchmark_brand, visual_instruction):
+        """
+        Fortune 500 스타일의 '덩어리감'과 '멀티 컬러'를 살리기 위한 프롬프트
+        """
+        # 색상 팔레트를 문자열로 변환하여 DALL-E에게 모든 색을 쓰라고 강제함
+        colors_str = ", ".join(color_palette) if color_palette else "Black and Dark Grey"
+        
+        prompt = f"""
+Generate a professional corporate logo design for "{brand_name}".
+
+[Visual Construction]
+{visual_instruction}
+
+[Typography]
+- Brand Name: "{brand_name}"
+- Font Style: Bold, Heavy, Sans-Serif (like Helvetica Bold, Impact, or Futura).
+- Position: To the right of the symbol or below the symbol.
+- Text Color: Dark Grey or Black (unless specified otherwise).
+
+[Style Rules - STRICT]
+1. SOLID SHAPES ONLY: Do NOT use thin outlines, sketches, or wireframes. Use filled, solid geometric blocks (Mass).
+2. COLORS: Use exactly these colors: [{colors_str}]. Do NOT blend them. Keep each color distinct and separated.
+3. FLAT VECTOR: No shadows, no bevels, no 3D rendering, no lighting effects, no gradients.
+4. COMPOSITION: Single logo centered on a pure white background. Wide margins.
+5. NO NOISE: No background patterns, no decorative swirls, no realistic photo details, no artistic brush strokes.
+
+The result should look like a trademarked SVG file of a Fortune 500 company (similar style to {benchmark_brand}).
+'''
+
+brand_01 & output_01

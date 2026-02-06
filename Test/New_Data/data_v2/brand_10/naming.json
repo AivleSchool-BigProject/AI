@@ -1,0 +1,50 @@
+{
+  "result": {
+    "name1": "Zenstay",
+    "name2": "Calmra",
+    "name3": "Serenara"
+  },
+  "state_context": {
+    "candidates": [
+      {
+        "id": 0,
+        "brand_name": "Zenstay",
+        "name_rationale": "Zenstay는 'Zen'의 평화롭고 명상적인 속성과 'Stay'가 주는 안식의 의미를 결합하여 고객이 일상에서 벗어나 휴식을 취할 수 있는 공간을 제공한다는 것을 전달합니다.",
+        "qa_analysis_summary": "Q&A 데이터를 분석한 결과, 고객은 심플하면서도 깊은 안도감을 주는 브랜드명을 원했습니다. Zenstay는 이러한 요구를 충족하며, 기존의 값싼 여행사의 느낌을 피할 수 있는 상징적인 이름입니다.",
+        "qa_keywords": [
+          "Symbolic",
+          "Short",
+          "Simple",
+          "Trustworthy",
+          "Exhale"
+        ]
+      },
+      {
+        "id": 1,
+        "brand_name": "Calmra",
+        "name_rationale": "Calmra는 'Calm'과 'Aurora'의 결합으로, 조용하고 고요한 휴식을 브랜드의 핵심 메시지로 전달합니다.",
+        "qa_analysis_summary": "심플하면서도 신뢰감 있는 느낌을 강조하는 것을 목표로 했으며, Calmra는 짧고 강렬한 인상을 주면서도 고객에게 깊은 안도감을 줍니다.",
+        "qa_keywords": [
+          "Simple",
+          "Symbolic",
+          "Short",
+          "Trustworthy",
+          "Exhale"
+        ]
+      },
+      {
+        "id": 2,
+        "brand_name": "Serenara",
+        "name_rationale": "Serenara는 'Serene'과 'Ara', 즉 고요함과 탐험을 의미하는 단어 조합으로, 새로운 평화를 찾는 여행의 분위기를 나타냅니다.",
+        "qa_analysis_summary": "고객이 편안함과 안전함을 느낄 수 있도록 하며, 심플하면서도 강렬한 인상을 주기 위해 'Serenara'를 제안했습니다. 또한 기존의 저가 패키지의 느낌을 피하고 심미적인 가치를 중시했습니다.",
+        "qa_keywords": [
+          "Symbolic",
+          "Short",
+          "Simple",
+          "Trustworthy",
+          "Exhale"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "result": {
+    "name1": "ZenHaven",
+    "name2": "SerenRest",
+    "name3": "CalmVibe"
+  },
+  "state_context": {
+    "candidates": [
+      {
+        "id": 0,
+        "brand_name": "ZenHaven",
+        "name_rationale": "ZenHaven은 디지털 디톡스와 마음 챙김 여행을 통해 제공하는 깊은 안도감을 상징적으로 표현합니다. 'Zen'은 심플하면서도 신뢰감을 주는 느낌을 강조하며, 'Haven'은 휴식과 안전한 피난처를 의미하여 브랜드의 핵심 가치를 잘 나타냅니다.",
+        "qa_analysis_summary": "고객에게 신뢰감을 주는 심플한 영어 이름을 선호하고 있으며, 깊은 안도감을 느끼게 하는 이름을 원한다는 점에서 'ZenHaven'은 적합합니다. 또한, 네이밍 스타일에서 상징적이고 짧은 이름을 선호하는 것과도 일치합니다.",
+        "qa_keywords": [
+          "Symbolic",
+          "짧고 강렬",
+          "영어 기반",
+          "심플한",
+          "신뢰감 있는"
+        ]
+      },
+      {
+        "id": 1,
+        "brand_name": "SerenRest",
+        "name_rationale": "SerenRest는 고요함(Serenity)과 휴식(Rest)을 결합한 단어로, 사용자가 느껴야 할 안도감을 잘 표현합니다. 이 이름은 단순하면서도 브랜드의 차별화된 가치를 함축적으로 전달합니다.",
+        "qa_analysis_summary": "심플하면서도 신뢰감을 주는 이름을 찾고 있으며, 'SerenRest'는 그 기대에 부응합니다. 사용자가 이름을 듣고 즉각적인 안도감을 느낄 수 있도록 설계되었습니다.",
+        "qa_keywords": [
+          "Symbolic",
+          "짧고 강렬",
+          "영어 기반",
+          "심플한",
+          "깊은 안도감"
+        ]
+      },
+      {
+        "id": 2,
+        "brand_name": "CalmVibe",
+        "name_rationale": "CalmVibe는 마음을 차분하게 하고 평온한 느낌을 전달하는 이름입니다. 이 이름은 이름만으로도 안정감과 신뢰를 주며, 고객이 디지털 디톡스와 여행을 통해 느낄 수 있는 감정을 함축적으로 담고 있습니다.",
+        "qa_analysis_summary": "이름에서 심플함과 신뢰감이 느껴져야 한다는 점을 반영하여, CalmVibe는 이러한 요소를 충족시킵니다. 짧고 강렬한 표현을 통해 브랜드가 전하고자 하는 메시지를 명확히 합니다.",
+        "qa_keywords": [
+          "Symbolic",
+          "짧고 강렬",
+          "영어 기반",
+          "심플한",
+          "신뢰감 있는"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "result": {
+    "name1": "Lumina",
+    "name2": "Serene",
+    "name3": "Calmora"
+  },
+  "state_context": {
+    "candidates": [
+      {
+        "id": 0,
+        "brand_name": "Lumina",
+        "name_rationale": "Lumina는 '빛'을 의미하며, 고요하고 안온한 마음의 빛을 상징합니다. 디지털 디톡스와 마음 챙김 여행을 통해 새로운 시작, 밝은 휴식을 제안하는 브랜드의 가치를 상징적으로 잘 드러냅니다.",
+        "qa_analysis_summary": "고객이 브랜드 이름을 듣고 느끼길 원하는 감정인 깊은 안도감을 전달하며, 심플하면서 신뢰감 있는 이름을 선호한다는 Q&A 결과를 반영하였습니다. 또한, 영어 기반의 짧고 강렬한 이름이 요구되었기 때문에 Lumina를 제안합니다.",
+        "qa_keywords": [
+          "Symbolic",
+          "Simple",
+          "Trustworthy",
+          "English",
+          "Exhale"
+        ]
+      },
+      {
+        "id": 1,
+        "brand_name": "Serene",
+        "name_rationale": "Serene는 고요함과 평온을 의미하는 단어로, 고객이 브랜드를 통해 경험하게 될 여유롭고 조용한 휴식을 잘 묘사합니다. 디지털의 소란에서 벗어나 마음챙김의 세계로 들어가는 깊은 안도감을 주는 이름입니다.",
+        "qa_analysis_summary": "Q&A에서는 '심플하고 신뢰감 있는' 첫인상을 중시하고 있으며, 고객이 안도감을 느낄 수 있는 이름을 원하고 있습니다. 그리고 .com 도메인을 선호하되 필수는 아니므로 적합한 옵션입니다.",
+        "qa_keywords": [
+          "Symbolic",
+          "Simple",
+          "Trustworthy",
+          "Exhale",
+          "English"
+        ]
+      },
+      {
+        "id": 2,
+        "brand_name": "Calmora",
+        "name_rationale": "Calmora는 'Calm'과 'Aura'의 결합어로, 고요함의 아우라를 전달합니다. 이 브랜드가 제공하는 심리적 휴식과 여행에서의 평온을 지속적으로 상기시킵니다.",
+        "qa_analysis_summary": "이름은 고객에게 깊은 안도감을 주도록 설계되었고, 심플하면서도 상징적인 이미지를 전달할 수 있도록 고려하였습니다. 'Calm'은 이미 검증된 효과적인 안도감 연상 단어입니다.",
+        "qa_keywords": [
+          "Symbolic",
+          "Calm",
+          "Exhale",
+          "Simple",
+          "Trustworthy"
+        ]
+      }
+    ]
+  }
+}

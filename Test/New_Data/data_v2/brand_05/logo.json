@@ -1,0 +1,47 @@
+{
+  "result": {
+    "logo1_url": null,
+    "logo2_url": null,
+    "logo3_url": null
+  },
+  "state_context": {
+    "candidates": [
+      {
+        "id": 0,
+        "logo_image_url": null,
+        "logo_concept": "왼쪽에 작은 심볼을 배치하여 안정감과 신뢰를 부여하고 우측에는 브랜드 이름을 강조한 구조로, 현대인의 안식처로서 PaxPoint의 역할을 표현합니다.",
+        "logo_rationale": "",
+        "qa_analysis_summary": "",
+        "qa_keywords": [],
+        "color_palette": [
+          "#0F9D58",
+          "#B0A57E"
+        ]
+      },
+      {
+        "id": 1,
+        "logo_image_url": null,
+        "logo_concept": "글자 내에서 그래픽 요소를 통합하여 브랜드 통일성을 강조하고, 자연과의 연결성을 시사합니다.",
+        "logo_rationale": "",
+        "qa_analysis_summary": "",
+        "qa_keywords": [],
+        "color_palette": [
+          "#B0A57E",
+          "#0F9D58"
+        ]
+      },
+      {
+        "id": 2,
+        "logo_image_url": null,
+        "logo_concept": "상단에 배치된 작은 심볼은 디지털 디톡스를 상징하며, 아래의 텍스트는 사용자 중심의 휴식 공간임을 나타냅니다.",
+        "logo_rationale": "",
+        "qa_analysis_summary": "",
+        "qa_keywords": [],
+        "color_palette": [
+          "#B0A57E",
+          "#0F9D58"
+        ]
+      }
+    ]
+  }
+}

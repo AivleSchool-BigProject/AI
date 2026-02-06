@@ -1,0 +1,47 @@
+{
+  "result": {
+    "logo1_url": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-wQVNtTE1Oeqs5FjNepbX1ZGx/user-CepdD55JOjdjogNeVAijyOwa/img-eGu39J7Wdohhlocy7NOj9vru.png?st=2026-02-05T05%3A09%3A39Z&se=2026-02-05T07%3A09%3A39Z&sp=r&sv=2026-02-06&sr=b&rscd=inline&rsct=image/png&skoid=f1dafa11-a0c2-4092-91d4-10981fbda051&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-02-04T22%3A08%3A33Z&ske=2026-02-05T22%3A08%3A33Z&sks=b&skv=2026-02-06&sig=FOajqvceaFDIZN4HBo2LH3/8n/w/jvaRtadLJbjUm04%3D",
+    "logo2_url": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-wQVNtTE1Oeqs5FjNepbX1ZGx/user-CepdD55JOjdjogNeVAijyOwa/img-sNqvqvJzUu2j3ds2I69m16jq.png?st=2026-02-05T05%3A10%3A08Z&se=2026-02-05T07%3A10%3A08Z&sp=r&sv=2026-02-06&sr=b&rscd=inline&rsct=image/png&skoid=13da7400-b3f7-4f8c-9cba-908fecbd114c&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-02-04T22%3A25%3A30Z&ske=2026-02-05T22%3A25%3A30Z&sks=b&skv=2026-02-06&sig=M%2BMRyTfK6lWvIBDirmXYoEULr45QDwUYM0FEF/qaX%2B0%3D",
+    "logo3_url": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-wQVNtTE1Oeqs5FjNepbX1ZGx/user-CepdD55JOjdjogNeVAijyOwa/img-w4kxBw32qeabJ5KJmGpogtWf.png?st=2026-02-05T05%3A10%3A38Z&se=2026-02-05T07%3A10%3A38Z&sp=r&sv=2026-02-06&sr=b&rscd=inline&rsct=image/png&skoid=8b33a531-2df9-46a3-bc02-d4b1430a422c&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-02-04T21%3A23%3A07Z&ske=2026-02-05T21%3A23%3A07Z&sks=b&skv=2026-02-06&sig=o1QNHxfLj0/8sjlGAUc2fwKdC3rTDOCmRUQCO0IAq0Y%3D"
+  },
+  "state_context": {
+    "candidates": [
+      {
+        "id": 0,
+        "logo_image_url": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-wQVNtTE1Oeqs5FjNepbX1ZGx/user-CepdD55JOjdjogNeVAijyOwa/img-eGu39J7Wdohhlocy7NOj9vru.png?st=2026-02-05T05%3A09%3A39Z&se=2026-02-05T07%3A09%3A39Z&sp=r&sv=2026-02-06&sr=b&rscd=inline&rsct=image/png&skoid=f1dafa11-a0c2-4092-91d4-10981fbda051&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-02-04T22%3A08%3A33Z&ske=2026-02-05T22%3A08%3A33Z&sks=b&skv=2026-02-06&sig=FOajqvceaFDIZN4HBo2LH3/8n/w/jvaRtadLJbjUm04%3D",
+        "logo_concept": "왼쪽에 작은 심볼을 배치하여 깔끔함과 신뢰감을 주며, 텍스트가 중심인 형태로 정보를 명확히 전달합니다.",
+        "logo_rationale": "",
+        "qa_analysis_summary": "",
+        "qa_keywords": [],
+        "color_palette": [
+          "#4CAF50",
+          "#D4A373"
+        ]
+      },
+      {
+        "id": 1,
+        "logo_image_url": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-wQVNtTE1Oeqs5FjNepbX1ZGx/user-CepdD55JOjdjogNeVAijyOwa/img-sNqvqvJzUu2j3ds2I69m16jq.png?st=2026-02-05T05%3A10%3A08Z&se=2026-02-05T07%3A10%3A08Z&sp=r&sv=2026-02-06&sr=b&rscd=inline&rsct=image/png&skoid=13da7400-b3f7-4f8c-9cba-908fecbd114c&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-02-04T22%3A25%3A30Z&ske=2026-02-05T22%3A25%3A30Z&sks=b&skv=2026-02-06&sig=M%2BMRyTfK6lWvIBDirmXYoEULr45QDwUYM0FEF/qaX%2B0%3D",
+        "logo_concept": "글자 속에 자연의 이미지를 반영하여 모든 요소가 하나로 어우러진 느낌을 줍니다. 특히 'i'의 점을 별 모양으로 대체하여 독창성을 더했습니다.",
+        "logo_rationale": "",
+        "qa_analysis_summary": "",
+        "qa_keywords": [],
+        "color_palette": [
+          "#4CAF50",
+          "#D4A373"
+        ]
+      },
+      {
+        "id": 2,
+        "logo_image_url": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-wQVNtTE1Oeqs5FjNepbX1ZGx/user-CepdD55JOjdjogNeVAijyOwa/img-w4kxBw32qeabJ5KJmGpogtWf.png?st=2026-02-05T05%3A10%3A38Z&se=2026-02-05T07%3A10%3A38Z&sp=r&sv=2026-02-06&sr=b&rscd=inline&rsct=image/png&skoid=8b33a531-2df9-46a3-bc02-d4b1430a422c&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-02-04T21%3A23%3A07Z&ske=2026-02-05T21%3A23%3A07Z&sks=b&skv=2026-02-06&sig=o1QNHxfLj0/8sjlGAUc2fwKdC3rTDOCmRUQCO0IAq0Y%3D",
+        "logo_concept": "심볼을 상단에 작게 배치하여 전체적인 균형감을 내면서 모던한 세로형 스타일을 나타냅니다. 텍스트가 명확하게 강조됩니다.",
+        "logo_rationale": "",
+        "qa_analysis_summary": "",
+        "qa_keywords": [],
+        "color_palette": [
+          "#4CAF50",
+          "#D4A373"
+        ]
+      }
+    ]
+  }
+}

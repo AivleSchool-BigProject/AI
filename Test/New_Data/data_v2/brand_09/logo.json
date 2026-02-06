@@ -1,0 +1,47 @@
+{
+  "result": {
+    "logo1_url": null,
+    "logo2_url": null,
+    "logo3_url": null
+  },
+  "state_context": {
+    "candidates": [
+      {
+        "id": 0,
+        "logo_image_url": null,
+        "logo_concept": "왼쪽에 작은 심볼을 배치하고 오른쪽에 브랜드명을 두어 안정감과 명확성을 제공하는 디자인입니다. 이 구성이 ‘쉼의 공간’을 나타내며, 번아웃을 해소하는 휴식의 장소를 전달합니다.",
+        "logo_rationale": "",
+        "qa_analysis_summary": "",
+        "qa_keywords": [],
+        "color_palette": [
+          "#3D5A40",
+          "#C2B280"
+        ]
+      },
+      {
+        "id": 1,
+        "logo_image_url": null,
+        "logo_concept": "텍스트 내부의 디자인 변화를 통해 일체감을 줍니다. 특정 문자의 형태적 변형을 통해 자연의 느낌을 강조, 조용한 쉼터를 암시합니다.",
+        "logo_rationale": "",
+        "qa_analysis_summary": "",
+        "qa_keywords": [],
+        "color_palette": [
+          "#3D5A40",
+          "#C2B280"
+        ]
+      },
+      {
+        "id": 2,
+        "logo_image_url": null,
+        "logo_concept": "상단에 작은 심볼을 두고 그 아래에 브랜드명을 배치하여, 자연과 닮은 모던함을 전달합니다. 도심 속 안식처를 상징합니다.",
+        "logo_rationale": "",
+        "qa_analysis_summary": "",
+        "qa_keywords": [],
+        "color_palette": [
+          "#3D5A40",
+          "#C2B280"
+        ]
+      }
+    ]
+  }
+}

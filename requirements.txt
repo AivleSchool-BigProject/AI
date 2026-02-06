@@ -1,0 +1,6 @@
+python-dotenv
+openai
+torch
+transformers
+sentence-transformers
+pillow

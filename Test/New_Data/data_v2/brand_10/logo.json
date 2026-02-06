@@ -1,0 +1,46 @@
+{
+  "result": {
+    "logo1_url": null,
+    "logo2_url": null,
+    "logo3_url": null
+  },
+  "state_context": {
+    "candidates": [
+      {
+        "id": 0,
+        "logo_image_url": null,
+        "logo_concept": "왼쪽에 견고한 심볼을 배치하여 신뢰감을 주는 구성으로, Calmra의 본질적 가치를 상징합니다.",
+        "logo_rationale": "",
+        "qa_analysis_summary": "",
+        "qa_keywords": [],
+        "color_palette": [
+          "#0F2027"
+        ]
+      },
+      {
+        "id": 1,
+        "logo_image_url": null,
+        "logo_concept": "글자 속에 심볼을 숨겨 일체감을 주는 구성으로, Calmra의 추상적 개념을 전달합니다.",
+        "logo_rationale": "",
+        "qa_analysis_summary": "",
+        "qa_keywords": [],
+        "color_palette": [
+          "#0F2027",
+          "#E1C699"
+        ]
+      },
+      {
+        "id": 2,
+        "logo_image_url": null,
+        "logo_concept": "심볼을 상단에 작게 배치한 모던한 구성으로, Calmra의 조용한 멈춤의 순간을 상징합니다.",
+        "logo_rationale": "",
+        "qa_analysis_summary": "",
+        "qa_keywords": [],
+        "color_palette": [
+          "#0F2027",
+          "#A67F46"
+        ]
+      }
+    ]
+  }
+}

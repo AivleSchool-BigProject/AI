@@ -1,0 +1,114 @@
+{
+  "candidates": [
+    {
+      "candidate_id": 0,
+      "analysis": {
+        "design_style": "Flat/Minimalist",
+        "color_preferences": [
+          "Blue",
+          "Navy"
+        ],
+        "symbol_direction": "The logo should incorporate elements that relate to travel and rejuvenation, such as an airplane, compass, travel bag, and spring flowers. These symbols are intended to evoke a sense of exploration and freshness, aligning with the brand's identity as a platform for personalized and convenient travel experiences."
+      },
+      "output": {
+        "logo_concept": "하늘을 나는 비행기의 실루엣과 자유로운 구름을 조합하여 여행의 시작과 자유로움을 상징합니다.",
+        "design_guidelines": "비행기의 실루엣은 단순하면서도 상징적으로 그려야 하며, 주변의 구름은 부드러운 곡선을 사용하여 자유롭게 표현합니다. 시원한 분위기를 강조하기 위해 색감은 연한 블루 계열로 선정합니다.",
+        "color_palette": [
+          "#87CEEB",
+          "#4682B4",
+          "#B0E0E6"
+        ],
+        "dalle_prompt": "Create a professional logo for BluueWave. Style: Minimalist, flat. Colors: Light blue, steel blue, powder blue. Elements: Airplane silhouette with soft, fluffy clouds to symbolize freedom and beginnings.",
+        "logo_image_url": null,
+        "logo_image_path": null
+      }
+    },
+    {
+      "candidate_id": 1,
+      "analysis": {
+        "design_style": "Flat/Minimalist",
+        "color_preferences": [
+          "Blue",
+          "Navy"
+        ],
+        "symbol_direction": "The logo should incorporate elements that relate to travel and rejuvenation, such as an airplane, compass, travel bag, and spring flowers. These symbols are intended to evoke a sense of exploration and freshness, aligning with the brand's identity as a platform for personalized and convenient travel experiences."
+      },
+      "output": {
+        "logo_concept": "컴퍼스와 파도의 결합으로 방향성과 자연스러운 여행을 표시합니다.",
+        "design_guidelines": "컴퍼스의 날카로운 형태와 파도의 물결을 조합하여 신선하고 활기찬 느낌을 전달합니다. 두 요소의 의외성을 강조하되 밸런스를 유지해야 합니다.",
+        "color_palette": [
+          "#1E3A8A",
+          "#1F75FE",
+          "#E1EFFF"
+        ],
+        "dalle_prompt": "Create a professional logo for BluueWave. Style: Modern, sleek. Colors: Dark navy, sky blue, light sky blue. Elements: Compass combined with wave patterns, emphasizing direction and natural flow.",
+        "logo_image_url": null,
+        "logo_image_path": null
+      }
+    },
+    {
+      "candidate_id": 2,
+      "analysis": {
+        "design_style": "Flat/Minimalist",
+        "color_preferences": [
+          "Blue",
+          "Navy"
+        ],
+        "symbol_direction": "The logo should incorporate elements that relate to travel and rejuvenation, such as an airplane, compass, travel bag, and spring flowers. These symbols are intended to evoke a sense of exploration and freshness, aligning with the brand's identity as a platform for personalized and convenient travel experiences."
+      },
+      "output": {
+        "logo_concept": "여행 가방 모양과 꽃이 피어나는 이미지를 결합하여 신선한 시작과 재충전을 상징합니다.",
+        "design_guidelines": "여행 가방은 단순한 실루엣으로 만들어야 하며, 그 위에 봄꽃들이 펼쳐지는 이미지를 디자인합니다. 꽃은 산뜻한 연한 색으로 표현해 활기를 넣습니다.",
+        "color_palette": [
+          "#0047AB",
+          "#5C9EAD",
+          "#F2C649"
+        ],
+        "dalle_prompt": "Create a professional logo for BluueWave. Style: Flat, vibrant. Colors: Royal blue, cadet blue, marigold. Elements: Silhouette of a travel bag with blooming spring flowers, symbolizing fresh starts and rejuvenation.",
+        "logo_image_url": null,
+        "logo_image_path": null
+      }
+    }
+  ],
+  "selected_index": null,
+  "selected_result": {
+    "analysis": {
+      "design_style": "Flat/Minimalist",
+      "color_preferences": [
+        "Blue",
+        "Navy"
+      ],
+      "symbol_direction": "The logo should incorporate elements that relate to travel and rejuvenation, such as an airplane, compass, travel bag, and spring flowers. These symbols are intended to evoke a sense of exploration and freshness, aligning with the brand's identity as a platform for personalized and convenient travel experiences."
+    },
+    "output": {
+      "logo_concept": "컴퍼스와 파도의 결합으로 방향성과 자연스러운 여행을 표시합니다.",
+      "design_guidelines": "컴퍼스의 날카로운 형태와 파도의 물결을 조합하여 신선하고 활기찬 느낌을 전달합니다. 두 요소의 의외성을 강조하되 밸런스를 유지해야 합니다.",
+      "color_palette": [
+        "#1E3A8A",
+        "#1F75FE",
+        "#E1EFFF"
+      ],
+      "dalle_prompt": "Create a professional logo for BluueWave. Style: Modern, sleek. Colors: Dark navy, sky blue, light sky blue. Elements: Compass combined with wave patterns, emphasizing direction and natural flow.",
+      "logo_image_url": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-wQVNtTE1Oeqs5FjNepbX1ZGx/user-CepdD55JOjdjogNeVAijyOwa/img-md4XgDtVR3ga4hwgk9i6iAu2.png?st=2026-01-29T14%3A33%3A59Z&se=2026-01-29T16%3A33%3A59Z&sp=r&sv=2024-08-04&sr=b&rscd=inline&rsct=image/png&skoid=7daae675-7b42-4e2e-ab4c-8d8419a28d99&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-01-29T12%3A29%3A43Z&ske=2026-01-30T12%3A29%3A43Z&sks=b&skv=2024-08-04&sig=nhXvpV4qp3oaQLznWANc%2BaT84Q5Tp5mB9a2BW93HKgA%3D",
+      "logo_image_path": "generated_logos\\test_brand_1to5_logo_1_20260130_003358.png",
+      "logo_images": [
+        {
+          "image_id": 0,
+          "url": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-wQVNtTE1Oeqs5FjNepbX1ZGx/user-CepdD55JOjdjogNeVAijyOwa/img-5K1ClHgMqo7LsHJCRKq9UobU.png?st=2026-01-29T14%3A33%3A39Z&se=2026-01-29T16%3A33%3A39Z&sp=r&sv=2024-08-04&sr=b&rscd=inline&rsct=image/png&skoid=13da7400-b3f7-4f8c-9cba-908fecbd114c&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-01-29T15%3A33%3A39Z&ske=2026-01-30T15%3A33%3A39Z&sks=b&skv=2024-08-04&sig=bpQ/TSbfzWtRpF6OPbvqXLOmHVZLIRWKs2kdIApbmg8%3D",
+          "path": "generated_logos\\test_brand_1to5_logo_0_20260130_003338.png"
+        },
+        {
+          "image_id": 1,
+          "url": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-wQVNtTE1Oeqs5FjNepbX1ZGx/user-CepdD55JOjdjogNeVAijyOwa/img-md4XgDtVR3ga4hwgk9i6iAu2.png?st=2026-01-29T14%3A33%3A59Z&se=2026-01-29T16%3A33%3A59Z&sp=r&sv=2024-08-04&sr=b&rscd=inline&rsct=image/png&skoid=7daae675-7b42-4e2e-ab4c-8d8419a28d99&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-01-29T12%3A29%3A43Z&ske=2026-01-30T12%3A29%3A43Z&sks=b&skv=2024-08-04&sig=nhXvpV4qp3oaQLznWANc%2BaT84Q5Tp5mB9a2BW93HKgA%3D",
+          "path": "generated_logos\\test_brand_1to5_logo_1_20260130_003358.png"
+        },
+        {
+          "image_id": 2,
+          "url": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-wQVNtTE1Oeqs5FjNepbX1ZGx/user-CepdD55JOjdjogNeVAijyOwa/img-pRhA1K0iXnYsjjSCpPihaFMY.png?st=2026-01-29T14%3A34%3A19Z&se=2026-01-29T16%3A34%3A19Z&sp=r&sv=2024-08-04&sr=b&rscd=inline&rsct=image/png&skoid=13da7400-b3f7-4f8c-9cba-908fecbd114c&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-01-29T15%3A34%3A19Z&ske=2026-01-30T15%3A34%3A19Z&sks=b&skv=2024-08-04&sig=IXNzoWpwYIRnXu84DlincKBgPPPAyRApyd%2BZtMD4Xgo%3D",
+          "path": "generated_logos\\test_brand_1to5_logo_2_20260130_003419.png"
+        }
+      ],
+      "selected_image_index": 1
+    }
+  }
+}

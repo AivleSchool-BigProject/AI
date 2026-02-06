@@ -1,0 +1,3 @@
+[DONE] saved_compact=C:\Users\User\Desktop\Consistency\Log\Compact\brand_consistency_compact.json
+[DONE] saved_debug=C:\Users\User\Desktop\Consistency\Log\Debug\brand_consistency_Debug.json
+[DONE] saved_log=C:\Users\User\Desktop\Consistency\Log\Debug\brand_consistency_Debug.log.txt

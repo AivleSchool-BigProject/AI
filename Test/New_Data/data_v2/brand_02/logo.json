@@ -1,0 +1,47 @@
+{
+  "result": {
+    "logo1_url": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-wQVNtTE1Oeqs5FjNepbX1ZGx/user-CepdD55JOjdjogNeVAijyOwa/img-wxAJRJpW1fsZeaIAftb1GjXl.png?st=2026-02-05T04%3A44%3A01Z&se=2026-02-05T06%3A44%3A01Z&sp=r&sv=2026-02-06&sr=b&rscd=inline&rsct=image/png&skoid=77e5a8ec-6bd1-4477-8afc-16703a64f029&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-02-04T22%3A08%3A49Z&ske=2026-02-05T22%3A08%3A49Z&sks=b&skv=2026-02-06&sig=mehaGHmDZrvayj2yPybSj92VtHFjxsMBLFMfxNHkMkw%3D",
+    "logo2_url": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-wQVNtTE1Oeqs5FjNepbX1ZGx/user-CepdD55JOjdjogNeVAijyOwa/img-kd3f95YCK7UMjq11b1GXP8j5.png?st=2026-02-05T04%3A44%3A29Z&se=2026-02-05T06%3A44%3A29Z&sp=r&sv=2026-02-06&sr=b&rscd=inline&rsct=image/png&skoid=77e5a8ec-6bd1-4477-8afc-16703a64f029&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-02-04T22%3A59%3A21Z&ske=2026-02-05T22%3A59%3A21Z&sks=b&skv=2026-02-06&sig=7hOZYCG4rqxBrbLh45TR/noq27sfMKDOgaHvyG5NFDg%3D",
+    "logo3_url": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-wQVNtTE1Oeqs5FjNepbX1ZGx/user-CepdD55JOjdjogNeVAijyOwa/img-KrhuijJZXm3vl6aaLwjW3F7b.png?st=2026-02-05T04%3A44%3A58Z&se=2026-02-05T06%3A44%3A58Z&sp=r&sv=2026-02-06&sr=b&rscd=inline&rsct=image/png&skoid=f1dafa11-a0c2-4092-91d4-10981fbda051&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-02-04T22%3A17%3A57Z&ske=2026-02-05T22%3A17%3A57Z&sks=b&skv=2026-02-06&sig=znmsMENaicEmzdW1O0PCLf2/xP85sBpX0ZxzCdEwMMw%3D"
+  },
+  "state_context": {
+    "candidates": [
+      {
+        "id": 0,
+        "logo_image_url": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-wQVNtTE1Oeqs5FjNepbX1ZGx/user-CepdD55JOjdjogNeVAijyOwa/img-wxAJRJpW1fsZeaIAftb1GjXl.png?st=2026-02-05T04%3A44%3A01Z&se=2026-02-05T06%3A44%3A01Z&sp=r&sv=2026-02-06&sr=b&rscd=inline&rsct=image/png&skoid=77e5a8ec-6bd1-4477-8afc-16703a64f029&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-02-04T22%3A08%3A49Z&ske=2026-02-05T22%3A08%3A49Z&sks=b&skv=2026-02-06&sig=mehaGHmDZrvayj2yPybSj92VtHFjxsMBLFMfxNHkMkw%3D",
+        "logo_concept": "강렬하고 직선적인 산세리프 폰트로 진정성을 나타내며, 디지털 디톡스의 안식 개념을 강조합니다.",
+        "logo_rationale": "",
+        "qa_analysis_summary": "",
+        "qa_keywords": [],
+        "color_palette": [
+          "#2B6D4D",
+          "#8E8256"
+        ]
+      },
+      {
+        "id": 1,
+        "logo_image_url": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-wQVNtTE1Oeqs5FjNepbX1ZGx/user-CepdD55JOjdjogNeVAijyOwa/img-kd3f95YCK7UMjq11b1GXP8j5.png?st=2026-02-05T04%3A44%3A29Z&se=2026-02-05T06%3A44%3A29Z&sp=r&sv=2026-02-06&sr=b&rscd=inline&rsct=image/png&skoid=77e5a8ec-6bd1-4477-8afc-16703a64f029&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-02-04T22%3A59%3A21Z&ske=2026-02-05T22%3A59%3A21Z&sks=b&skv=2026-02-06&sig=7hOZYCG4rqxBrbLh45TR/noq27sfMKDOgaHvyG5NFDg%3D",
+        "logo_concept": "자연과 조화된 현대적인 워드마크로, 자연의 웰커밍함을 상징합니다.",
+        "logo_rationale": "",
+        "qa_analysis_summary": "",
+        "qa_keywords": [],
+        "color_palette": [
+          "#3C6E71",
+          "#D9D5A1"
+        ]
+      },
+      {
+        "id": 2,
+        "logo_image_url": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-wQVNtTE1Oeqs5FjNepbX1ZGx/user-CepdD55JOjdjogNeVAijyOwa/img-KrhuijJZXm3vl6aaLwjW3F7b.png?st=2026-02-05T04%3A44%3A58Z&se=2026-02-05T06%3A44%3A58Z&sp=r&sv=2026-02-06&sr=b&rscd=inline&rsct=image/png&skoid=f1dafa11-a0c2-4092-91d4-10981fbda051&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-02-04T22%3A17%3A57Z&ske=2026-02-05T22%3A17%3A57Z&sks=b&skv=2026-02-06&sig=znmsMENaicEmzdW1O0PCLf2/xP85sBpX0ZxzCdEwMMw%3D",
+        "logo_concept": "절제된 디자인으로, 복잡함에서 벗어난 단순함과 존중을 표현한 워드마크입니다.",
+        "logo_rationale": "",
+        "qa_analysis_summary": "",
+        "qa_keywords": [],
+        "color_palette": [
+          "#3A5A40",
+          "#E8E4C9"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "result": {
+    "logo1_url": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-wQVNtTE1Oeqs5FjNepbX1ZGx/user-CepdD55JOjdjogNeVAijyOwa/img-pnSPSDnoAJjLGQRYGirAxUVv.png?st=2026-02-05T05%3A38%3A38Z&se=2026-02-05T07%3A38%3A38Z&sp=r&sv=2026-02-06&sr=b&rscd=inline&rsct=image/png&skoid=35890473-cca8-4a54-8305-05a39e0bc9c3&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-02-04T22%3A28%3A36Z&ske=2026-02-05T22%3A28%3A36Z&sks=b&skv=2026-02-06&sig=gMMXJ5vp4bM9OvFekkt796IMO8ZIfNwJI/myPCSnsT0%3D",
+    "logo2_url": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-wQVNtTE1Oeqs5FjNepbX1ZGx/user-CepdD55JOjdjogNeVAijyOwa/img-IcQSyqMmoCnAJrB5iJhGGUgZ.png?st=2026-02-05T05%3A39%3A07Z&se=2026-02-05T07%3A39%3A07Z&sp=r&sv=2026-02-06&sr=b&rscd=inline&rsct=image/png&skoid=77e5a8ec-6bd1-4477-8afc-16703a64f029&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-02-04T22%3A32%3A42Z&ske=2026-02-05T22%3A32%3A42Z&sks=b&skv=2026-02-06&sig=SEn9VLCiZdFZIjbLDqlIO/HAVeqpo2G%2B0h6XgZXYsN0%3D",
+    "logo3_url": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-wQVNtTE1Oeqs5FjNepbX1ZGx/user-CepdD55JOjdjogNeVAijyOwa/img-cbEFqeGrurQCj6VLpg4x3vBt.png?st=2026-02-05T05%3A39%3A36Z&se=2026-02-05T07%3A39%3A36Z&sp=r&sv=2026-02-06&sr=b&rscd=inline&rsct=image/png&skoid=35890473-cca8-4a54-8305-05a39e0bc9c3&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-02-04T22%3A54%3A18Z&ske=2026-02-05T22%3A54%3A18Z&sks=b&skv=2026-02-06&sig=uZ/bDGyJ%2B3%2BC9tdVljYvE6fBT1ZjtEd8FkWug0wqlIU%3D"
+  },
+  "state_context": {
+    "candidates": [
+      {
+        "id": 0,
+        "logo_image_url": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-wQVNtTE1Oeqs5FjNepbX1ZGx/user-CepdD55JOjdjogNeVAijyOwa/img-pnSPSDnoAJjLGQRYGirAxUVv.png?st=2026-02-05T05%3A38%3A38Z&se=2026-02-05T07%3A38%3A38Z&sp=r&sv=2026-02-06&sr=b&rscd=inline&rsct=image/png&skoid=35890473-cca8-4a54-8305-05a39e0bc9c3&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-02-04T22%3A28%3A36Z&ske=2026-02-05T22%3A28%3A36Z&sks=b&skv=2026-02-06&sig=gMMXJ5vp4bM9OvFekkt796IMO8ZIfNwJI/myPCSnsT0%3D",
+        "logo_concept": "왼쪽에 견고한 심볼을 배치하여 신뢰감을 주는 구성으로 꾸며질 CalmNest 로고는 프리미엄 브랜드 아이덴티티를 강조합니다. 해당 심볼은 자연속 공간에서의 쉼과 휴식을 상징합니다.",
+        "logo_rationale": "",
+        "qa_analysis_summary": "",
+        "qa_keywords": [],
+        "color_palette": [
+          "#0F9D58",
+          "#FFB300"
+        ]
+      },
+      {
+        "id": 1,
+        "logo_image_url": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-wQVNtTE1Oeqs5FjNepbX1ZGx/user-CepdD55JOjdjogNeVAijyOwa/img-IcQSyqMmoCnAJrB5iJhGGUgZ.png?st=2026-02-05T05%3A39%3A07Z&se=2026-02-05T07%3A39%3A07Z&sp=r&sv=2026-02-06&sr=b&rscd=inline&rsct=image/png&skoid=77e5a8ec-6bd1-4477-8afc-16703a64f029&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-02-04T22%3A32%3A42Z&ske=2026-02-05T22%3A32%3A42Z&sks=b&skv=2026-02-06&sig=SEn9VLCiZdFZIjbLDqlIO/HAVeqpo2G%2B0h6XgZXYsN0%3D",
+        "logo_concept": "글자 속에 심볼을 숨겨 일체감을 주는 이 CalmNest 로고는 디지털 소음을 벗어나 균형을 찾고자 하는 여행의 새로운 패러다임을 상징합니다.",
+        "logo_rationale": "",
+        "qa_analysis_summary": "",
+        "qa_keywords": [],
+        "color_palette": [
+          "#DAA520"
+        ]
+      },
+      {
+        "id": 2,
+        "logo_image_url": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-wQVNtTE1Oeqs5FjNepbX1ZGx/user-CepdD55JOjdjogNeVAijyOwa/img-cbEFqeGrurQCj6VLpg4x3vBt.png?st=2026-02-05T05%3A39%3A36Z&se=2026-02-05T07%3A39%3A36Z&sp=r&sv=2026-02-06&sr=b&rscd=inline&rsct=image/png&skoid=35890473-cca8-4a54-8305-05a39e0bc9c3&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-02-04T22%3A54%3A18Z&ske=2026-02-05T22%3A54%3A18Z&sks=b&skv=2026-02-06&sig=uZ/bDGyJ%2B3%2BC9tdVljYvE6fBT1ZjtEd8FkWug0wqlIU%3D",
+        "logo_concept": "심볼을 상단에 작게 배치해 귀속감을 주는 CalmNest 로고는 늘어놓은 나이테의 단순한 형상으로 지속되는 마음의 여유를 표현합니다.",
+        "logo_rationale": "",
+        "qa_analysis_summary": "",
+        "qa_keywords": [],
+        "color_palette": [
+          "#0F9D58",
+          "#DAA520"
+        ]
+      }
+    ]
+  }
+}

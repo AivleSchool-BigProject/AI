@@ -1,0 +1,47 @@
+{
+  "result": {
+    "logo1_url": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-wQVNtTE1Oeqs5FjNepbX1ZGx/user-CepdD55JOjdjogNeVAijyOwa/img-ykSEVOzBz0b11AO1LaRHuqwx.png?st=2026-02-05T04%3A31%3A03Z&se=2026-02-05T06%3A31%3A03Z&sp=r&sv=2026-02-06&sr=b&rscd=inline&rsct=image/png&skoid=8b33a531-2df9-46a3-bc02-d4b1430a422c&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-02-04T22%3A04%3A26Z&ske=2026-02-05T22%3A04%3A26Z&sks=b&skv=2026-02-06&sig=%2B9y47/KFIbc8wXQQq7fXyx4SnfDRpZhxdx8cjrsX0so%3D",
+    "logo2_url": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-wQVNtTE1Oeqs5FjNepbX1ZGx/user-CepdD55JOjdjogNeVAijyOwa/img-YjXfzsblvRsxKvNJ3YXplJGs.png?st=2026-02-05T04%3A31%3A34Z&se=2026-02-05T06%3A31%3A34Z&sp=r&sv=2026-02-06&sr=b&rscd=inline&rsct=image/png&skoid=f1dafa11-a0c2-4092-91d4-10981fbda051&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-02-04T22%3A28%3A47Z&ske=2026-02-05T22%3A28%3A47Z&sks=b&skv=2026-02-06&sig=72Ncu4XhoYFxD%2Bb9A97VamdDssPJVsNel9xkCTgpQrM%3D",
+    "logo3_url": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-wQVNtTE1Oeqs5FjNepbX1ZGx/user-CepdD55JOjdjogNeVAijyOwa/img-a1yhiPhfr9Y3FAPpqQ2OMrxf.png?st=2026-02-05T04%3A32%3A01Z&se=2026-02-05T06%3A32%3A01Z&sp=r&sv=2026-02-06&sr=b&rscd=inline&rsct=image/png&skoid=35890473-cca8-4a54-8305-05a39e0bc9c3&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-02-05T00%3A03%3A31Z&ske=2026-02-06T00%3A03%3A31Z&sks=b&skv=2026-02-06&sig=VQ7jjWP1WfTgYcHPFfUyyuBVktcXkRXXHuVtm08dQZM%3D"
+  },
+  "state_context": {
+    "candidates": [
+      {
+        "id": 0,
+        "logo_image_url": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-wQVNtTE1Oeqs5FjNepbX1ZGx/user-CepdD55JOjdjogNeVAijyOwa/img-ykSEVOzBz0b11AO1LaRHuqwx.png?st=2026-02-05T04%3A31%3A03Z&se=2026-02-05T06%3A31%3A03Z&sp=r&sv=2026-02-06&sr=b&rscd=inline&rsct=image/png&skoid=8b33a531-2df9-46a3-bc02-d4b1430a422c&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-02-04T22%3A04%3A26Z&ske=2026-02-05T22%3A04%3A26Z&sks=b&skv=2026-02-06&sig=%2B9y47/KFIbc8wXQQq7fXyx4SnfDRpZhxdx8cjrsX0so%3D",
+        "logo_concept": "브랜드가 전하는 자연 속의 평온함을 강조하며, 그린과 브라운의 조화로 자연 친화적인 분위기를 형성합니다.",
+        "logo_rationale": "",
+        "qa_analysis_summary": "",
+        "qa_keywords": [],
+        "color_palette": [
+          "#6BAA75",
+          "#D4A373"
+        ]
+      },
+      {
+        "id": 1,
+        "logo_image_url": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-wQVNtTE1Oeqs5FjNepbX1ZGx/user-CepdD55JOjdjogNeVAijyOwa/img-YjXfzsblvRsxKvNJ3YXplJGs.png?st=2026-02-05T04%3A31%3A34Z&se=2026-02-05T06%3A31%3A34Z&sp=r&sv=2026-02-06&sr=b&rscd=inline&rsct=image/png&skoid=f1dafa11-a0c2-4092-91d4-10981fbda051&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-02-04T22%3A28%3A47Z&ske=2026-02-05T22%3A28%3A47Z&sks=b&skv=2026-02-06&sig=72Ncu4XhoYFxD%2Bb9A97VamdDssPJVsNel9xkCTgpQrM%3D",
+        "logo_concept": "자연과 조화롭게 어우러진 추상적 문 모양으로 개방감을 줍니다.",
+        "logo_rationale": "",
+        "qa_analysis_summary": "",
+        "qa_keywords": [],
+        "color_palette": [
+          "#6BAA75",
+          "#D4A373"
+        ]
+      },
+      {
+        "id": 2,
+        "logo_image_url": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-wQVNtTE1Oeqs5FjNepbX1ZGx/user-CepdD55JOjdjogNeVAijyOwa/img-a1yhiPhfr9Y3FAPpqQ2OMrxf.png?st=2026-02-05T04%3A32%3A01Z&se=2026-02-05T06%3A32%3A01Z&sp=r&sv=2026-02-06&sr=b&rscd=inline&rsct=image/png&skoid=35890473-cca8-4a54-8305-05a39e0bc9c3&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-02-05T00%3A03%3A31Z&ske=2026-02-06T00%3A03%3A31Z&sks=b&skv=2026-02-06&sig=VQ7jjWP1WfTgYcHPFfUyyuBVktcXkRXXHuVtm08dQZM%3D",
+        "logo_concept": "시간의 흐름을 상기시키는 자연의 나이테를 단순화한 도형으로 서정적인 메시지를 전달합니다.",
+        "logo_rationale": "",
+        "qa_analysis_summary": "",
+        "qa_keywords": [],
+        "color_palette": [
+          "#6BAA75",
+          "#D4A373"
+        ]
+      }
+    ]
+  }
+}

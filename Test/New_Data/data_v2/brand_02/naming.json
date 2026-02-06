@@ -1,0 +1,50 @@
+{
+  "result": {
+    "name1": "Serenity",
+    "name2": "Exhale",
+    "name3": "Repose"
+  },
+  "state_context": {
+    "candidates": [
+      {
+        "id": 0,
+        "brand_name": "Serenity",
+        "name_rationale": "Serenity는 진정함과 평온함을 의미하며 여행을 통해 사는 듯한 현지 경험을 제공하는 OO 브랜드의 가치와 잘 맞습니다. 심플하고 신뢰감 있는 초기 인상을 주고, 디지털 독소로부터 벗어나 안도감을 찾고자 하는 고객의 기대를 잘 충족시킵니다.",
+        "qa_analysis_summary": "이름은 심플하고 신뢰감 있는 인상을 줄 수 있어야 하며, 효율을 중시하는 직장인을 대상으로 한 안도감을 주는 느낌을 주기 위해 선택되었습니다. 또한, '투어'나 '티켓'처럼 가벼운 느낌을 피하기에 적합합니다.",
+        "qa_keywords": [
+          "Symbolic",
+          "Short",
+          "Simple",
+          "Trustworthy",
+          "안도감"
+        ]
+      },
+      {
+        "id": 1,
+        "brand_name": "Exhale",
+        "name_rationale": "Exhale는 '숨을 내쉬다'라는 의미로, 여행을 통해 마음의 짐을 덜고 온전히 쉬고 싶은 고객에게 적합합니다. 브랜드의 목표인 깊은 안도감과 현지의 진정한 삶을 경험하게 하는 효과를 담고 있습니다.",
+        "qa_analysis_summary": "이름이 짧고 강렬하면서도, 고객이 느낄 수 있는 감정인 안도감을 잘 전달합니다. 또한, 휴식과 평온을 상징하며, 저가 여행사의 이미지와는 거리가 먼 상징적 의미를 지니고 있습니다.",
+        "qa_keywords": [
+          "Symbolic",
+          "Short",
+          "Trustworthy",
+          "안도감",
+          "Simple"
+        ]
+      },
+      {
+        "id": 2,
+        "brand_name": "Repose",
+        "name_rationale": "Repose는 '휴식'이나 '안정'을 의미하며, 효율 중시 직장인이 디지털 스트레스에서 벗어나 새롭게 경험을 찾고자 하는 욕구를 충족시킵니다. 심플하면서도 신뢰감을 주는 첫인상을 제공하며, 플랫폼의 핵심 가치를 잘 나타냅니다.",
+        "qa_analysis_summary": "이름은 간결하면서도 심플하고 안정적인 느낌을 주어, 고객에게 믿음을 줄 수 있는 특성을 가집니다. 여행의 새로운 패러다임을 제시하는 브랜드로서 깊은 안도감을 주고자 하는 목표에 부합합니다.",
+        "qa_keywords": [
+          "Symbolic",
+          "Short",
+          "Simple",
+          "Trustworthy",
+          "안도감"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "result": {
+    "logo1_url": null,
+    "logo2_url": null,
+    "logo3_url": null
+  },
+  "state_context": {
+    "candidates": [
+      {
+        "id": 0,
+        "logo_image_url": null,
+        "logo_concept": "심플한 심볼이 왼쪽에 배치되어 안정감과 디지털 디톡스를 상징...",
+        "logo_rationale": "",
+        "qa_analysis_summary": "",
+        "qa_keywords": [],
+        "color_palette": [
+          "#5A7D7C",
+          "#B39862"
+        ]
+      },
+      {
+        "id": 1,
+        "logo_image_url": null,
+        "logo_concept": "로고의 텍스트 자체가 심볼이 되는 디자인으로, 여정과 발견을 반영...",
+        "logo_rationale": "",
+        "qa_analysis_summary": "",
+        "qa_keywords": [],
+        "color_palette": [
+          "#5A7D7C"
+        ]
+      },
+      {
+        "id": 2,
+        "logo_image_url": null,
+        "logo_concept": "작은 상징물이 로고 상단에 배치되어 고급스러움을 전달...",
+        "logo_rationale": "",
+        "qa_analysis_summary": "",
+        "qa_keywords": [],
+        "color_palette": [
+          "#B39862"
+        ]
+      }
+    ]
+  }
+}

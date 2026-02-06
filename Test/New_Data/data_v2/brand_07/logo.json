@@ -1,0 +1,46 @@
+{
+  "result": {
+    "logo1_url": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-wQVNtTE1Oeqs5FjNepbX1ZGx/user-CepdD55JOjdjogNeVAijyOwa/img-azCWe414kPCDGYSivogRoYJ3.png?st=2026-02-05T06%3A26%3A42Z&se=2026-02-05T08%3A26%3A42Z&sp=r&sv=2026-02-06&sr=b&rscd=inline&rsct=image/png&skoid=7daae675-7b42-4e2e-ab4c-8d8419a28d99&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-02-04T19%3A58%3A17Z&ske=2026-02-05T19%3A58%3A17Z&sks=b&skv=2026-02-06&sig=bUZMytzJKyXBmyYz903NCn9HNBxsIwOz/Te3dhsRMHg%3D",
+    "logo2_url": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-wQVNtTE1Oeqs5FjNepbX1ZGx/user-CepdD55JOjdjogNeVAijyOwa/img-wbteKKdduszKM7QwO7qwFOeJ.png?st=2026-02-05T06%3A27%3A05Z&se=2026-02-05T08%3A27%3A05Z&sp=r&sv=2026-02-06&sr=b&rscd=inline&rsct=image/png&skoid=13da7400-b3f7-4f8c-9cba-908fecbd114c&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-02-04T22%3A25%3A41Z&ske=2026-02-05T22%3A25%3A41Z&sks=b&skv=2026-02-06&sig=uw9%2BwNOxvvGsqASJMtQNvStCm7YShoEOMGcM/w1vv/M%3D",
+    "logo3_url": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-wQVNtTE1Oeqs5FjNepbX1ZGx/user-CepdD55JOjdjogNeVAijyOwa/img-57sgfCkN96anNjiCKa2IImEl.png?st=2026-02-05T06%3A27%3A31Z&se=2026-02-05T08%3A27%3A31Z&sp=r&sv=2026-02-06&sr=b&rscd=inline&rsct=image/png&skoid=77e5a8ec-6bd1-4477-8afc-16703a64f029&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-02-04T22%3A10%3A17Z&ske=2026-02-05T22%3A10%3A17Z&sks=b&skv=2026-02-06&sig=mrj%2BLIazurIlguf2q8BNmCauNYswkix6dpAM/c8C3Fc%3D"
+  },
+  "state_context": {
+    "candidates": [
+      {
+        "id": 0,
+        "logo_image_url": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-wQVNtTE1Oeqs5FjNepbX1ZGx/user-CepdD55JOjdjogNeVAijyOwa/img-azCWe414kPCDGYSivogRoYJ3.png?st=2026-02-05T06%3A26%3A42Z&se=2026-02-05T08%3A26%3A42Z&sp=r&sv=2026-02-06&sr=b&rscd=inline&rsct=image/png&skoid=7daae675-7b42-4e2e-ab4c-8d8419a28d99&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-02-04T19%3A58%3A17Z&ske=2026-02-05T19%3A58%3A17Z&sks=b&skv=2026-02-06&sig=bUZMytzJKyXBmyYz903NCn9HNBxsIwOz/Te3dhsRMHg%3D",
+        "logo_concept": "왼쪽에 작은 심벌을 배치하여 CalmEase의 프리미엄 휴식과 신뢰감을 나타냅니다. 그린과 골드 색상이 조화를 이루도록 합니다.",
+        "logo_rationale": "",
+        "qa_analysis_summary": "",
+        "qa_keywords": [],
+        "color_palette": [
+          "#347A2A",
+          "#A67B5B"
+        ]
+      },
+      {
+        "id": 1,
+        "logo_image_url": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-wQVNtTE1Oeqs5FjNepbX1ZGx/user-CepdD55JOjdjogNeVAijyOwa/img-wbteKKdduszKM7QwO7qwFOeJ.png?st=2026-02-05T06%3A27%3A05Z&se=2026-02-05T08%3A27%3A05Z&sp=r&sv=2026-02-06&sr=b&rscd=inline&rsct=image/png&skoid=13da7400-b3f7-4f8c-9cba-908fecbd114c&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-02-04T22%3A25%3A41Z&ske=2026-02-05T22%3A25%3A41Z&sks=b&skv=2026-02-06&sig=uw9%2BwNOxvvGsqASJMtQNvStCm7YShoEOMGcM/w1vv/M%3D",
+        "logo_concept": "CalmEase의 텍스트 자체가 심볼이 되어 브랜드 일체감을 줍니다. 'A'를 변화시켜 유니크한 인상을 줍니다.",
+        "logo_rationale": "",
+        "qa_analysis_summary": "",
+        "qa_keywords": [],
+        "color_palette": [
+          "#000000"
+        ]
+      },
+      {
+        "id": 2,
+        "logo_image_url": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-wQVNtTE1Oeqs5FjNepbX1ZGx/user-CepdD55JOjdjogNeVAijyOwa/img-57sgfCkN96anNjiCKa2IImEl.png?st=2026-02-05T06%3A27%3A31Z&se=2026-02-05T08%3A27%3A31Z&sp=r&sv=2026-02-06&sr=b&rscd=inline&rsct=image/png&skoid=77e5a8ec-6bd1-4477-8afc-16703a64f029&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-02-04T22%3A10%3A17Z&ske=2026-02-05T22%3A10%3A17Z&sks=b&skv=2026-02-06&sig=mrj%2BLIazurIlguf2q8BNmCauNYswkix6dpAM/c8C3Fc%3D",
+        "logo_concept": "심플한 상단 심볼이 CalmEase의 자연과 연관된 브랜드 가치를 전달하며 세로로 정렬된 텍스트를 통해 모던함을 강조합니다.",
+        "logo_rationale": "",
+        "qa_analysis_summary": "",
+        "qa_keywords": [],
+        "color_palette": [
+          "#1C1C1C",
+          "#D4AF37"
+        ]
+      }
+    ]
+  }
+}

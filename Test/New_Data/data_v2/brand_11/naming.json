@@ -1,0 +1,50 @@
+{
+  "result": {
+    "name1": "Serenest",
+    "name2": "Easeum",
+    "name3": "Calmun"
+  },
+  "state_context": {
+    "candidates": [
+      {
+        "id": 0,
+        "brand_name": "Serenest",
+        "name_rationale": "Serenity와 Rest의 합성어로, 브랜드가 제공하는 심신의 안식과 재충전의 메시지를 전달합니다. 짧고 함축적인 네이밍으로 현대인들에게 깊은 안도감을 주는 것을 목표로 했습니다.",
+        "qa_analysis_summary": "짧고 강렬한 이름을 선호하며 영어 기반의 심플하고 신뢰감 있는 느낌을 원한다는 답변에 적합한 네이밍입니다. '고요함과 휴식'을 상징하며 고객들에게 깊은 안도감을 제공하고자 했습니다.",
+        "qa_keywords": [
+          "Symbolic",
+          "Short",
+          "Simple",
+          "Trustworthy",
+          "The Exhale"
+        ]
+      },
+      {
+        "id": 1,
+        "brand_name": "Easeum",
+        "name_rationale": "'Ease'와 'Sanctum'을 결합하여 스트레스를 해소하고 안식을 찾는 곳이라는 의미를 부여했습니다. 고객들이 '드디어 쉴 곳을 찾았다는' 느낌을 주는 상징성을 가지고 있습니다.",
+        "qa_analysis_summary": "안도감을 주는 효과적이고 심플한 이름을 찾고 싶은 의도가 반영되었습니다. However, avoiding common travel industry terms was also addressed.",
+        "qa_keywords": [
+          "Symbolic",
+          "Trustworthy",
+          "Comfort",
+          "Deep Relief",
+          "Short"
+        ]
+      },
+      {
+        "id": 2,
+        "brand_name": "Calmun",
+        "name_rationale": "Calm과 Sanctuary의 조합으로 고요하고 신뢰감을 주는 브랜드 이미지를 만들었습니다. 현대 사회에서 휴식과 안식을 찾는 직장인을 위한 최적의 여행 경험을 제공할 수 있는 이름입니다.",
+        "qa_analysis_summary": "안정적이고 신뢰감을 주며 구조적으로 짧고 임팩트 있는 이름을 원한다는 요구를 충족합니다. 고객들에게 '내려놓고 쉴 수 있는' 안정감을 주기 위한 상징적 이름입니다.",
+        "qa_keywords": [
+          "Symbolic",
+          "Calm",
+          "Simple",
+          "Trustworthy",
+          "English Based"
+        ]
+      }
+    ]
+  }
+}

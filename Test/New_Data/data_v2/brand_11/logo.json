@@ -1,0 +1,47 @@
+{
+  "result": {
+    "logo1_url": null,
+    "logo2_url": null,
+    "logo3_url": null
+  },
+  "state_context": {
+    "candidates": [
+      {
+        "id": 0,
+        "logo_image_url": null,
+        "logo_concept": "왼쪽에 작은 심볼을 배치하여 시선을 효과적으로 끌고, Calmun 텍스트로 시각적 안정감을 줍니다.",
+        "logo_rationale": "",
+        "qa_analysis_summary": "",
+        "qa_keywords": [],
+        "color_palette": [
+          "#04724D",
+          "#D4AC0D"
+        ]
+      },
+      {
+        "id": 1,
+        "logo_image_url": null,
+        "logo_concept": "Calmun의 철자 속에 삼각형을 삽입하여 디자인과 기능적 일체감을 나타냅니다.",
+        "logo_rationale": "",
+        "qa_analysis_summary": "",
+        "qa_keywords": [],
+        "color_palette": [
+          "#3C5A49",
+          "#BD8E36"
+        ]
+      },
+      {
+        "id": 2,
+        "logo_image_url": null,
+        "logo_concept": "상단에 작고 단순한 심볼을 추가하여 시각적 중심을 잡아주는 디자인",
+        "logo_rationale": "",
+        "qa_analysis_summary": "",
+        "qa_keywords": [],
+        "color_palette": [
+          "#134E5E",
+          "#E98E00"
+        ]
+      }
+    ]
+  }
+}
