@@ -66,7 +66,7 @@ def diagnosis_node(state: BrandConsultingState) -> BrandConsultingState:
     try:
         print("[Step 1] GPT-4 비즈니스 진단 분석 중...")
         resp = client.chat.completions.create(
-            model="gpt-4o",
+            model="gpt-5.1",
             messages=[
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": user_prompt}

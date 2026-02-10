@@ -80,7 +80,7 @@ def concept_node(state: BrandConsultingState) -> BrandConsultingState:
     try:
         print("[Step 3] GPT-4 컨셉 후보 3개 생성 중...")
         resp = client.chat.completions.create(
-            model="gpt-4o",
+            model="gpt-5.1",
             messages=[
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": user_prompt}

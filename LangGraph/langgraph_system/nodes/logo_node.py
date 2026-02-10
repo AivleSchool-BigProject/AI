@@ -80,7 +80,7 @@ def logo_node(state: BrandConsultingState) -> BrandConsultingState:
     try:
         print("[Step 5] 1단계: GPT-4o 로고 프롬프트 작성 중...")
         resp = client.chat.completions.create(
-            model="gpt-4o",
+            model="gpt-5.1",
             messages=[
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": user_prompt}
