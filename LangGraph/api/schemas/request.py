@@ -144,3 +144,50 @@ class LogoRequest(BaseModel):
           }
         }"""
     )
+# =================================================================
+# [Step 6] 앱 아이콘 (Icon) Request
+# =================================================================
+class IconRequest(BaseModel):
+    """
+    Step 6: 앱 아이콘 요청
+    user_input: Step 6 Q&A 답변
+    context: Step 1-5 누적 브랜드 자산 (Identity, Logo, Color 등)
+    """
+    user_input: Dict[str, Any] = Field(..., description="Step 6 Q&A 답변")
+    context: Dict[str, Any] = Field(..., description="Step 1-5 누적 브랜드 자산")
+
+# =================================================================
+# [Step 7] 모델 (Model) Request
+# =================================================================
+class ModelRequest(BaseModel):
+    """
+    Step 7: 페르소나 모델 요청
+    user_input: Step 7 Q&A 답변
+    context: Step 1-5 누적 브랜드 자산
+    """
+    user_input: Dict[str, Any] = Field(..., description="Step 7 Q&A 답변")
+    context: Dict[str, Any] = Field(..., description="Step 1-5 누적 브랜드 자산")
+
+# =================================================================
+# [Step 8] 제품 연출 (Staging) Request
+# =================================================================
+class StagingRequest(BaseModel):
+    """
+    Step 8: 제품 연출 요청
+    user_input: Step 8 Q&A 답변
+    context: Step 1-5 누적 브랜드 자산
+    """
+    user_input: Dict[str, Any] = Field(..., description="Step 8 Q&A 답변")
+    context: Dict[str, Any] = Field(..., description="Step 1-5 누적 브랜드 자산")
+
+# =================================================================
+# [Step 9] 광고 (Ad) Request
+# =================================================================
+class AdRequest(BaseModel):
+    """
+    Step 9: 광고 포스터 요청
+    user_input: Step 9 Q&A 답변
+    context: Step 1-5 누적 브랜드 자산 (및 이전 마케팅 결과물 옵션)
+    """
+    user_input: Dict[str, Any] = Field(..., description="Step 9 Q&A 답변")
+    context: Dict[str, Any] = Field(..., description="Step 1-5 누적 브랜드 자산")
