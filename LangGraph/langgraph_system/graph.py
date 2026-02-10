@@ -11,6 +11,13 @@ from langgraph_system.nodes.naming_node import naming_node
 from langgraph_system.nodes.concept_node import concept_node
 from langgraph_system.nodes.story_node import story_node
 from langgraph_system.nodes.logo_node import logo_node
+# Marketing Nodes (Step 6~9)
+from langgraph_system.nodes.marketing_nodes import (
+    icon_node, 
+    model_node, 
+    staging_node, 
+    ad_node
+)
 
 def create_info_graph():
     """
@@ -28,6 +35,11 @@ def create_info_graph():
     workflow.add_node("concept", concept_node)
     workflow.add_node("story", story_node)
     workflow.add_node("logo", logo_node)
+    # Marketing Nodes
+    workflow.add_node("icon", icon_node)
+    workflow.add_node("model", model_node)
+    workflow.add_node("staging", staging_node)
+    workflow.add_node("ad", ad_node)
     
     # 2. 라우팅 함수: current_step에 따라 실행할 노드 결정
     def route_to_step(state: BrandConsultingState) -> str:
@@ -38,7 +50,11 @@ def create_info_graph():
             2: "naming",
             3: "concept",
             4: "story",
-            5: "logo"
+            5: "logo",
+            6: "icon",
+            7: "model",
+            8: "staging",
+            9: "ad"
         }
         
         next_node = step_mapping.get(current_step, "diagnosis")
@@ -54,6 +70,10 @@ def create_info_graph():
     workflow.add_edge("concept", END)
     workflow.add_edge("story", END)
     workflow.add_edge("logo", END)
+    workflow.add_edge("icon", END)
+    workflow.add_edge("model", END)
+    workflow.add_edge("staging", END)
+    workflow.add_edge("ad", END)
     
     # 5. 컴파일
     app = workflow.compile()
