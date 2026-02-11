@@ -300,39 +300,59 @@ class GenerationPrompts:
     )
     
     ICON_USER = """
-    [Brand Assets (Context)]:
-    {context}
+    [Brand Identity (Steps 1-5)]
+    - Brand Name: {brand_name}
+    - Concept: {concept_statement}
+    - Story Essence: {brand_story}
+    - Core Keywords: {core_keywords}
     
-    [User Requirements (Answers)]:
+    [User Requirements (Step 6 Answers)]:
     {answers}
     
     [Task]
-    Generate **3 DISTINCT App Icon Visual Instructions** based on the templates below.
+    Generate **3 DISTINCT Brand Symbol Mark Designs** for '{brand_name}' - a PROFESSIONAL CORPORATE ICON at Fortune 500 level.
     
-    [Templates]
-    1. **Minimalist Symbol**: A single, clean geometric shape representing the brand essence. No text.
-    2. **Negative Space**: Using background color to shape the object. Clever and modern.
-    3. **Lettermark Monogram**: A stylized initial letter of the brand name in a modern font.
+    **CRITICAL DESIGN PHILOSOPHY**:
+    Think Apple, Nike, Toyota, Mercedes-Benz level of sophistication.
+    This is NOT a cute app icon - it's a CORPORATE BRAND SYMBOL that represents the entire company.
+    
+    **MANDATORY REQUIREMENTS**:
+    1. **NO TEXT** - Pure symbol only (like Apple's apple, Nike's swoosh, Toyota's emblem)
+    2. **NO BACKGROUND** - White background, clean vector symbol in the center
+    3. **MINIMAL & TIMELESS** - Should look professional in 50 years
+    4. **GEOMETRIC PRECISION** - Clean lines, perfect symmetry or intentional asymmetry
+    5. **BRAND ESSENCE**: Must subtly represent: {concept_statement}
+    6. **COLOR STRATEGY**: Use icon colors from Step 6 answers but keep it simple (1-2 colors max)
+    7. **SCALABILITY**: Must work from favicon size to billboard
+    
+    **Design Direction - Corporate Symbol Mark**:
+    - **Style**: Flat vector, geometric, minimalist, corporate-grade
+    - **Symbolism**: Abstract yet meaningful representation of care/connection/service
+    - **Reference Quality**: Mercedes star, Audi rings, Toyota emblem, Mastercard circles
+    - **Avoid**: Cute illustrations, gradients, shadows, emoji-like designs, app icon backgrounds
+    
+    **Conceptual Approaches for Care/Service Brand**:
+    1. **Geometric Embrace**: Abstract circular or curved forms suggesting protection/care
+    2. **Connected Shapes**: Interlocking elements representing community/connection
+    3. **Sheltering Form**: Geometric interpretation of home/protection (like house shape but abstract)
     
     [Output Requirements]
-    1. **concept**: Concept Name (Korean, <30 chars).
-    2. **rationale**: Design logic and expected brand impact (Korean, natural tone, max 300 chars).
-    3. **prompt**: Detailed image prompt for Gemini (English).
-       - **Constraint**: "Vector icon, flat design, white background, single object, minimal details, professional UI design standard."
-    4. **prompt_description**: functional description of the visual (Korean, 1 sentence).
+    1. **concept**: Symbol Concept (Korean, <30 chars).
+    2. **rationale**: Design philosophy and brand symbolism (Korean, natural tone, max 300 chars). Explain how the geometric form represents the brand essence.
     
     [Output Format - JSON]
     {{
         "candidates": [
             {{
                 "concept": "...",
-                "rationale": "...",
-                "prompt": "...",
-                "prompt_description": "..."
+                "rationale": "..."
             }},
             ... (3 candidates)
         ]
     }}
+    
+    **Example Prompt** (Reference Level):
+    "A minimalist corporate brand symbol: two overlapping circles forming a subtle heart shape in the negative space, representing care and connection. Solid coral color on white background. Clean vector lines, geometric precision, Fortune 500 brand quality. No text, no background decoration. Professional, timeless, scalable from 16px to billboard size."
     """
 
     # =================================================================
@@ -344,14 +364,26 @@ class GenerationPrompts:
     )
     
     PERSONA_USER = """
-    [Brand Assets (Context)]:
-    {context}
+    [Brand Identity (Steps 1-5)]
+    - Brand Name: {brand_name}
+    - Concept: {concept_statement}
+    - Story Essence: {brand_story}
+    - Core Keywords: {core_keywords}
+
+    - Target Persona: {target_persona}
     
-    [User Requirements (Answers)]:
+    [User Requirements (Step 7 Answers)]:
     {answers}
     
     [Task]
-    Generate **3 DISTINCT Brand Persona Visual Concepts**.
+    Generate **3 DISTINCT Brand Persona Visual Concepts** for '{brand_name}'.
+    
+    **IMPORTANT**: The persona MUST embody:
+    - Brand concept: {concept_statement}
+    - Brand story emotion: {brand_story}
+    - Target audience: {target_persona}
+
+    - Core brand keywords: {core_keywords}
     
     [Quality Constraints]
     - **Avoid 'AI Plastic Look'**: Skin texture must be visible, imperfections allowed, natural lighting.
@@ -360,19 +392,14 @@ class GenerationPrompts:
     
     [Output Requirements]
     1. **concept**: Style Name (Korean, <30 chars).
-    2. **rationale**: Why this persona fits the brand target (Korean, natural tone, max 300 chars).
-    3. **prompt**: Image prompt for Gemini (English).
-       - **Constraint**: "Raw photo, 8k resolution, shot on 35mm film, natural sunlight, depth of field, detailed skin texture, imperfections, no heavy retouching."
-    4. **prompt_description**: functional description of the visual (Korean, 1 sentence).
+    2. **rationale**: Why this persona fits the brand target (Korean, natural tone, max 300 chars). MUST mention how it connects to brand concept or story.
     
     [Output Format - JSON]
     {{
         "candidates": [
             {{
                 "concept": "...",
-                "rationale": "...",
-                "prompt": "...",
-                "prompt_description": "..."
+                "rationale": "..."
             }},
             ... (3 candidates)
         ]
@@ -388,14 +415,24 @@ class GenerationPrompts:
     )
     
     STAGING_USER = """
-    [Brand Assets (Context)]:
-    {context}
+    [Brand Identity (Steps 1-5)]
+    - Brand Name: {brand_name}
+    - Concept: {concept_statement}
+    - Story Essence: {brand_story}
+    - Core Keywords: {core_keywords}
+
     
-    [User Requirements (Answers)]:
+    [User Requirements (Step 8 Answers)]:
     {answers}
     
     [Task]
-    Generate **3 DISTINCT Product Photography Concepts**.
+    Generate **3 DISTINCT Product Photography Concepts** for '{brand_name}'.
+    
+    **IMPORTANT**: The staging MUST reflect:
+    - Brand concept: {concept_statement}
+    - Brand story emotion: {brand_story}
+
+    - Core brand keywords: {core_keywords}
     
     [Templates]
     1. **Hero Shot**: Product in center, clean background, sharp focus.
@@ -404,19 +441,14 @@ class GenerationPrompts:
     
     [Output Requirements]
     1. **concept**: Staging Theme (Korean, <30 chars).
-    2. **rationale**: Why this setting enhances the product appeal (Korean, natural tone, max 300 chars).
-    3. **prompt**: Image prompt for Gemini (English). 
-       - **Constraint**: "Commercial product photography, studio lighting, hyper-realistic, 8k, sharp focus, no distorted text, clean composition."
-    4. **prompt_description**: functional description of the visual (Korean, 1 sentence).
+    2. **rationale**: Why this setting enhances the product appeal (Korean, natural tone, max 300 chars). MUST mention how it connects to brand concept or story.
     
     [Output Format - JSON]
     {{
         "candidates": [
             {{
                 "concept": "...",
-                "rationale": "...",
-                "prompt": "...",
-                "prompt_description": "..."
+                "rationale": "..."
             }},
             ... (3 candidates)
         ]
@@ -433,38 +465,48 @@ class GenerationPrompts:
     )
     
     AD_USER = """
-    [Brand Assets (Context)]:
-    {context}
+    [Brand Identity (Steps 1-5)]
+    - Brand Name: {brand_name}
+    - Concept: {concept_statement}
+    - Story Essence: {brand_story}
+    - Core Keywords: {core_keywords}
+
     
-    [User Requirements (Answers)]:
+    [User Requirements (Step 9 Answers)]:
     {answers}
     
-    [Optional Context (Staging Images)]:
+    [Optional Context (Staging Images from Step 8)]:
     {staging_options}
     
     [Task]
-    Generate **3 DISTINCT SNS Ad Visual Concepts** with Layout Focus.
+    Generate **3 DISTINCT SNS Ad Visual Concepts** for '{brand_name}' with Layout Focus.
+    
+    **IMPORTANT**: The ad MUST communicate:
+    - Brand concept: {concept_statement}
+    - Brand story emotion: {brand_story}
+
+    - Core brand keywords: {core_keywords}
     
     [Templates]
     1. **Split Layout**: Image on top/left, Text area on bottom/right. Clean separation.
     2. **Overlay Text**: Darkened/Blurred background image with clear center space for text.
     3. **Minimalist Frame**: Image with a thick colored border (brand color) and text inside the border.
     
+    **CRITICAL REQUIREMENT**: 
+    - The advertisement image MUST include the brand name "{brand_name}" as VISIBLE TEXT within the design
+    - The text should be integrated naturally into the layout (not as overlay)
+    - Use professional typography that matches the brand aesthetic
+    
     [Output Requirements]
     1. **concept**: Ad Campaign Theme (Korean, <30 chars).
-    2. **rationale**: Marketing strategy and expected click-through appeal (Korean, natural tone, max 300 chars).
-    3. **prompt**: Image prompt for Gemini (English).
-       - **Constraint**: "Advertisement poster design, professional graphic design, clear hierarchy, negative space for text, high resolution, balanced composition."
-    4. **prompt_description**: functional description of the visual (Korean, 1 sentence).
+    2. **rationale**: Marketing strategy and expected click-through appeal (Korean, natural tone, max 300 chars). MUST mention how it connects to brand concept or story.
     
     [Output Format - JSON]
     {{
         "candidates": [
             {{
                 "concept": "...",
-                "rationale": "...",
-                "prompt": "...",
-                "prompt_description": "..."
+                "rationale": "..."
             }},
             ... (3 candidates)
         ]
