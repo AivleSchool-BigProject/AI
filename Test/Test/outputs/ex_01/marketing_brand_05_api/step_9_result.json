@@ -1,0 +1,29 @@
+{
+  "result": {
+    "ad_1_url": "https://res.cloudinary.com/dulpdtvvn/image/upload/v1770777499/marketing_api_req/ad/candidate_1.jpg",
+    "ad_2_url": "https://res.cloudinary.com/dulpdtvvn/image/upload/v1770777536/marketing_api_req/ad/candidate_2.jpg",
+    "ad_3_url": "https://res.cloudinary.com/dulpdtvvn/image/upload/v1770777574/marketing_api_req/ad/candidate_3.jpg"
+  },
+  "state_context": {
+    "candidates": [
+      {
+        "id": 0,
+        "image_url": "https://res.cloudinary.com/dulpdtvvn/image/upload/v1770777499/marketing_api_req/ad/candidate_1.jpg",
+        "concept": "오늘 안부, 다정이웃이 챙길게요",
+        "rationale": "상단엔 엄마의 환한 산책 사진, 하단엔 헤드라인·후기·앱 화면을 나눈 안정적인 스플릿 레이아웃. ‘오늘 엄마의 안부’를 대신 챙겨준다는 메시지로 정서적 교감과 신뢰 기반 케어를 강조해 효도 구독 클릭을 유도합니다."
+      },
+      {
+        "id": 1,
+        "image_url": "https://res.cloudinary.com/dulpdtvvn/image/upload/v1770777536/marketing_api_req/ad/candidate_2.jpg",
+        "concept": "퇴근길 걱정을 안부 알림으로",
+        "rationale": "퇴근길 지하철 배경을 살짝 어둡게 깔고 중앙에 “오늘 엄마의 안부…” 헤드라인을 오버레이. 위엔 엄마의 ‘오늘도 잘 다녀와’ 알림 캡처, 아래엔 다정이웃 로고와 핵심 기능을 배치해 이야기 흐름 속에서 자연스럽게 효도 구독을 제안합니다."
+      },
+      {
+        "id": 2,
+        "image_url": "https://res.cloudinary.com/dulpdtvvn/image/upload/v1770777574/marketing_api_req/ad/candidate_3.jpg",
+        "concept": "죄송하단 말 대신, 다정이웃",
+        "rationale": "파스텔 톤 두꺼운 보더 안에 엄마와 자녀의 투샷과 앱 알림을 담고, 프레임 하단에 브랜드명 ‘다정이웃’과 부드러운 카피를 정렬한 미니멀 구성. 상업적 느낌을 줄이고 따뜻한 가족 사진 중심으로 정서적 교감을 극대화합니다."
+      }
+    ]
+  }
+}

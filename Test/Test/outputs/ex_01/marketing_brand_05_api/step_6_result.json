@@ -1,0 +1,29 @@
+{
+  "result": {
+    "icon_1_url": "https://res.cloudinary.com/dulpdtvvn/image/upload/v1770777164/marketing_api_req/icon/candidate_1.jpg",
+    "icon_2_url": "https://res.cloudinary.com/dulpdtvvn/image/upload/v1770777203/marketing_api_req/icon/candidate_2.jpg",
+    "icon_3_url": "https://res.cloudinary.com/dulpdtvvn/image/upload/v1770777230/marketing_api_req/icon/candidate_3.jpg"
+  },
+  "state_context": {
+    "candidates": [
+      {
+        "id": 0,
+        "image_url": "https://res.cloudinary.com/dulpdtvvn/image/upload/v1770777164/marketing_api_req/icon/candidate_1.jpg",
+        "concept": "맞잡은 두 원의 집",
+        "rationale": "좌우 두 개의 반원형 팔이 아래에서 맞잡으며 위로 부드러운 지붕선을 이루어, 중앙에 하트에 가까운 빈 공간이 생기도록 설계합니다. 단일 진한 옐로우로 채워 신뢰와 온기를 담고, 완전한 대칭 구조로 ‘가족을 함께 떠받치는 다정한 이웃’의 안정감을 표현합니다."
+      },
+      {
+        "id": 1,
+        "image_url": "https://res.cloudinary.com/dulpdtvvn/image/upload/v1770777203/marketing_api_req/icon/candidate_2.jpg",
+        "concept": "이어진 두 손의 링",
+        "rationale": "두 개의 서로 다른 굵기의 타원이 45도 각도로 교차하며, 겹치는 부분에 손을 맞잡은 듯한 부드러운 곡선을 형성합니다. 바깥 타원은 짙은 오렌지, 안쪽 교차 부는 옐로우 단색으로 처리해 ‘효도 구독’처럼 계속 이어지는 돌봄의 약속과 정서적 교감을 상징합니다."
+      },
+      {
+        "id": 2,
+        "image_url": "https://res.cloudinary.com/dulpdtvvn/image/upload/v1770777230/marketing_api_req/icon/candidate_3.jpg",
+        "concept": "포개진 포옹 실루엣",
+        "rationale": "바닥을 공유하는 두 개의 대칭 아치형이 서로를 향해 기울어지며, 상단에서 거의 맞닿아 작은 하트형 빈 공간을 만듭니다. 형태는 집의 윤곽을 은근히 연상시키되 선 하나를 줄여 최대한 단순화하고, 부드러운 오렌지 단색으로 ‘어렵지 않은, 다정한 효도’라는 브랜드 메시지를 담습니다."
+      }
+    ]
+  }
+}

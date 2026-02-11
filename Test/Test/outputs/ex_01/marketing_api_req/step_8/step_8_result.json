@@ -1,0 +1,29 @@
+{
+  "result": {
+    "staging_1_url": "https://res.cloudinary.com/dulpdtvvn/image/upload/v1770777382/marketing_api_req/staging/candidate_1.jpg",
+    "staging_2_url": "https://res.cloudinary.com/dulpdtvvn/image/upload/v1770777423/marketing_api_req/staging/candidate_2.jpg",
+    "staging_3_url": "https://res.cloudinary.com/dulpdtvvn/image/upload/v1770777448/marketing_api_req/staging/candidate_3.jpg"
+  },
+  "state_context": {
+    "candidates": [
+      {
+        "id": 0,
+        "image_url": "https://res.cloudinary.com/dulpdtvvn/image/upload/v1770777382/marketing_api_req/staging/candidate_1.jpg",
+        "concept": "따뜻한 알림, 한 장의 안심",
+        "rationale": "화이트 스마트폰이 화면 정중앙에 배치되고, 따뜻한 원목 배경 위로 부드러운 자연광이 떨어집니다. 화면에는 엄마의 환한 산책 사진과 ‘오늘 기분: 매우 좋음’ 리포트 알림이 크게 보여져, ‘효도, 어렵게 말고 다정이웃처럼 쉽게’라는 브랜드 컨셉과 퇴근길에 안심을 주는 감정을 직관적으로 전달합니다."
+      },
+      {
+        "id": 1,
+        "image_url": "https://res.cloudinary.com/dulpdtvvn/image/upload/v1770777423/marketing_api_req/staging/candidate_2.jpg",
+        "concept": "퇴근 후 안도의 원목 책상",
+        "rationale": "따뜻한 원목 테이블 위에 스마트폰, 김 오르는 머그컵, 작은 다육이, 흐릿하게 보이는 가족사진 액자를 배치합니다. 화면에는 어머니의 웃는 사진과 감정 리포트가 떠 있어, 바쁜 직장인 자녀의 퇴근 후 책상 위에서 정서적 교감과 신뢰 기반 케어, ‘효도 구독’의 일상을 자연스럽게 상상하게 합니다."
+      },
+      {
+        "id": 2,
+        "image_url": "https://res.cloudinary.com/dulpdtvvn/image/upload/v1770777448/marketing_api_req/staging/candidate_3.jpg",
+        "concept": "손에 잡히는 안심의 화면 디테일",
+        "rationale": "밝은 톤 스마트폰 가장자리와 유리 표면을 클로즈업해, 선명한 UI와 알림 카드 ‘오늘 기분: 매우 좋음’을 디테일하게 보여줍니다. 따뜻한 색온도의 원목 반사광이 미세하게 비쳐, 기계적 느낌보다 다정한 도구로 보이게 하여 정서적 교감과 신뢰 기반 케어의 감성을 강조합니다."
+      }
+    ]
+  }
+}

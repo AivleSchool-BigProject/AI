@@ -1,0 +1,56 @@
+{
+  "result": {
+    "logo1_url": "https://res.cloudinary.com/dulpdtvvn/image/upload/v1770773943/logos/output_02/logo_1.jpg",
+    "logo2_url": "https://res.cloudinary.com/dulpdtvvn/image/upload/v1770773969/logos/output_02/logo_2.jpg",
+    "logo3_url": "https://res.cloudinary.com/dulpdtvvn/image/upload/v1770774008/logos/output_02/logo_3.jpg"
+  },
+  "state_context": {
+    "candidates": [
+      {
+        "id": 0,
+        "logo_image_url": "https://res.cloudinary.com/dulpdtvvn/image/upload/v1770773943/logos/output_02/logo_1.jpg",
+        "logo_concept": "블랙 워드마크 옆에 ‘집 앞 다정한 이웃’ 느낌의 작은 노란손(혹은 미니 집+스마일) 심볼을 둔 구조",
+        "logo_rationale": "둥근 산세리프로 ‘다정이웃’을 단단하게 보여주고, 왼쪽에 맞잡은 손과 집을 연상시키는 따뜻한 옐로우·오렌지 심볼을 작게 배치해 효도와 마음의 안심을 상징합니다. 텍스트는 항상 블랙으로 유지해 가독성과 확장성을 확보합니다.",
+        "qa_analysis_summary": "사용자가 원하는 ‘효도지만 무겁지 않은, 당근마켓·맘시터 톤’에 맞춰 심볼은 작고 다정하게, 텍스트는 크게 단순하게 잡았습니다. 노인 약자 이미지를 피하고, 동네 이웃 같은 정서에 집중했습니다.",
+        "qa_keywords": [
+          "효도",
+          "다정함",
+          "이웃",
+          "안심",
+          "친근함"
+        ],
+        "color_palette": []
+      },
+      {
+        "id": 1,
+        "logo_image_url": "https://res.cloudinary.com/dulpdtvvn/image/upload/v1770773969/logos/output_02/logo_2.jpg",
+        "logo_concept": "글자가 곧 심볼이 되도록 ‘정’과 ‘웃’ 자획 일부를 노랑·오렌지로 손글씨처럼 변형해, 미소와 포근한 집을 은유",
+        "logo_rationale": "별도 심볼 없이 워드마크 자체를 다정한 그림처럼 만들었습니다. ‘정’ 가운데 점과 ‘웃’의 아래 곡선을 옐로우·오렌지로 처리해 웃는 얼굴·따뜻한 집의 이미지를 자연스럽게 떠올리게 하고, 전체 글자는 둥근 산세리프에 약간의 핸드메이드 느낌을 더해 부담 없이 읽히도록 구성합니다.",
+        "qa_analysis_summary": "이미지 비중을 원하지만 ‘로고 타입 중심’ 철학을 반영해, 글자 안에서 시각적 모티브를 풀었습니다. 당근마켓처럼 쉽고 기억되되, 효도·돌봄의 감정을 과장 없이 담았습니다.",
+        "qa_keywords": [
+          "워드마크",
+          "웃는얼굴",
+          "집이미지",
+          "핸드메이드",
+          "친근함"
+        ],
+        "color_palette": []
+      },
+      {
+        "id": 2,
+        "logo_image_url": "https://res.cloudinary.com/dulpdtvvn/image/upload/v1770774008/logos/output_02/logo_3.jpg",
+        "logo_concept": "위에는 노랑·오렌지 투톤의 작은 집+스마일 심볼, 아래에는 두 줄처럼 안정적으로 놓인 둥근 산세리프 ‘다정이웃’ 워드마크",
+        "logo_rationale": "어르신 전단·조끼에서도 잘 보이도록 상단 심볼은 단순한 집 윤곽 안에 미니멀한 미소를 넣고, 텍스트는 살짝 굵은 둥근 산세리프로 눈에 잘 띄게 했습니다. 오렌지·옐로우의 다른 톤 조합으로 1,2번과는 또 다른 따뜻한 변주를 줍니다.",
+        "qa_analysis_summary": "앱 아이콘과 간판 모두 고려해 세로형 구조로 시인성을 높였습니다. 노인 이미지를 의도적으로 배제하고, ‘우리 집 앞 이웃’ 같은 집·미소 조합으로 서비스의 정서를 부드럽게 전합니다.",
+        "qa_keywords": [
+          "앱아이콘",
+          "집모티프",
+          "미소",
+          "시인성",
+          "따뜻함"
+        ],
+        "color_palette": []
+      }
+    ]
+  }
+}
