@@ -75,10 +75,10 @@ def logo_node(state: BrandConsultingState) -> BrandConsultingState:
         feedback_section=feedback_section
     )
     
-    # 6. GPT-4 로고 컨셉 및 프롬프트 생성
+    # 6. GPT-5.1 로고 컨셉 및 프롬프트 생성
     logo_options = []
     try:
-        print("[Step 5] 1단계: GPT-4o 로고 프롬프트 작성 중...")
+        print("[Step 5] 1단계: GPT-5.1 로고 프롬프트 작성 중...")
         resp = client.chat.completions.create(
             model="gpt-5.1",
             messages=[
@@ -104,7 +104,7 @@ def logo_node(state: BrandConsultingState) -> BrandConsultingState:
         state["error_message"] = str(e)
         return state
 
-    # 7. DALL-E 3 이미지 생성 (순차 처리)
+    # 7. gemini 이미지 생성 (순차 처리)
     output_id = state.get("output_id", "unknown")
     brand_name = naming_context.get("brand_name", "Brand")
     

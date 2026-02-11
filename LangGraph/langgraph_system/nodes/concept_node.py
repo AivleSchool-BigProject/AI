@@ -41,7 +41,7 @@ def concept_node(state: BrandConsultingState) -> BrandConsultingState:
         state["error_message"] = "필수 Context (Diagnosis or Naming) 누락"
         return state
 
-    # 2. answers.json 로드 (v2 포맷)
+    # 2. answers.json 로드
     import os
     answers_file_path = "answers.json"
     if not os.path.exists(answers_file_path):
@@ -76,9 +76,9 @@ def concept_node(state: BrandConsultingState) -> BrandConsultingState:
         feedback_section=feedback_section
     )
 
-    # 5. GPT-4 생성
+    # 5. GPT-5.1 생성
     try:
-        print("[Step 3] GPT-4 컨셉 후보 3개 생성 중...")
+        print("[Step 3] GPT-5.1 컨셉 후보 3개 생성 중...")
         resp = client.chat.completions.create(
             model="gpt-5.1",
             messages=[

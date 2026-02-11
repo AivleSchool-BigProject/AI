@@ -297,13 +297,51 @@ try:
         print(f" 🖼️  3. {result.get('logo3_url')}")
         
         save_result(5, "logo", response_data)
+        
+        # 로고 선택 (사용자)
+        logo_candidates = state_context.get("candidates", [])
+        logo_context = user_select_candidate(logo_candidates, "Logo")
             
     else:
         print(f"❌ Step 5 실패: {resp.text}")
+        sys.exit()
 
 except Exception as e:
     print(f"❌ Step 5 에러: {e}")
+    sys.exit()
+
+# =================================================================
+# [최종] 선택된 Context 저장 (마케팅 단계용)
+# =================================================================
+print("\n" + "=" * 60)
+print("💾 선택된 Context 저장 중...")
+print("=" * 60)
+
+# 선택된 정보로 마케팅용 context 구성
+marketing_context = {
+    "brand_name": naming_context.get("brand_name", ""),
+    "concept_statement": concept_context.get("concept_statement", ""),
+    "brand_story": story_context.get("brand_story", ""),
+    "core_keywords": diagnosis_context.get("keywords", []),
+    "target_persona": diagnosis_context.get("target_persona", "")
+}
+
+# selected_context.json 파일로 저장
+context_file = os.path.join("Test", "outputs", CURRENT_BRAND_FOLDER, "selected_context.json")
+with open(context_file, "w", encoding="utf-8") as f:
+    json.dump(marketing_context, f, indent=2, ensure_ascii=False)
+
+print(f"✅ 선택된 Context 저장 완료: {context_file}")
+print("\n[저장된 내용]")
+print(f"   - Brand: {marketing_context['brand_name']}")
+print(f"   - Concept: {marketing_context['concept_statement'][:50]}...")
+print(f"   - Story: {marketing_context['brand_story'][:50]}...")
+print(f"   - Keywords: {marketing_context['core_keywords']}")
+print(f"   - Persona: {marketing_context['target_persona']}")
+print(f"   - Colors: {marketing_context['logo_color_palette']}")
 
 print("\n" + "=" * 60)
 print("✅ 전체 테스트 완료!")
+print(f"📁 결과 폴더: Test/outputs/{CURRENT_BRAND_FOLDER}")
+print(f"📄 마케팅용 Context: {context_file}")
 print("=" * 60)
