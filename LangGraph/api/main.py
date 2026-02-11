@@ -1,12 +1,12 @@
 #main.py
+from dotenv import load_dotenv
+# .env 파일 로드 (os.getenv 지원) - 가장 먼저 실행
+load_dotenv()
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from api.config import settings
-from api.routers import brand
-from dotenv import load_dotenv
-
-# .env 파일 로드 (os.getenv 지원)
-load_dotenv()
+from api.routers import brand, marketing
 
 # FastAPI 앱 생성
 app = FastAPI(
@@ -22,10 +22,11 @@ app = FastAPI(
     4. Step 4 (Story): Analysis + Naming + Concept + Q&A -> 3 Candidates
     5. Step 5 (Logo): All Context + Q&A -> 3 Candidates (Images)
     
-    [Features]
-    - Step-by-Step Context Accumulation
-    - 3 Candidates Generation (Step 2-5)
-    - Regeneration with Feedback
+    [Marketing]
+    6. Step 6 (Icon): Brand Assets + Q&A -> Icon Image
+    7. Step 7 (Model): Brand Assets + Q&A -> Model Image
+    8. Step 8 (Staging): Brand Assets + Q&A -> Staging Image
+    9. Step 9 (Ad): Brand Assets + Q&A -> Ad Poster
     """
 )
 
@@ -40,6 +41,7 @@ app.add_middleware(
 
 # 라우터 등록
 app.include_router(brand.router)
+app.include_router(marketing.router, prefix="/marketing", tags=["Marketing"])
 @app.get("/")
 async def root():
     return {
