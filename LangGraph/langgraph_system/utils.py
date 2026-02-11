@@ -161,3 +161,77 @@ def validate_step_input(step_num: int, user_input: Dict[str, Any]) -> bool:
     # 예: 필수 질문 답변 확인
     
     return True
+
+# =================================================================
+# Marketing Utils (Step 6~9)
+# =================================================================
+
+def load_marketing_context(brand_id: str) -> Dict[str, Any]:
+    """
+    Step 1~5의 브랜드 자산(Outputs)을 로드하여 마케팅 생성의 Context로 사용합니다.
+    """
+    # brand_id가 "brand_"로 시작하면 그대로 사용, 아니면 붙여줌
+    folder_name = brand_id if brand_id.startswith("brand_") else f"brand_{brand_id}"
+    base_path = f"C:/Users/User/Desktop/workspace/AI/Test/Test/outputs/{folder_name}"
+    
+    context = {}
+    
+    # 필요한 파일 목록
+    files = {
+        "naming": "naming.json",
+        "concept": "concept.json",
+        "story": "story.json",
+        "logo": "logo.json"
+    }
+    
+    for key, filename in files.items():
+        file_path = os.path.join(base_path, filename)
+        if os.path.exists(file_path):
+            with open(file_path, "r", encoding="utf-8") as f:
+                context[key] = json.load(f)
+        else:
+            print(f"[Warning] {filename} not found in {base_path}")
+            context[key] = {}
+            
+    return context
+
+def save_marketing_output(brand_id: str, step_name: str, data: Dict[str, Any]):
+    """
+    마케팅 단계별 결과물을 저장합니다.
+    경로: C:/Users/User/Desktop/workspace/AI/Test/Test/outputs/marketing_{brand_id}/{step_name}.json
+    """
+    # marketing_{id} 폴더 경로 생성
+    # brand_id가 "brand_"로 시작하면 "brand_" 제거 후 사용 (marketing_05) 또는 그대로 사용 (marketing_brand_05)
+    # 기존 코드에서 "marketing_brand_05"로 생성되었으므로, 일관성을 위해 "brand_"가 있으면 그대로 둠
+    folder_suffix = brand_id # if it is brand_05, folder becomes marketing_brand_05
+    
+    output_dir = f"C:/Users/User/Desktop/workspace/AI/Test/Test/outputs/marketing_{folder_suffix}"
+    os.makedirs(output_dir, exist_ok=True)
+    
+    file_path = os.path.join(output_dir, f"{step_name}.json")
+    
+    with open(file_path, "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+    
+    print(f"[Saved] {step_name} result to {file_path}")
+
+def upload_to_cloudinary(image_data: bytes, folder: str) -> str:
+    """
+    이미지 바이트 데이터를 Cloudinary에 업로드하고 URL을 반환합니다.
+    """
+    import cloudinary
+    from cloudinary.uploader import upload
+    
+    # Cloudinary 설정 (환경 변수 사용 권장)
+    cloudinary.config(
+        cloud_name=os.getenv("CLOUDINARY_CLOUD_NAME"),
+        api_key=os.getenv("CLOUDINARY_API_KEY"),
+        api_secret=os.getenv("CLOUDINARY_API_SECRET")
+    )
+    
+    try:
+        response = upload(image_data, folder=folder)
+        return response.get("secure_url")
+    except Exception as e:
+        print(f"[Error] Cloudinary upload failed: {e}")
+        return None
