@@ -62,9 +62,9 @@ def diagnosis_node(state: BrandConsultingState) -> BrandConsultingState:
         qa_data_json=json.dumps(step_1_data, ensure_ascii=False, indent=2)
     )
     
-    # 5. GPT-4 호출
+    # 5. GPT-5.1 호출
     try:
-        print("[Step 1] GPT-4 비즈니스 진단 분석 중...")
+        print("[Step 1] GPT-5.1 비즈니스 진단 분석 중...")
         resp = client.chat.completions.create(
             model="gpt-5.1",
             messages=[
